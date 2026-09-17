@@ -1,21 +1,13 @@
-# Security Policy
+# Política de seguridad
 
-## Supported Versions
+Este repositorio es una lista curada en Markdown, sin código ejecutable ni backend propio. No hay versiones con soporte de seguridad porque no hay superficie de ataque propia.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+## Qué reportar
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+- Un enlace que apunte a un sitio de phishing o malicioso en vez del proveedor real.
+- Un servicio listado que resulte no ser legítimo (por ejemplo, que haga ingeniería inversa de un chatbot existente en vez de ofrecer una API real).
+- Información de contacto o datos personales expuestos por error.
 
-## Reporting a Vulnerability
+## Cómo reportar
 
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Abre un [issue](https://github.com/AvilaCarlosDev/free-apis-ia-espanol/issues) describiendo el problema. Si es sensible y prefieres no hacerlo público, contacta a [@AvilaCarlosDev](https://github.com/AvilaCarlosDev) directamente por GitHub.

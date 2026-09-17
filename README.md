@@ -20,6 +20,7 @@
 
 - [Proveedores 100% Gratuitos](#-proveedores-100-gratuitos)
 - [Proveedores con Créditos de Prueba](#-proveedores-con-créditos-de-prueba)
+- [Agregadores Self-Hosted](#-agregadores-self-hosted)
 - [Modelos Locales (Sin Límites)](#-modelos-locales-sin-límites)
 - [Comparativa de Límites](#-comparativa-de-límites)
 - [Ejemplos de Código](#-ejemplos-de-código)
@@ -212,6 +213,42 @@ curl https://openrouter.ai/api/v1/chat/completions \
 - **Créditos:** 1 millón de tokens/modelo
 - **Modelos:** Qwen (varios)
 
+### [Cerebras](https://cloud.cerebras.ai) — verificado 2026-09-17
+
+- **Créditos:** $5 USD, expiran a los 30 días de otorgados
+- **Requiere:** tarjeta de pago verificada para activar el trial (sin cargo hasta que compres mas creditos)
+- **Modelos:** todo el catálogo público (`gpt-oss-120b`, `qwen-3.8-27b`, etc.), con límites de RPM/TPM propios del trial
+- **Nota:** Cerebras confirma explícitamente en su propia documentación que **no ofrece un tier gratuito permanente** — por eso va aquí y no en "100% Gratuitos"
+
+---
+
+## 🔀 Agregadores Self-Hosted
+
+En vez de gestionar una API key y unos límites distintos por cada proveedor de la lista de arriba, un agregador self-hosted los combina todos detrás de un único endpoint.
+
+### [FreeLLMAPI](https://github.com/tashfeenahmed/FreeLLMAPI) — por [tashfeenahmed](https://github.com/tashfeenahmed)
+
+Router self-hosted (Docker) que agrega **34 proveedores de LLM gratuitos** y expone **635 endpoints de modelos gratuitos** detrás de un único endpoint compatible con la API de OpenAI (`/v1`). Guarda las keys cifradas, hace ruteo automático al mejor modelo disponible, falla hacia el siguiente proveedor cuando uno te limita, y lleva la cuenta de uso por key para que no te pases del free tier de ninguno.
+
+- **Costo:** 100% gratis y open source (con opción paga en [freellmapi.co](https://freellmapi.co), $19/año, para catálogo de modelos al día en vez de con 30 días de retraso)
+- **Instalación:** Docker Compose, imagen oficial `ghcr.io/tashfeenahmed/freellmapi`
+- **Requiere:** tus propias keys de los proveedores que quieras usar (este proyecto no las provee, solo las orquesta)
+- **Verificado en uso real:** corriendo en producción desde septiembre de 2026 como backend de LLM de un homelab personal
+
+```yaml
+# docker-compose.yml minimo
+services:
+  freellmapi:
+    image: ghcr.io/tashfeenahmed/freellmapi:latest
+    ports:
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - freellmapi-data:/app/server/data
+    restart: unless-stopped
+volumes:
+  freellmapi-data:
+```
+
 ---
 
 ## 🖥️ Modelos Locales (Sin Límites)
@@ -269,6 +306,7 @@ ollama pull mistral:7b-instruct-v0.2-q4_K_M
 | Groq | ✅ 14K/day | ❌ | ❌ |
 | GitHub Models | ✅ 200/mes (Free) | ❌ | ❌ |
 | Cloudflare | ✅ 10K neurons/day | ❌ | ❌ |
+| FreeLLMAPI (agregador) | ✅ Depende de las keys que le des | ❌ | Depende del proveedor detras |
 | Ollama (local) | ✅ Ilimitado | ❌ | ❌ |
 
 ---
@@ -328,32 +366,7 @@ curl http://localhost:11434/api/generate -d '{
 
 ## 🛠️ Cómo Contribuir
 
-### Agregar un Nuevo Provider
-
-1. **Fork** este repositorio
-2. **Crea una rama:** `git checkout -b feature/add-provider-x`
-3. **Agrega la sección** siguiendo el formato existente
-4. **Incluye:**
-   - Nombre y link oficial
-   - Límites exactos (requests, tokens, etc.)
-   - Modelos disponibles
-   - ¿Requiere verificación?
-   - ¿Usa datos para training?
-5. **Envía un PR** con descripción clara
-
-### Formato de Contribución
-
-```markdown
-### [Nombre del Provider](https://url.com)
-
-**Límites:**
-- X requests/minuto
-- Y requests/día
-
-**Requiere:** [Teléfono/Tarjeta/None]
-
-**Modelos:** Lista de modelos disponibles
-```
+Ver [CONTRIBUTING.md](CONTRIBUTING.md) para el formato y las reglas.
 
 ---
 
@@ -377,6 +390,7 @@ curl http://localhost:11434/api/generate -d '{
 - Verifica siempre los términos de uso actuales
 - Para producción, considera planes pagos para estabilidad
 - No uses estos servicios para spam o abuse
+- **Última verificación en vivo:** 2026-09-17. Se reconfirmaron contra la documentación oficial los límites de OpenRouter (siguen siendo 20 req/min, 50 req/día sin creditos, 1000 req/día con $10 de top-up) — coinciden con lo ya publicado aqui. Se investigaron ademas 3 proveedores nuevos: **Cerebras** (agregado, es trial de $5 sin tier gratuito permanente segun su propia doc), **SambaNova** (docs rotos al momento de revisar, no se pudo confirmar nada), **DeepSeek** (100% de pago, sin free tier, no se agrego). El resto de proveedores ya listados no se pudo re-verificar en esta pasada (varios bloquean scraping o renderizan sus docs con JS); si encuentras un límite desactualizado, abre un issue o PR.
 
 ---
 
@@ -389,6 +403,7 @@ MIT License - ver [LICENSE](./LICENSE) para detalles.
 ## 🌟 Agradecimientos
 
 - Inspirado en [free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources)
+- [FreeLLMAPI](https://github.com/tashfeenahmed/FreeLLMAPI) es obra de [tashfeenahmed](https://github.com/tashfeenahmed), no de este repositorio — aqui solo se documenta y se enlaza a su fuente original
 - Traducido y adaptado para la comunidad hispanohablante
 - Mantenido por [@AvilaCarlosDev](https://github.com/AvilaCarlosDev)
 
