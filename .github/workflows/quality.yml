@@ -30,6 +30,12 @@ jobs:
       - name: Script tests
         run: tests/check-parity.test.sh
 
+      - name: Catalog schema is valid
+        run: python3 scripts/catalogo.py validar
+
+      - name: README tables are up to date with data/apis.json
+        run: python3 scripts/generar_readme.py --comprobar
+
       - name: Spanish and English READMEs link the same resources
         run: scripts/check-parity.sh README.md README.en.md
 

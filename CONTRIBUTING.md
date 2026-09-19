@@ -15,11 +15,18 @@ Gracias por querer sumar. El valor de esta lista es que **cada dato se puede com
 5. **Los ejemplos de código tienen que funcionar.** Los modelos que cites (`:free` de OpenRouter, tags de Ollama, modelos de Groq) los comprueba `scripts/verificar.py`.
 6. Edita **`README.md` y `README.en.md`** con los mismos enlaces.
 
+### Agregar una API al catálogo
+
+El catálogo (`data/apis.json`) es la única fuente de verdad y de él se generan las tablas de los dos README. Sigue los pasos de [docs/esquema.md](docs/esquema.md): lee los términos de la API, agrega la entrada con sus textos en español e inglés, valida, verifica con una llamada real y regenera las tablas. **Nunca pongas claves ni tokens en `ejemplo.url`.**
+
 ### Comprobar en local
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py'   # pruebas del verificador
 python3 scripts/verificar.py README.md                   # contrasta el README con las fuentes (usa la red)
+python3 scripts/catalogo.py validar                       # esquema de data/apis.json
+python3 scripts/catalogo.py verificar                     # llama a cada API del catálogo (usa la red)
+python3 scripts/generar_readme.py --comprobar             # las tablas de los README están al día
 scripts/check-parity.sh README.md README.en.md           # mismos enlaces en español e inglés
 ```
 
@@ -42,11 +49,18 @@ Thanks for wanting to help. The value of this list is that **every fact can be c
 5. **Code examples must work.** The models you cite (OpenRouter `:free`, Ollama tags, Groq models) are checked by `scripts/verificar.py`.
 6. Edit **`README.md` and `README.en.md`** with the same links.
 
+### Add an API to the catalog
+
+The catalog (`data/apis.json`) is the single source of truth and both READMEs' tables are generated from it. Follow the steps in [docs/esquema.md](docs/esquema.md): read the API's terms, add the entry with its Spanish and English texts, validate, verify with a real call and regenerate the tables. **Never put keys or tokens in `ejemplo.url`.**
+
 ### Check locally
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py'   # verifier tests
 python3 scripts/verificar.py README.md                   # checks the README against the sources (uses the network)
+python3 scripts/catalogo.py validar                       # schema of data/apis.json
+python3 scripts/catalogo.py verificar                     # calls every API in the catalog (uses the network)
+python3 scripts/generar_readme.py --comprobar             # the README tables are up to date
 scripts/check-parity.sh README.md README.en.md           # same links in Spanish and English
 ```
 
