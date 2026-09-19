@@ -1,0 +1,39 @@
+{
+ "type": "disambiguation",
+ "title": "Mercurio",
+ "displaytitle": "<span lang=\"es\" dir=\"ltr\"><span class=\"mw-page-title-main\">Mercurio</span></span>",
+ "namespace": {
+  "id": 0,
+  "text": ""
+ },
+ "wikibase_item": "Q200655",
+ "titles": {
+  "canonical": "Mercurio",
+  "normalized": "Mercurio",
+  "display": "<span lang=\"es\" dir=\"ltr\"><span class=\"mw-page-title-main\">Mercurio</span></span>"
+ },
+ "pageid": 1786,
+ "lang": "es",
+ "dir": "ltr",
+ "revision": "174242731",
+ "tid": "a3272302-7855-11f1-b409-38ee929a32eb",
+ "timestamp": "2026-07-05T09:41:03Z",
+ "description": "página de desambiguación de Wikimedia",
+ "description_source": "central",
+ "content_urls": {
+  "desktop": {
+   "page": "https://es.wikipedia.org/wiki/Mercurio",
+   "revisions": "https://es.wikipedia.org/wiki/Mercurio?action=history",
+   "edit": "https://es.wikipedia.org/wiki/Mercurio?action=edit",
+   "talk": "https://es.wikipedia.org/wiki/Discusi%C3%B3n:Mercurio"
+  },
+  "mobile": {
+   "page": "https://es.wikipedia.org/wiki/Mercurio",
+   "revisions": "https://es.wikipedia.org/wiki/Special:History/Mercurio",
+   "edit": "https://es.wikipedia.org/wiki/Mercurio?action=edit",
+   "talk": "https://es.wikipedia.org/wiki/Discusi%C3%B3n:Mercurio"
+  }
+ },
+ "extract": "El término mercurio puede hacer referencia a:Mercurio (elemento), un elemento químico de número atómico 80 y símbolo Hg;\nMercurio (planeta), el planeta del sistema solar más próximo al Sol;\nMercurio (mitología), dios de la mitología romana.",
+ "extract_html": "<p>El término <b>mercurio</b> puede hacer referencia a:</p><ul><li><b>Mercurio (elemento)</b>, un elemento químico de número atómico 80 y símbolo Hg;</li>\n<li><b>Mercurio (planeta)</b>, el planeta del sistema solar más próximo al Sol;</li>\n<li><b>Mercurio (mitología)</b>, dios de la mitología romana.</li></ul>"
+}

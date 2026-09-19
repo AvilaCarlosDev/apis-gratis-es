@@ -10,6 +10,7 @@ const DEMOS = {
   clima: { conexiones: ["https://api.open-meteo.com", "https://geocoding-api.open-meteo.com"], imagenes: [] },
   ubicacion: { conexiones: ["https://ipwho.is", "https://photon.komoot.io"], imagenes: [], marcos: ["https://www.openstreetmap.org"] },
   feriados: { conexiones: ["https://date.nager.at"], imagenes: [] },
+  wikipedia: { conexiones: ["https://es.wikipedia.org"], imagenes: ["https://thumb.wikimedia.org"] },
 };
 
 for (const [demo, permitido] of Object.entries(DEMOS)) {

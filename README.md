@@ -50,6 +50,9 @@ Cada demo es una aplicación distinta, con su propia página, README, pruebas y 
 
 - [Tienda](demos/tienda/README.md): precios en dólares y bolívares a la tasa oficial, con búsqueda, categorías y carrito.
 - [Clima](demos/clima/README.md): el clima de hoy y el pronóstico de siete días de cualquier ciudad.
+- [Feriados](demos/feriados/README.md): los feriados de cada año en 20 países, con el próximo y los fines de semana largos.
+- [Ubicación](demos/ubicacion/README.md): busca un lugar y obtén sus coordenadas, o estima dónde estás con un mapa.
+- [Enciclopedia al paso](demos/wikipedia/README.md): busca un tema y lee su síntesis en Wikipedia en español.
 
 ## Catálogo de APIs sin clave
 
@@ -95,6 +98,7 @@ APIs que se pueden llamar **sin registrarse ni pedir una clave**, con su ejemplo
 | [Wikipedia en español — API REST](https://es.wikipedia.org/api/rest_v1/) | Resúmenes y contenido de artículos de la Wikipedia en español. (Global) | No especificado | Obligatoria (CC-BY-SA) | La política de Wikimedia exige un User-Agent que identifique tu aplicación. | Abierto | ✅ 2026-09-19 · 275 ms |
 | [Nager.Date — feriados públicos](https://date.nager.at/Api) | Feriados públicos de más de 100 países, por año, incluidos los de Latinoamérica. (Global) | No especificado | No especificada | Sin límite de peticiones, según su documentación. | Abierto | ✅ 2026-09-19 · 219 ms |
 | [Nager.Date — Feriados](https://date.nager.at/Api) | Feriados públicos de más de 100 países por año, sin clave y con CORS abierto. (Global) | No especificado | No especificada (MIT) | Servicio de terceros sin garantía de disponibilidad; el proyecto es de código abierto (MIT) y se puede alojar por cuenta propia. | Abierto | ✅ 2026-09-19 · 251 ms |
+| [Wikipedia en español — búsqueda y resúmenes](https://es.wikipedia.org/api/rest_v1/) | Busca artículos de Wikipedia en español por título y devuelve el resumen de cada uno, con su imagen principal y el enlace al artículo. También entrega uno al azar. (Global) | Sí | Obligatoria (CC-BY-SA-4.0) | 200 peticiones por minuto para un navegador sin sesión iniciada; sin identificar, 10 por minuto. El texto de los artículos es CC BY-SA 4.0: hay que atribuir y enlazar al artículo original. La demo usa tres rutas del mismo host: /w/rest.php/v1/search/title, /api/rest_v1/page/summary/{título} y /api/rest_v1/page/random/summary. | Abierto | ✅ 2026-09-19 · 260 ms |
 
 ### Tienda demo
 
@@ -115,7 +119,7 @@ APIs que se pueden llamar **sin registrarse ni pedir una clave**, con su ejemplo
 - [nager/Nager.Date](https://github.com/nager/Nager.Date) (MIT) — Nager.Date — feriados públicos, Nager.Date — Feriados
 - [osm-search/Nominatim](https://github.com/osm-search/Nominatim) (GPL-3.0) — Nominatim (OpenStreetMap)
 - [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) — DummyJSON
-- [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT) — Datos abiertos de España (datos.gob.es), Open-Meteo — pronóstico, Open-Meteo — geocodificación, Nominatim (OpenStreetMap), Nager.Date — feriados públicos, FakeStoreAPI, DummyJSON, Random User Generator, JSONPlaceholder
+- [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT) — Datos abiertos de España (datos.gob.es), Open-Meteo — pronóstico, Open-Meteo — geocodificación, Nominatim (OpenStreetMap), Nager.Date — feriados públicos, FakeStoreAPI, DummyJSON, Random User Generator, JSONPlaceholder, Wikipedia en español — búsqueda y resúmenes
 - [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) (MIT) — Random User Generator
 - [typicode/jsonplaceholder](https://github.com/typicode/jsonplaceholder) (MIT) — JSONPlaceholder
 <!-- catalogo:fin -->
