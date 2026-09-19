@@ -14,7 +14,7 @@ npm test          # tests with Node's built-in runner, no dependencies
 npm run servir    # http://localhost:8080/demos/tienda/
 ```
 
-Requires Node 20+ and Python 3 (only to serve the files). There is no `npm install`: it has no dependencies.
+Requires Node 22+ and Python 3 (only to serve the files). There is no `npm install`: it has no dependencies.
 
 ## APIs used
 

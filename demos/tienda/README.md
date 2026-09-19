@@ -14,7 +14,7 @@ npm test          # pruebas con el ejecutor de Node, sin dependencias
 npm run servir    # http://localhost:8080/demos/tienda/
 ```
 
-Hace falta Node 20 o superior y Python 3 (solo para servir los archivos). No hay `npm install`: no tiene dependencias.
+Hace falta Node 22 o superior y Python 3 (solo para servir los archivos). No hay `npm install`: no tiene dependencias.
 
 ## APIs que usa
 
