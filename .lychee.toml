@@ -9,6 +9,6 @@ exclude = [
   '^https://openrouter\.ai/api/v1/chat/completions',
   '^https://openrouter\.ai/api/v1/models',
   '^http://localhost',
-  # Temporal: la demo de ubicación aún no está publicada en Pages; quitar al mergear.
-  '^https://avilacarlosdev\.github\.io/apis-gratis-es/demos/ubicacion/',
+  # Temporal: la demo de Wikipedia aún no está publicada en Pages; quitar al mergear.
+  '^https://avilacarlosdev\.github\.io/apis-gratis-es/demos/wikipedia/',
 ]
