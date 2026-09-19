@@ -53,6 +53,6 @@ La estimación de ubicación **solo se pide cuando pulsas el botón**, nunca al 
 ## Créditos y licencias
 
 - Lugares de [Photon](https://photon.komoot.io/) ([komoot/photon](https://github.com/komoot/photon), Apache-2.0), con datos de © colaboradores de [OpenStreetMap](https://www.openstreetmap.org/copyright), bajo la licencia ODbL. Por eso la página lleva esa atribución.
-- Ubicación aproximada de [ipwho.is](https://ipwho.is/).
+- Ubicación aproximada de [ipwho.is](https://ipwho.is/). Su endpoint gratuito admite 1.000 peticiones al día por IP de cliente y permite uso comercial; los datos de Photon exigen atribuir a OpenStreetMap y su uso debe ser justo, porque el uso intensivo se limita.
 - Tipografía **Bricolage Grotesque**, con licencia SIL Open Font License 1.1 (ver [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
 - Código de la demo: MIT, como el resto del repositorio.

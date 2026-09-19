@@ -576,9 +576,10 @@
       "terminos": {
         "fuente": "https://photon.komoot.io/",
         "uso_comercial": "no-especificado",
-        "atribucion": "no-especificada",
-        "limites": null,
-        "licencia": null
+        "atribucion": "obligatoria",
+        "limites": "Uso justo: el uso intensivo se limita.",
+        "limites_en": "Fair use: extensive usage is throttled.",
+        "licencia": "ODbL (datos de OpenStreetMap)"
       },
       "creditos": [
         {
@@ -594,7 +595,9 @@
         "ms": 768,
         "metodo": "llamada"
       },
-      "descripcion_en": "Place search and geocoding with OpenStreetMap data, with a GeoJSON response."
+      "descripcion_en": "Place search and geocoding with OpenStreetMap data, with a GeoJSON response.",
+      "notas": "Los datos son de OpenStreetMap: hay que atribuir «© colaboradores de OpenStreetMap» (ODbL). Servicio de terceros sin garantía de disponibilidad; el proyecto es de código abierto (Apache-2.0) y se puede alojar por cuenta propia.",
+      "notas_en": "The data comes from OpenStreetMap: credit «© OpenStreetMap contributors» (ODbL). Third-party service with no availability guarantee; the project is open source (Apache-2.0) and can be self-hosted."
     },
     {
       "id": "ipwho-is",
@@ -618,10 +621,11 @@
         }
       },
       "terminos": {
-        "fuente": "https://ipwho.is/",
-        "uso_comercial": "no-especificado",
+        "fuente": "https://ipwhois.io/documentation",
+        "uso_comercial": "si",
         "atribucion": "no-especificada",
-        "limites": null,
+        "limites": "El endpoint gratuito admite 1.000 peticiones al día por IP de cliente.",
+        "limites_en": "The free endpoint allows 1,000 requests per day per client IP address.",
         "licencia": null
       },
       "verificacion": {
