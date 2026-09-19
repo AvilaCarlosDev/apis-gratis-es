@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { esUrlPermitida, limitarTexto } from "../lib/seguro.js";
+import { esUrlPermitida, limitarTexto } from "../seguro.js";
 
 const HOSTS = ["fakestoreapi.com", "cdn.dummyjson.com"];
 

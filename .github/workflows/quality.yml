@@ -39,7 +39,7 @@ jobs:
       - name: Spanish and English READMEs link the same resources
         run: scripts/check-parity.sh README.md README.en.md
 
-  demo-tienda:
+  demos:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -50,8 +50,8 @@ jobs:
         with:
           node-version: 22
 
-      - name: Demo store tests
-        working-directory: demos/tienda
+      - name: Demo tests
+        working-directory: demos
         run: npm test
 
   secrets:

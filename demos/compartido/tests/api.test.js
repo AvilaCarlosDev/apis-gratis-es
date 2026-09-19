@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { pedirJson, ErrorDeRed } from "../lib/api.js";
+import { pedirJson, ErrorDeRed } from "../api.js";
 
 const respuesta = (cuerpo, { status = 200 } = {}) => ({ ok: status >= 200 && status < 300, status, json: async () => (typeof cuerpo === "function" ? cuerpo() : cuerpo) });
 

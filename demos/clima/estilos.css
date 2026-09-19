@@ -1,0 +1,31 @@
+.buscar { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.buscar input[type="search"] { flex: 1 1 14rem; max-width: 26rem; }
+.pizarra .campo { background: transparent; color: var(--pizarra-texto); border-color: #3c5148; }
+.pizarra .campo option { color: #10231c; }
+.pizarra input[type="search"] { background: transparent; color: var(--pizarra-texto); border-color: #3c5148; }
+.pizarra button.primario { background: var(--oro); color: #10231c; }
+.pizarra button.chip { background: transparent; color: var(--pizarra-texto); border-color: #3c5148; }
+.pizarra button.chip[aria-pressed="true"] { background: var(--pizarra-texto); color: #10231c; }
+
+.lugares { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+
+.actual h2 { margin: 1.5rem 0 0; font-size: 1.125rem; font-weight: 600; color: var(--pizarra-suave); }
+.actual .vacio { color: var(--pizarra-suave); margin-top: 1.5rem; }
+.temperatura { margin: .25rem 0 0; font-size: clamp(3.5rem, 14vw, 7rem); font-weight: 800; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.condicion { margin: .25rem 0 0; font-size: 1.375rem; }
+.datos { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; color: var(--pizarra-suave); }
+
+.dias { list-style: none; margin: 0; padding: 0; background: var(--papel); border: 1px solid var(--linea); border-radius: .5rem; }
+.dia { display: grid; grid-template-columns: 6rem 1fr auto auto; gap: .25rem 1rem; align-items: baseline; padding: .75rem 1rem; border-bottom: 1px solid var(--linea); }
+.dia:last-child { border-bottom: 0; }
+.dia-nombre { font-weight: 700; text-transform: capitalize; }
+.dia-condicion { color: var(--tinta-suave); }
+.dia-lluvia { grid-column: 2; color: var(--tinta-suave); font-size: .875rem; }
+.dia-max { grid-row: 1; grid-column: 3; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dia-min { grid-row: 1; grid-column: 4; color: var(--tinta-suave); font-variant-numeric: tabular-nums; }
+@media (min-width: 40rem) {
+  .dia { grid-template-columns: 7rem 1fr 8rem 4rem 4rem; }
+  .dia-lluvia { grid-column: 3; grid-row: 1; }
+  .dia-max { grid-column: 4; }
+  .dia-min { grid-column: 5; }
+}

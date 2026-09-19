@@ -46,7 +46,10 @@ Every fact carries a verification mark:
 
 ## Working demo
 
-The [demo store](demos/tienda/README.en.md) combines four APIs from this catalog (official bolívar rate, two product providers and weather) with no backend and no keys, with tests and credits to every project.
+Each demo is a separate application, with its own page, README, tests and credits, and uses only APIs from this catalog with no backend and no keys. Home page: https://avilacarlosdev.github.io/apis-gratis-es/
+
+- [Store](demos/tienda/README.en.md): prices in dollars and bolívares at the official rate, with search, categories and a cart.
+- [Weather](demos/clima/README.en.md): today's weather and a seven-day forecast for any city.
 
 ## Keyless API catalog
 

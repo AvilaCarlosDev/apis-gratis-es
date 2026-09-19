@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { crearDocumentoFalso } from "./helpers/dom-falso.js";
-import { tarjetaProducto, pintarCarrito, pintarMensaje, pintarClima, pintarTasa } from "../lib/render.js";
+import { crearDocumentoFalso } from "../../compartido/tests/helpers/dom-falso.js";
+import { tarjetaProducto, pintarCarrito, pintarTasa, pintarCategorias, pintarResultados } from "../lib/render.js";
 
 const HOSTIL = `<img src=x onerror="alert(1)">`;
 const producto = (extra = {}) => ({ id: "fakestore-1", titulo: "Camisa", precioUsd: 10, imagen: "https://fakestoreapi.com/img/a.png", categoria: "ropa", ...extra });
@@ -91,25 +91,6 @@ test("un título hostil en el carrito tampoco se interpreta como HTML", () => {
   assert.ok(doc.getElementById("carrito").textContent.includes(HOSTIL));
 });
 
-test("pintarMensaje muestra el texto, marca el rol y ofrece reintentar", async () => {
-  const doc = crearDocumentoFalso(["msg"]);
-  let reintentos = 0;
-  pintarMensaje(doc, doc.getElementById("msg"), "No se pudieron cargar los productos.", () => reintentos++);
-  const m = doc.getElementById("msg");
-  assert.equal(m.getAttribute("role"), "alert");
-  assert.match(m.textContent, /No se pudieron cargar/);
-  await m.porEtiqueta("button")[0].disparar("click");
-  assert.equal(reintentos, 1);
-});
-
-test("pintarMensaje sin texto limpia y oculta el aviso", () => {
-  const doc = crearDocumentoFalso(["msg"]);
-  pintarMensaje(doc, doc.getElementById("msg"), "algo", null);
-  pintarMensaje(doc, doc.getElementById("msg"), "", null);
-  assert.equal(doc.getElementById("msg").textContent, "");
-  assert.equal(doc.getElementById("msg").hidden, true);
-});
-
 test("pintarTasa muestra la ecuación y la fecha; sin tasa lo dice", () => {
   const doc = crearDocumentoFalso(["tasa"]);
   pintarTasa(doc, doc.getElementById("tasa"), tasa);
@@ -120,11 +101,36 @@ test("pintarTasa muestra la ecuación y la fecha; sin tasa lo dice", () => {
   assert.match(doc.getElementById("tasa").textContent, /no disponible/i);
 });
 
-test("pintarClima muestra ciudad, temperatura y descripción; sin datos avisa", () => {
-  const doc = crearDocumentoFalso(["clima"]);
-  pintarClima(doc, doc.getElementById("clima"), { temperatura: 25.9, unidad: "°C", descripcion: "Parcialmente nublado" });
-  assert.match(doc.getElementById("clima").textContent, /25,9 °C/);
-  assert.match(doc.getElementById("clima").textContent, /Parcialmente nublado/);
-  pintarClima(doc, doc.getElementById("clima"), null);
-  assert.match(doc.getElementById("clima").textContent, /no disponible/i);
+test("pintarCategorias muestra 'Todas' y una opción por categoría, marcando la activa", () => {
+  const doc = crearDocumentoFalso(["cats"]);
+  const cats = [{ clave: "jewelery", nombre: "Joyería", cantidad: 3 }, { clave: "electronics", nombre: "Electrónica", cantidad: 2 }];
+  pintarCategorias(doc, doc.getElementById("cats"), cats, 5, "jewelery", () => {});
+  const botones = doc.getElementById("cats").porEtiqueta("button");
+  assert.deepEqual(botones.map((b) => b.getAttribute("aria-pressed")), ["false", "true", "false"]);
+  assert.match(botones[0].textContent, /Todas \(5\)/);
+  assert.match(botones[1].textContent, /Joyería \(3\)/);
+});
+
+test("pintarCategorias avisa con la clave elegida al pulsar", async () => {
+  const doc = crearDocumentoFalso(["cats"]);
+  const elegidas = [];
+  pintarCategorias(doc, doc.getElementById("cats"), [{ clave: "jewelery", nombre: "Joyería", cantidad: 3 }], 3, "todas", (c) => elegidas.push(c));
+  const [todas, joyeria] = doc.getElementById("cats").porEtiqueta("button");
+  await joyeria.disparar("click");
+  await todas.disparar("click");
+  assert.deepEqual(elegidas, ["jewelery", "todas"]);
+});
+
+test("un nombre de categoría hostil se muestra como texto", () => {
+  const doc = crearDocumentoFalso(["cats"]);
+  pintarCategorias(doc, doc.getElementById("cats"), [{ clave: "x", nombre: HOSTIL, cantidad: 1 }], 1, "todas", () => {});
+  assert.ok(doc.getElementById("cats").textContent.includes(HOSTIL));
+});
+
+test("pintarResultados singular, plural y vacío", () => {
+  const doc = crearDocumentoFalso(["r"]);
+  const r = doc.getElementById("r");
+  pintarResultados(doc, r, 1); assert.equal(r.textContent, "1 producto");
+  pintarResultados(doc, r, 24); assert.equal(r.textContent, "24 productos");
+  pintarResultados(doc, r, 0); assert.match(r.textContent, /No hay productos/);
 });

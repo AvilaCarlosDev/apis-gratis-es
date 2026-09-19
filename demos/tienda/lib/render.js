@@ -1,24 +1,7 @@
-// Todo el DOM se arma con createElement/textContent: los textos de las APIs nunca se interpretan como HTML.
 import { convertir } from "./cambio.js";
 import { totalUsd } from "./carrito.js";
-import { formatearBs, formatearFechaLarga, formatearUsd } from "./formato.js";
-
-const grados = new Intl.NumberFormat("es-VE", { maximumFractionDigits: 1 });
-
-function el(doc, etiqueta, { clase, texto, atributos } = {}, ...hijos) {
-  const nodo = doc.createElement(etiqueta);
-  if (clase) nodo.className = clase;
-  if (texto !== undefined) nodo.textContent = texto;
-  for (const [k, v] of Object.entries(atributos ?? {})) nodo.setAttribute(k, v);
-  if (hijos.length) nodo.append(...hijos);
-  return nodo;
-}
-
-const boton = (doc, texto, etiquetaAria, alPulsar, clase = "") => {
-  const b = el(doc, "button", { clase, texto, atributos: { type: "button", "aria-label": etiquetaAria } });
-  b.addEventListener("click", alPulsar);
-  return b;
-};
+import { boton, el } from "../../compartido/dom.js";
+import { formatearBs, formatearFechaLarga, formatearUsd } from "../../compartido/formato.js";
 
 const enBs = (usd, tasa) => (tasa ? formatearBs(convertir(usd, tasa.bsPorUsd)) : "Bs. no disponible");
 
@@ -60,36 +43,28 @@ export function pintarCarrito(doc, contenedor, carrito, tasa, { quitar, cambiar,
     boton(doc, "Vaciar carrito", "Vaciar carrito", () => vaciar?.(), "texto"));
 }
 
-export function pintarMensaje(doc, contenedor, texto, reintentar) {
-  if (!texto) {
-    contenedor.replaceChildren();
-    contenedor.removeAttribute("role");
-    contenedor.hidden = true;
-    return;
-  }
-  contenedor.setAttribute("role", "alert");
-  contenedor.hidden = false;
-  contenedor.replaceChildren(el(doc, "p", { texto }));
-  if (reintentar) contenedor.append(boton(doc, "Reintentar", "Reintentar la carga", reintentar, "texto"));
-}
-
 export function pintarTasa(doc, contenedor, tasa) {
   if (!tasa) {
-    contenedor.replaceChildren(el(doc, "p", { clase: "tasa-nota", texto: "Tasa oficial no disponible por ahora." }));
+    contenedor.replaceChildren(el(doc, "p", { clase: "pizarra-nota", texto: "Tasa oficial no disponible por ahora." }));
     return;
   }
   const fecha = formatearFechaLarga(tasa.actualizadaEl);
   contenedor.replaceChildren(
     el(doc, "p", { clase: "tasa-ecuacion", texto: `US$ 1 = ${formatearBs(tasa.bsPorUsd)}` }),
-    el(doc, "p", { clase: "tasa-nota", texto: fecha ? `Tasa oficial, actualizada el ${fecha}.` : "Tasa oficial." }));
+    el(doc, "p", { clase: "pizarra-nota", texto: fecha ? `Tasa oficial, actualizada el ${fecha}.` : "Tasa oficial." }));
 }
 
-export function pintarClima(doc, contenedor, clima) {
-  if (!clima) {
-    contenedor.replaceChildren(el(doc, "p", { texto: "Clima no disponible por ahora." }));
-    return;
-  }
-  contenedor.replaceChildren(
-    el(doc, "p", { clase: "clima-temp", texto: `${grados.format(clima.temperatura)} ${clima.unidad}` }),
-    el(doc, "p", { texto: clima.descripcion }));
+export function pintarCategorias(doc, contenedor, categorias, total, activa, alElegir) {
+  const chip = (clave, texto, cantidad) => {
+    const b = boton(doc, `${texto} (${cantidad})`, `Ver ${texto}`, () => alElegir(clave), "chip");
+    b.setAttribute("aria-pressed", String(clave === activa));
+    return b;
+  };
+  contenedor.replaceChildren(chip("todas", "Todas", total), ...categorias.map((c) => chip(c.clave, c.nombre, c.cantidad)));
+}
+
+export function pintarResultados(doc, contenedor, cantidad) {
+  contenedor.textContent = cantidad === 0
+    ? "No hay productos que coincidan. Prueba con otra búsqueda o categoría."
+    : `${cantidad} ${cantidad === 1 ? "producto" : "productos"}`;
 }

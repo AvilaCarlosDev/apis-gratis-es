@@ -5,7 +5,7 @@ import { HOSTS_API, HOSTS_IMAGEN } from "../lib/config.js";
 
 const catalogo = JSON.parse(readFileSync(new URL("../../../data/apis.json", import.meta.url), "utf8"));
 const porId = (id) => catalogo.entradas.find((e) => e.id === id);
-const USADAS = ["fakestoreapi", "dummyjson", "dolarapi-venezuela", "open-meteo-pronostico"];
+const USADAS = ["fakestoreapi", "dummyjson", "dolarapi-venezuela"];
 
 test("cada API que usa la demo existe en el catálogo y su última verificación fue correcta", () => {
   for (const id of USADAS) {
@@ -23,17 +23,6 @@ test("los hosts de la demo coinciden con los del catálogo", () => {
 
 test("los hosts de imágenes pertenecen a las APIs usadas", () => {
   for (const h of HOSTS_IMAGEN) assert.ok(h.endsWith("fakestoreapi.com") || h.endsWith("dummyjson.com"), h);
-});
-
-test("Open-Meteo exige atribución y uso no comercial, y la demo lo declara en su README", () => {
-  const e = porId("open-meteo-pronostico");
-  assert.equal(e.terminos.atribucion, "obligatoria");
-  assert.equal(e.terminos.uso_comercial, "no");
-  for (const archivo of ["README.md", "README.en.md"]) {
-    const t = readFileSync(new URL(`../${archivo}`, import.meta.url), "utf8");
-    assert.match(t, /Open-Meteo/);
-    assert.match(t, /CC BY 4\.0|CC-BY-4\.0/);
-  }
 });
 
 test("el README de la demo da crédito a cada API y a cada repositorio de origen", () => {
