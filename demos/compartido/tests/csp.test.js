@@ -8,6 +8,7 @@ const base = leer("compartido/base.css");
 const DEMOS = {
   tienda: { conexiones: ["https://dummyjson.com", "https://fakestoreapi.com", "https://ve.dolarapi.com"], imagenes: ["https://cdn.dummyjson.com", "https://fakestoreapi.com"] },
   clima: { conexiones: ["https://api.open-meteo.com", "https://geocoding-api.open-meteo.com"], imagenes: [] },
+  ubicacion: { conexiones: ["https://ipwho.is", "https://photon.komoot.io"], imagenes: [] },
   feriados: { conexiones: ["https://date.nager.at"], imagenes: [] },
 };
 
