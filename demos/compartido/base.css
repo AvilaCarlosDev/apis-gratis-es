@@ -89,3 +89,10 @@ input[type="search"], select.campo { padding: .55rem .75rem; border: 1px solid v
 @media (prefers-reduced-motion: no-preference) {
   button { transition: filter .15s ease; }
 }
+
+/* Esqueletos de carga: marcas de posición que el script reemplaza cuando llegan los datos. */
+.esq { display: block; background: var(--linea); border-radius: .375rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .esq { animation: latido 1.4s ease-in-out infinite; }
+  @keyframes latido { 50% { opacity: .45; } }
+}

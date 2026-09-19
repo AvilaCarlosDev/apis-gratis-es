@@ -81,3 +81,9 @@ button.chip { background: #fff; border-color: transparent; }
 button.chip[aria-pressed="true"] { background: #000; color: #fff; }
 .panel-carrito { border-radius: .25rem; border: 0; }
 input[type="search"], select.campo { border-radius: 999px; padding-inline: 1rem; }
+
+.esq-tasa { width: 9rem; height: 1.75rem; border-radius: 999px; background: #333; }
+.esq-producto { display: grid; gap: .5rem; align-content: start; }
+.esq-foto { aspect-ratio: 3 / 4; border-radius: 0; background: #e8e8e8; }
+.esq-linea { height: .875rem; background: #e8e8e8; }
+.esq-linea.corta { width: 55%; }
