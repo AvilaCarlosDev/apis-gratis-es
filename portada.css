@@ -47,3 +47,12 @@ h1 { margin: 0; color: var(--tinta); font-size: 1.75rem; font-weight: 700; lette
 
 .pie-portada { padding: 1.5rem 1rem; border-top: 1px solid var(--linea); color: var(--tinta-suave); font-size: .875rem; }
 .pie-portada p { margin: 0; max-width: 70ch; }
+
+/* En pantallas chicas el lateral pasa a ser una fila compacta de enlaces. */
+@media (max-width: 59.99rem) {
+  .marca { margin-bottom: .5rem; }
+  .lateral nav { display: flex; flex-wrap: wrap; gap: .25rem; }
+  .lateral .grupo { display: none; }
+  .lateral ul { display: contents; }
+  .lateral li a { border: 1px solid var(--linea); padding: .35rem .7rem; font-size: .875rem; }
+}
