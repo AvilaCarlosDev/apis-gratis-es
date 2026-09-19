@@ -44,6 +44,10 @@ Every fact carries a verification mark:
 
 ---
 
+## Working demo
+
+The [demo store](demos/tienda/README.en.md) combines four APIs from this catalog (official bolívar rate, two product providers and weather) with no backend and no keys, with tests and credits to every project.
+
 ## Keyless API catalog
 
 APIs you can call **without signing up or getting a key**, each with an example verified by a **real call** and its terms of use (license, attribution, limits), which are often overlooked. The table is generated from [`data/apis.json`](data/apis.json) (schema in [docs/esquema.md](docs/esquema.md)), and every week CI calls each API again.
