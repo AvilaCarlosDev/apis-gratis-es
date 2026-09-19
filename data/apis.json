@@ -959,6 +959,53 @@
         "ms": 251,
         "metodo": "llamada"
       }
+    },
+    {
+      "id": "wikipedia-resumen",
+      "nombre": "Wikipedia en español — búsqueda y resúmenes",
+      "categoria": "cultura-datos",
+      "descripcion": "Busca artículos de Wikipedia en español por título y devuelve el resumen de cada uno, con su imagen principal y el enlace al artículo. También entrega uno al azar.",
+      "descripcion_en": "Searches Spanish Wikipedia articles by title and returns the summary of each one, with its main image and a link to the article. It can also return a random one.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://es.wikipedia.org/api/rest_v1/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://es.wikipedia.org/api/rest_v1/page/summary/Sim%C3%B3n_Bol%C3%ADvar",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "title",
+            "extract",
+            "content_urls"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://www.mediawiki.org/wiki/Wikimedia_APIs/Rate_limits",
+        "uso_comercial": "si",
+        "atribucion": "obligatoria",
+        "limites": "200 peticiones por minuto para un navegador sin sesión iniciada; sin identificar, 10 por minuto.",
+        "limites_en": "200 requests per minute for a browser with no logged-in user; unidentified clients get 10 per minute.",
+        "licencia": "CC-BY-SA-4.0"
+      },
+      "notas": "El texto de los artículos es CC BY-SA 4.0: hay que atribuir y enlazar al artículo original. La demo usa tres rutas del mismo host: /w/rest.php/v1/search/title, /api/rest_v1/page/summary/{título} y /api/rest_v1/page/random/summary.",
+      "notas_en": "Article text is CC BY-SA 4.0: attribute it and link to the original article. The demo uses three routes on the same host: /w/rest.php/v1/search/title, /api/rest_v1/page/summary/{title} and /api/rest_v1/page/random/summary.",
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 260,
+        "metodo": "llamada"
+      }
     }
   ]
 }

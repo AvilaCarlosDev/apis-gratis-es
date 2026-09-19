@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://thumb.wikimedia.org; connect-src 'self' https://es.wikipedia.org; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
+  <title>Enciclopedia al paso</title>
+  <meta name="description" content="Demo de apis-gratis-es: busca un tema y lee su síntesis, con datos de Wikipedia en español.">
+  <link rel="stylesheet" href="../compartido/base.css">
+  <link rel="stylesheet" href="../compartido/papel.css">
+  <link rel="stylesheet" href="./estilos.css">
+  <script type="module" src="./main.js"></script>
+</head>
+<body>
+  <a class="salto" href="#resumen">Ir al resumen</a>
+
+  <header class="barra">
+    <div class="contenedor">
+      <h1>Enciclopedia al paso</h1>
+      <p class="volver"><a href="../../">Ver todas las demos</a></p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <div id="aviso" class="aviso" hidden></div>
+
+    <section class="busqueda caja" aria-labelledby="titulo-busqueda">
+      <p class="eyebrow">Consulta rápida</p>
+      <h2 id="titulo-busqueda">¿Qué querés saber?</h2>
+      <p class="panel-ayuda">Escribí un concepto, un personaje, un lugar o un acontecimiento para leer una síntesis clara al instante.</p>
+      <div class="buscar">
+        <input id="buscador" type="search" placeholder="Simón Bolívar" aria-label="Tema a buscar" autocomplete="off" maxlength="80">
+        <button id="buscar" type="button" class="primario">Buscar</button>
+        <button id="azar" type="button" class="secundario">Artículo al azar</button>
+      </div>
+      <div class="sugerencias">
+        <span class="etiqueta">Sugerencias</span>
+        <div id="sugerencias" class="chips"></div>
+      </div>
+    </section>
+
+    <div class="resultados">
+      <aside id="coincidencias" class="coincidencias" aria-live="polite"></aside>
+      <section id="resumen" class="resumen" aria-live="polite"></section>
+    </div>
+  </main>
+
+  <footer class="contenedor pie">
+    <p>Demo del repositorio <a href="https://github.com/AvilaCarlosDev/apis-gratis-es">apis-gratis-es</a>. No guarda nada: ni lo que buscás ni lo que leés.</p>
+    <p>Textos e imágenes de <a href="https://es.wikipedia.org/">Wikipedia en español</a>, bajo licencia <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a> (cada imagen puede tener su propia licencia en la página del artículo). Tipografías Bricolage Grotesque, Newsreader y Space Mono (SIL OFL).</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+ "type": "standard",
+ "title": "Volcán",
+ "displaytitle": "<span lang=\"es\" dir=\"ltr\"><span class=\"mw-page-title-main\">Volcán</span></span>",
+ "namespace": {
+  "id": 0,
+  "text": ""
+ },
+ "wikibase_item": "Q8072",
+ "titles": {
+  "canonical": "Volcán",
+  "normalized": "Volcán",
+  "display": "<span lang=\"es\" dir=\"ltr\"><span class=\"mw-page-title-main\">Volcán</span></span>"
+ },
+ "pageid": 38552,
+ "thumbnail": {
+  "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Volcano_scheme.svg/langes-330px-Volcano_scheme.svg.png?utm_source=es.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "width": 330,
+  "height": 345
+ },
+ "originalimage": {
+  "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Volcano_scheme.svg/langes-1280px-Volcano_scheme.svg.png?utm_source=es.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "width": 1099,
+  "height": 1149
+ },
+ "lang": "es",
+ "dir": "ltr",
+ "revision": "175271660",
+ "tid": "6704a98c-ac6c-11f1-95d0-dcf4b95f1ce4",
+ "timestamp": "2026-09-09T16:35:01Z",
+ "description": "estructura geológica",
+ "description_source": "central",
+ "content_urls": {
+  "desktop": {
+   "page": "https://es.wikipedia.org/wiki/Volc%C3%A1n",
+   "revisions": "https://es.wikipedia.org/wiki/Volc%C3%A1n?action=history",
+   "edit": "https://es.wikipedia.org/wiki/Volc%C3%A1n?action=edit",
+   "talk": "https://es.wikipedia.org/wiki/Discusi%C3%B3n:Volc%C3%A1n"
+  },
+  "mobile": {
+   "page": "https://es.wikipedia.org/wiki/Volc%C3%A1n",
+   "revisions": "https://es.wikipedia.org/wiki/Special:History/Volc%C3%A1n",
+   "edit": "https://es.wikipedia.org/wiki/Volc%C3%A1n?action=edit",
+   "talk": "https://es.wikipedia.org/wiki/Discusi%C3%B3n:Volc%C3%A1n"
+  }
+ },
+ "extract": "Un volcán es una estructura geológica en la tierra o en el mar, generalmente una montaña, por la que emerge el magma que se divide en lava y gases provenientes del interior de la Tierra. El ascenso del magma ocurre en episodios de actividad violenta denominados erupciones, que pueden variar en intensidad, duración y frecuencia, desde suaves corrientes de lava hasta explosiones extremadamente destructivas. En ocasiones, los volcanes adquieren una forma cónica por la acumulación de material de erupciones anteriores. En la cumbre se encuentra su cráter o caldera.",
+ "extract_html": "<p>Un <b>volcán</b> es una estructura geológica en la tierra o en el mar, generalmente una montaña, por la que emerge el magma que se divide en lava y gases provenientes del interior de la Tierra. El ascenso del magma ocurre en episodios de actividad violenta denominados erupciones, que pueden variar en intensidad, duración y frecuencia, desde suaves corrientes de lava hasta explosiones extremadamente destructivas. En ocasiones, los volcanes adquieren una forma cónica por la acumulación de material de erupciones anteriores. En la cumbre se encuentra su cráter o caldera.</p>"
+}

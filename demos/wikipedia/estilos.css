@@ -1,0 +1,44 @@
+main { padding-block: 1.5rem 3rem; }
+.busqueda { padding: 1.5rem; margin-bottom: 1.5rem; }
+.busqueda h2 { margin: 0 0 .25rem; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -.03em; }
+.panel-ayuda { margin: 0 0 1rem; color: var(--tinta-suave); max-width: 62ch; }
+.buscar { display: flex; flex-wrap: wrap; gap: .5rem; }
+.buscar input[type="search"] { flex: 1 1 16rem; min-width: 0; font-size: 1.125rem; }
+.sugerencias { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin-top: 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chips button.chip { font-size: .75rem; }
+
+.resultados { display: grid; gap: 1.5rem; align-items: start; }
+@media (min-width: 56rem) { .resultados { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); } }
+.coincidencias:empty { display: none; }
+.resultados:has(> .coincidencias:empty) { grid-template-columns: minmax(0, 1fr); }
+.coincidencias { background: var(--papel); border: 1px solid var(--linea); }
+.coincidencias > .etiqueta { margin: 0; padding: .75rem 1rem; background: #eef2ef; border-bottom: 1px solid var(--linea); }
+.coincidencias-lista { list-style: none; margin: 0; padding: 0; }
+.coincidencia { border-left: 4px solid transparent; border-top: 1px solid var(--linea); }
+.coincidencia:first-child { border-top: 0; }
+.coincidencia.elegida { border-left-color: var(--cobalto); background: #eef3fb; }
+.coincidencia-boton { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: .875rem; align-items: center; width: 100%; padding: .75rem 1rem; background: none; border: 0; text-align: left; color: inherit; font: inherit; }
+.coincidencia-boton:hover { background: #f3f6f4; }
+.coincidencia-foto { width: 3.5rem; height: 3.5rem; object-fit: cover; background: var(--hoja); border: 1px solid var(--linea); }
+.coincidencia-texto { display: grid; gap: .125rem; min-width: 0; }
+.coincidencia-titulo { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 1.125rem; font-weight: 700; }
+.coincidencia-descripcion { color: var(--tinta-suave); font-size: .9375rem; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+.resumen { min-width: 0; }
+.resumen-tarjeta, .estado { padding: 1.5rem; background: var(--papel); border: 1px solid var(--linea); }
+.resumen-tarjeta h2, .estado h2 { margin: .25rem 0 .5rem; font-size: clamp(2rem, 4.5vw, 3rem); letter-spacing: -.03em; }
+.estado h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
+.etiqueta.acento { color: var(--cobalto); }
+.etiqueta.rojo { color: var(--rojo); }
+.resumen-descripcion { margin: 0 0 1rem; font-style: italic; font-size: 1.125rem; color: var(--tinta-suave); padding-bottom: 1rem; border-bottom: 1px solid var(--linea); }
+.resumen-cuerpo { display: grid; gap: 1rem; }
+@media (min-width: 40rem) { .resumen-cuerpo.con-imagen { grid-template-columns: minmax(0, 1fr) 13rem; align-items: start; } }
+.resumen-texto { margin: 0; font-size: 1.1875rem; line-height: 1.65; }
+.resumen-imagen { width: 100%; max-height: 18rem; object-fit: contain; background: var(--hoja); border: 1px solid var(--linea); padding: .25rem; }
+.resumen-ambiguo { margin: 1rem 0 0; padding: .625rem .875rem; border-left: 3px solid var(--oro); background: #eef2ef; color: var(--tinta-suave); }
+.resumen-acciones { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--linea); }
+.boton-enlace { display: inline-block; padding: .6rem 1.1rem; background: var(--tinta); color: #fff; font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 600; text-decoration: none; }
+.boton-enlace:hover { background: var(--cobalto); }
+.atribucion { margin: 1rem 0 0; padding: .625rem .875rem; background: #eef2ef; color: var(--tinta-suave); font-size: .875rem; }
+.chips { margin-top: .5rem; }

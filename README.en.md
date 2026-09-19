@@ -50,6 +50,9 @@ Each demo is a separate application, with its own page, README, tests and credit
 
 - [Store](demos/tienda/README.en.md): prices in dollars and bolívares at the official rate, with search, categories and a cart.
 - [Weather](demos/clima/README.en.md): today's weather and a seven-day forecast for any city.
+- [Holidays](demos/feriados/README.en.md): the holidays of each year in 20 countries, with the next one and the long weekends.
+- [Location](demos/ubicacion/README.en.md): search a place and get its coordinates, or estimate where you are, with a map.
+- [Enciclopedia al paso](demos/wikipedia/README.en.md): look up a topic and read its summary from Spanish Wikipedia.
 
 ## Keyless API catalog
 
@@ -95,6 +98,7 @@ APIs you can call **without signing up or getting a key**, each with an example 
 | [Wikipedia en español — API REST](https://es.wikipedia.org/api/rest_v1/) | Summaries and content of articles from the Spanish-language Wikipedia. (Global) | Not specified | Required (CC-BY-SA) | Wikimedia's policy requires a User-Agent that identifies your application. | Open | ✅ 2026-09-19 · 275 ms |
 | [Nager.Date — feriados públicos](https://date.nager.at/Api) | Public holidays of more than 100 countries, by year, including those in Latin America. (Global) | Not specified | Not specified | No request limit, according to its documentation. | Open | ✅ 2026-09-19 · 219 ms |
 | [Nager.Date — Feriados](https://date.nager.at/Api) | Public holidays for more than 100 countries by year, with no key and open CORS. (Global) | Not specified | Not specified (MIT) | Third-party service with no availability guarantee; the project is open source (MIT) and can be self-hosted. | Open | ✅ 2026-09-19 · 251 ms |
+| [Wikipedia en español — búsqueda y resúmenes](https://es.wikipedia.org/api/rest_v1/) | Searches Spanish Wikipedia articles by title and returns the summary of each one, with its main image and a link to the article. It can also return a random one. (Global) | Yes | Required (CC-BY-SA-4.0) | 200 requests per minute for a browser with no logged-in user; unidentified clients get 10 per minute. Article text is CC BY-SA 4.0: attribute it and link to the original article. The demo uses three routes on the same host: /w/rest.php/v1/search/title, /api/rest_v1/page/summary/{title} and /api/rest_v1/page/random/summary. | Open | ✅ 2026-09-19 · 260 ms |
 
 ### Demo store
 
@@ -115,7 +119,7 @@ APIs you can call **without signing up or getting a key**, each with an example 
 - [nager/Nager.Date](https://github.com/nager/Nager.Date) (MIT) — Nager.Date — feriados públicos, Nager.Date — Feriados
 - [osm-search/Nominatim](https://github.com/osm-search/Nominatim) (GPL-3.0) — Nominatim (OpenStreetMap)
 - [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) — DummyJSON
-- [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT) — Datos abiertos de España (datos.gob.es), Open-Meteo — pronóstico, Open-Meteo — geocodificación, Nominatim (OpenStreetMap), Nager.Date — feriados públicos, FakeStoreAPI, DummyJSON, Random User Generator, JSONPlaceholder
+- [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT) — Datos abiertos de España (datos.gob.es), Open-Meteo — pronóstico, Open-Meteo — geocodificación, Nominatim (OpenStreetMap), Nager.Date — feriados públicos, FakeStoreAPI, DummyJSON, Random User Generator, JSONPlaceholder, Wikipedia en español — búsqueda y resúmenes
 - [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) (MIT) — Random User Generator
 - [typicode/jsonplaceholder](https://github.com/typicode/jsonplaceholder) (MIT) — JSONPlaceholder
 <!-- catalogo:fin -->
