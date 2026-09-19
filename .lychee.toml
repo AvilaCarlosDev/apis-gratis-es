@@ -9,6 +9,4 @@ exclude = [
   '^https://openrouter\.ai/api/v1/chat/completions',
   '^https://openrouter\.ai/api/v1/models',
   '^http://localhost',
-  # TEMPORAL: la página del clima existe solo después de fusionar el PR que la crea; se quita en el siguiente.
-  '^https://avilacarlosdev\.github\.io/apis-gratis-es/demos/clima/$',
 ]
