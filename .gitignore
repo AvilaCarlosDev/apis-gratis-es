@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Entornos, secretos y caché local
+.venv/
+.env
+.env.*
+.lycheecache
