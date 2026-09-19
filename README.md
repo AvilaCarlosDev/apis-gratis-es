@@ -44,6 +44,10 @@ Cada dato lleva una marca de verificación:
 
 ---
 
+## Demo en funcionamiento
+
+La [tienda demo](demos/tienda/README.md) combina cuatro APIs de este catálogo (tasa oficial en bolívares, dos proveedores de productos y clima) sin backend ni claves, con pruebas y créditos a cada proyecto.
+
 ## Catálogo de APIs sin clave
 
 APIs que se pueden llamar **sin registrarse ni pedir una clave**, con su ejemplo verificado con una **llamada real** y sus condiciones de uso (licencia, atribución, límites), que muchas veces se pasan por alto. La tabla se genera desde [`data/apis.json`](data/apis.json) (esquema en [docs/esquema.md](docs/esquema.md)), y cada semana el CI vuelve a llamar a cada API.
