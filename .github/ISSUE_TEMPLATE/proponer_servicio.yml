@@ -1,0 +1,23 @@
+name: Proponer un servicio / Suggest a service
+description: Sugiere un proveedor con nivel gratuito / Suggest a provider with a free tier
+labels: [servicio]
+body:
+  - type: input
+    id: enlace
+    attributes:
+      label: Enlace / Link
+    validations:
+      required: true
+  - type: textarea
+    id: nivel
+    attributes:
+      label: Qué da gratis y en qué documentación oficial figura / What it gives for free and where the official documentation says so
+    validations:
+      required: true
+  - type: checkboxes
+    id: reglas
+    attributes:
+      label: Reglas / Rules
+      options:
+        - label: Es un servicio legítimo, sin ingeniería inversa de chatbots ni enlaces de afiliado / It is a legitimate service, no chatbot reverse-engineering or affiliate links
+          required: true

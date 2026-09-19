@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Enlace malicioso o clave expuesta / Malicious link or exposed key
+    url: https://github.com/AvilaCarlosDev/free-apis-ia-espanol/security/advisories/new
+    about: Reporta de forma privada, no en un issue público / Report privately, not in a public issue.

@@ -1,0 +1,23 @@
+name: Dato desactualizado o incorrecto / Outdated or wrong fact
+description: Un límite, un modelo o un enlace ya no es correcto / A limit, model or link is no longer correct
+labels: [dato-desactualizado]
+body:
+  - type: input
+    id: proveedor
+    attributes:
+      label: Proveedor y dato afectado / Provider and affected fact
+    validations:
+      required: true
+  - type: input
+    id: fuente
+    attributes:
+      label: Fuente oficial que lo demuestra / Official source proving it
+      description: URL de la documentación oficial / Official documentation URL.
+    validations:
+      required: true
+  - type: textarea
+    id: detalle
+    attributes:
+      label: Qué dice la fuente y cuándo lo comprobaste / What the source says and when you checked it
+    validations:
+      required: true
