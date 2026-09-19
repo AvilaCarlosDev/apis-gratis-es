@@ -51,6 +51,26 @@ Revisión del **2026-09-19**. Método: se consultó la fuente oficial de cada da
 
 Los proveedores que dejaron de ser gratuitos (SambaNova, Reka, OpenCode Zen, Chutes) y las condiciones de los servicios sin registro (Kilo, OVHcloud, AI Horde, LLM7) salen de `docs/en/providers/01-supported-platforms.md` del repositorio [tashfeenahmed/freellmapi](https://github.com/tashfeenahmed/freellmapi) (MIT). Se marcan 📎: **no se comprobaron de forma independiente**. Los enlaces de esos servicios sí responden.
 
+### Catálogo de APIs sin clave: candidatas descartadas (2026-09-19)
+
+Se probaron 28 candidatas con llamadas reales; 21 entraron al catálogo. Las demás, con su evidencia:
+
+| Candidata | Motivo |
+|---|---|
+| ExchangeRate-API (acceso abierto) | Devuelve `403` a los clientes con un `User-Agent` propio de scripts (incluido el de este verificador) y `200` solo a uno de navegador. No se falsea un `User-Agent` de navegador para saltar la protección |
+| Platzi Fake Store API | Responde `200` pero con **0 productos** (2 categorías y 1 usuario); no sirve para una tienda de ejemplo |
+| REST Countries | La versión 3.1 está deprecada y responde `200` con `success: false` y «This API version has been deprecated»; la versión vigente (v5) exige clave. `public-apis` la lista aún con autenticación «No» |
+| datos.gob.mx (CKAN) | Intermitente: `403` en una prueba y `200` en la siguiente |
+| BCRA (Argentina) | La versión 3.0 responde `410 Gone` y la 4.0 no devuelve JSON |
+| Open Library | No se pudo alcanzar desde el entorno de prueba (error de conexión) |
+
+### Lo que enseñaron las pruebas al verificador
+
+- Un `200` no basta: REST Countries devolvía `200` con el error dentro del cuerpo.
+- El CORS puede depender de los parámetros de la consulta: Nominatim devuelve `Access-Control-Allow-Origin: *` sin `accept-language` en la URL y no lo devuelve con él.
+- Combinar un `User-Agent` propio con `Origin` puede provocar un `400` (Nager.Date), por eso el CORS se mide en una petición aparte y no invalida la verificación principal.
+- Algunos servicios aplican límites estrictos: apis.net.pe devolvió `429` tras pocas llamadas seguidas.
+
 ## English
 
 Review of **2026-09-19**. Method: each fact was checked at its official source; when that was not possible, it was flagged (⚠️) in the README instead of being taken as good.
@@ -99,3 +119,24 @@ Review of **2026-09-19**. Method: each fact was checked at its official source; 
 ### Cited source: FreeLLMAPI
 
 The providers that stopped being free (SambaNova, Reka, OpenCode Zen, Chutes) and the conditions of the no-sign-up services (Kilo, OVHcloud, AI Horde, LLM7) come from `docs/en/providers/01-supported-platforms.md` in the [tashfeenahmed/freellmapi](https://github.com/tashfeenahmed/freellmapi) repository (MIT). They are marked 📎: **they were not independently checked**. The links to those services do respond.
+
+
+### Keyless API catalog: rejected candidates (2026-09-19)
+
+28 candidates were tested with real calls; 21 entered the catalog. The rest, with their evidence:
+
+| Candidate | Reason |
+|---|---|
+| ExchangeRate-API (open access) | Returns `403` to clients with a script-style `User-Agent` (including this verifier's) and `200` only to a browser one. A browser `User-Agent` is not faked to get around the protection |
+| Platzi Fake Store API | Answers `200` but with **0 products** (2 categories and 1 user); not useful for a sample store |
+| REST Countries | Version 3.1 is deprecated and answers `200` with `success: false` and "This API version has been deprecated"; the current version (v5) requires a key. `public-apis` still lists it with authentication "No" |
+| datos.gob.mx (CKAN) | Intermittent: `403` in one test and `200` in the next |
+| BCRA (Argentina) | Version 3.0 answers `410 Gone` and 4.0 does not return JSON |
+| Open Library | Could not be reached from the test environment (connection error) |
+
+### What the tests taught the verifier
+
+- A `200` is not enough: REST Countries returned `200` with the error inside the body.
+- CORS can depend on the query parameters: Nominatim returns `Access-Control-Allow-Origin: *` without `accept-language` in the URL and does not with it.
+- Combining a custom `User-Agent` with `Origin` can trigger a `400` (Nager.Date), so CORS is measured in a separate request and does not invalidate the main verification.
+- Some services apply strict limits: apis.net.pe returned `429` after a few consecutive calls.

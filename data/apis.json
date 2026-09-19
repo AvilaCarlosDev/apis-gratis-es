@@ -1,0 +1,917 @@
+{
+  "version": 1,
+  "actualizado_con": "scripts/catalogo.py",
+  "entradas": [
+    {
+      "id": "dolarapi-venezuela",
+      "nombre": "DolarAPI — Venezuela",
+      "categoria": "divisas-economia",
+      "descripcion": "Cotizaciones del dólar en Venezuela, incluida la oficial del BCV, en JSON.",
+      "ambito": [
+        "Venezuela"
+      ],
+      "documentacion": "https://dolarapi.com/docs/venezuela/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://ve.dolarapi.com/v1/dolares",
+        "espera": {
+          "tipo": "lista",
+          "claves": [
+            "moneda",
+            "fuente",
+            "promedio",
+            "fechaActualizacion"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://dolarapi.com/docs/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "enzonotario/dolarapi.com",
+          "url": "https://github.com/enzonotario/dolarapi.com",
+          "licencia": "MIT"
+        }
+      ],
+      "notas": "Servicio de terceros sin garantía de disponibilidad; para algo crítico, aloja tu propia copia del proyecto (MIT).",
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 191,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Dollar exchange rates in Venezuela, including the official BCV rate, as JSON.",
+      "notas_en": "Third-party service with no availability guarantee; for anything critical, host your own copy of the project (MIT)."
+    },
+    {
+      "id": "dolarapi-argentina",
+      "nombre": "DolarAPI — Argentina",
+      "categoria": "divisas-economia",
+      "descripcion": "Cotizaciones de las distintas casas del dólar en Argentina, en JSON.",
+      "ambito": [
+        "Argentina"
+      ],
+      "documentacion": "https://dolarapi.com/docs/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://dolarapi.com/v1/dolares",
+        "espera": {
+          "tipo": "lista",
+          "claves": [
+            "moneda",
+            "casa",
+            "compra",
+            "venta"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://dolarapi.com/docs/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "enzonotario/dolarapi.com",
+          "url": "https://github.com/enzonotario/dolarapi.com",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 182,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Rates from the different dollar exchange houses in Argentina, as JSON."
+    },
+    {
+      "id": "mindicador-cl",
+      "nombre": "mindicador.cl",
+      "categoria": "divisas-economia",
+      "descripcion": "Indicadores económicos de Chile (dólar, euro, UF y otros) del día, en JSON.",
+      "ambito": [
+        "Chile"
+      ],
+      "documentacion": "https://mindicador.cl/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://mindicador.cl/api",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "dolar",
+            "euro",
+            "fecha"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://mindicador.cl/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 626,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Daily economic indicators for Chile (dollar, euro, UF and others) as JSON."
+    },
+    {
+      "id": "apis-net-pe-tipo-de-cambio",
+      "nombre": "apis.net.pe — tipo de cambio SUNAT",
+      "categoria": "divisas-economia",
+      "descripcion": "Tipo de cambio del dólar de la SUNAT (Perú) del día, en JSON.",
+      "ambito": [
+        "Perú"
+      ],
+      "documentacion": "https://apis.net.pe/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://api.apis.net.pe/v1/tipo-cambio-sunat",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "compra",
+            "venta",
+            "fecha",
+            "moneda"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://apis.net.pe/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "notas": "Servicio de terceros que consulta a la SUNAT. Aplica un límite de peticiones estricto: en las pruebas devolvió 429 tras pocas llamadas seguidas, y no se pudo medir su CORS. Cachea la respuesta y usa un proxy propio si la llamas desde un navegador.",
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "desconocido",
+        "ms": 1324,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "The SUNAT (Peru) dollar exchange rate for the day, as JSON.",
+      "notas_en": "Third-party service that queries SUNAT. It applies a strict rate limit: in testing it returned 429 after a few consecutive calls, and its CORS could not be measured. Cache the response and use your own proxy if you call it from a browser."
+    },
+    {
+      "id": "frankfurter",
+      "nombre": "Frankfurter — tipos de cambio del BCE",
+      "categoria": "divisas-economia",
+      "descripcion": "Tipos de cambio de referencia del Banco Central Europeo y otras fuentes, sin clave.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://frankfurter.dev/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://api.frankfurter.dev/v1/latest?base=USD&symbols=EUR,COP,MXN",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "base",
+            "date",
+            "rates"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://frankfurter.dev/",
+        "uso_comercial": "si",
+        "atribucion": "no-especificada",
+        "limites": "Sin cuotas diarias ni mensuales; hay un límite de tasa contra el abuso.",
+        "licencia": null,
+        "limites_en": "No daily or monthly quotas; there is a rate limit against abuse."
+      },
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 172,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Reference exchange rates from the European Central Bank and other sources, no key."
+    },
+    {
+      "id": "datos-gob-es",
+      "nombre": "Datos abiertos de España (datos.gob.es)",
+      "categoria": "gobierno-datos-abiertos",
+      "descripcion": "Catálogo de conjuntos de datos abiertos de las administraciones públicas de España.",
+      "ambito": [
+        "España"
+      ],
+      "documentacion": "https://datos.gob.es/es/apidata",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://datos.gob.es/apidata/catalog/dataset?_pageSize=1",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "result",
+            "version"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://datos.gob.es/es/apidata",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 1904,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Catalog of open datasets from Spain's public administrations."
+    },
+    {
+      "id": "ine-espana",
+      "nombre": "INE — Instituto Nacional de Estadística (España)",
+      "categoria": "gobierno-datos-abiertos",
+      "descripcion": "Operaciones y series estadísticas del INE de España en JSON.",
+      "ambito": [
+        "España"
+      ],
+      "documentacion": "https://www.ine.es/dyngs/DAB/index.htm?cid=1099",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://servicios.ine.es/wstempus/js/ES/OPERACIONES_DISPONIBLES",
+        "espera": {
+          "tipo": "lista",
+          "claves": [
+            "Id",
+            "Nombre",
+            "Codigo"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://www.ine.es/dyngs/DAB/index.htm?cid=1099",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 2369,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Operations and statistical series from Spain's INE, as JSON."
+    },
+    {
+      "id": "georef-argentina",
+      "nombre": "Georef — normalización geográfica de Argentina",
+      "categoria": "gobierno-datos-abiertos",
+      "descripcion": "Provincias, departamentos, localidades y calles de Argentina, con normalización de nombres.",
+      "ambito": [
+        "Argentina"
+      ],
+      "documentacion": "https://datosgobar.github.io/georef-ar-api/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://apis.datos.gob.ar/georef/api/provincias?nombre=cordoba",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "provincias",
+            "total"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://datosgobar.github.io/georef-ar-api/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "datosgobar/georef-ar-api",
+          "url": "https://github.com/datosgobar/georef-ar-api",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 684,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Provinces, departments, localities and streets of Argentina, with name normalization."
+    },
+    {
+      "id": "series-de-tiempo-argentina",
+      "nombre": "Series de tiempo de Argentina",
+      "categoria": "gobierno-datos-abiertos",
+      "descripcion": "Series económicas y estadísticas oficiales de Argentina, consultables por identificador.",
+      "ambito": [
+        "Argentina"
+      ],
+      "documentacion": "https://datosgobar.github.io/series-tiempo-ar-api/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://apis.datos.gob.ar/series/api/series?ids=168.1_T_CAMBIOR_D_0_0_26&limit=1",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "data",
+            "meta"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://datosgobar.github.io/series-tiempo-ar-api/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "datosgobar/series-tiempo-ar-api",
+          "url": "https://github.com/datosgobar/series-tiempo-ar-api",
+          "licencia": "MIT"
+        }
+      ],
+      "notas": "El repositorio del proyecto no tiene cambios desde junio de 2024, aunque la API respondió en la última verificación.",
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 1293,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Official economic and statistical series from Argentina, queryable by identifier.",
+      "notas_en": "The project's repository has had no changes since June 2024, although the API responded in the latest verification."
+    },
+    {
+      "id": "api-colombia",
+      "nombre": "API Colombia",
+      "categoria": "gobierno-datos-abiertos",
+      "descripcion": "Datos generales de Colombia: país, departamentos, ciudades, regiones y atractivos.",
+      "ambito": [
+        "Colombia"
+      ],
+      "documentacion": "https://api-colombia.com/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://api-colombia.com/api/v1/Country/Colombia",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "currencyCode",
+            "description"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://api-colombia.com/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 460,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "General data about Colombia: country, departments, cities, regions and attractions."
+    },
+    {
+      "id": "open-meteo-pronostico",
+      "nombre": "Open-Meteo — pronóstico",
+      "categoria": "clima-geolocalizacion",
+      "descripcion": "Pronóstico del tiempo y datos meteorológicos por coordenadas, sin clave.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://open-meteo.com/en/docs",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://api.open-meteo.com/v1/forecast?latitude=10.49&longitude=-66.88&current=temperature_2m&timezone=auto",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "current",
+            "latitude",
+            "longitude"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://open-meteo.com/en/terms",
+        "uso_comercial": "no",
+        "atribucion": "obligatoria",
+        "limites": "Menos de 10.000 llamadas al día, 5.000 por hora y 600 por minuto; el nivel gratuito es solo para uso no comercial.",
+        "licencia": "CC-BY-4.0",
+        "limites_en": "Fewer than 10,000 calls per day, 5,000 per hour and 600 per minute; the free tier is for non-commercial use only."
+      },
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 693,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Weather forecast and meteorological data by coordinates, no key."
+    },
+    {
+      "id": "open-meteo-geocodificacion",
+      "nombre": "Open-Meteo — geocodificación",
+      "categoria": "clima-geolocalizacion",
+      "descripcion": "Busca lugares por nombre y devuelve sus coordenadas, en el idioma que pidas.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://open-meteo.com/en/docs/geocoding-api",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://geocoding-api.open-meteo.com/v1/search?name=Caracas&language=es&count=1",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "results"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://open-meteo.com/en/terms",
+        "uso_comercial": "no",
+        "atribucion": "obligatoria",
+        "limites": "Menos de 10.000 llamadas al día, 5.000 por hora y 600 por minuto; el nivel gratuito es solo para uso no comercial.",
+        "licencia": "CC-BY-4.0",
+        "limites_en": "Fewer than 10,000 calls per day, 5,000 per hour and 600 per minute; the free tier is for non-commercial use only."
+      },
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 724,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Search places by name and get their coordinates, in the language you ask for."
+    },
+    {
+      "id": "nominatim",
+      "nombre": "Nominatim (OpenStreetMap)",
+      "categoria": "clima-geolocalizacion",
+      "descripcion": "Geocodificación con datos de OpenStreetMap: de una dirección o lugar a coordenadas, y al revés.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://nominatim.org/release-docs/latest/api/Search/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://nominatim.openstreetmap.org/search?q=Caracas&format=json&limit=1",
+        "espera": {
+          "tipo": "lista",
+          "claves": [
+            "lat",
+            "lon",
+            "display_name"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://operations.osmfoundation.org/policies/nominatim/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "obligatoria",
+        "limites": "Máximo absoluto de 1 petición por segundo; obligatorio un User-Agent o Referer que identifique tu aplicación (el genérico de una librería se bloquea).",
+        "licencia": "ODbL",
+        "limites_en": "Absolute maximum of 1 request per second; a User-Agent or Referer identifying your application is mandatory (a library's generic one is blocked)."
+      },
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        },
+        {
+          "fuente": "osm-search/Nominatim",
+          "url": "https://github.com/osm-search/Nominatim",
+          "licencia": "GPL-3.0"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 372,
+        "metodo": "llamada"
+      },
+      "notas": "En la medición del 2026-09-19, con el parámetro accept-language en la URL la respuesta llegó sin cabecera CORS; sin ese parámetro sí la incluye. Para pedir el idioma desde un navegador, usa la cabecera Accept-Language.",
+      "descripcion_en": "Geocoding with OpenStreetMap data: from an address or place to coordinates, and back.",
+      "notas_en": "In the 2026-09-19 measurement, with the accept-language parameter in the URL the response arrived without a CORS header; without that parameter it includes it. To ask for a language from a browser, use the Accept-Language header."
+    },
+    {
+      "id": "photon",
+      "nombre": "Photon (Komoot)",
+      "categoria": "clima-geolocalizacion",
+      "descripcion": "Búsqueda de lugares y geocodificación con datos de OpenStreetMap, con respuesta en GeoJSON.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://photon.komoot.io/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://photon.komoot.io/api/?q=Caracas&limit=1",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "features",
+            "type"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://photon.komoot.io/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "komoot/photon",
+          "url": "https://github.com/komoot/photon",
+          "licencia": "Apache-2.0"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 768,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Place search and geocoding with OpenStreetMap data, with a GeoJSON response."
+    },
+    {
+      "id": "ipwho-is",
+      "nombre": "ipwho.is — geolocalización por IP",
+      "categoria": "clima-geolocalizacion",
+      "descripcion": "País, ciudad, zona horaria y otros datos aproximados a partir de una dirección IP.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://ipwho.is/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://ipwho.is/8.8.8.8",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "country",
+            "city",
+            "continent"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://ipwho.is/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 180,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Country, city, time zone and other approximate data from an IP address."
+    },
+    {
+      "id": "wikipedia-es",
+      "nombre": "Wikipedia en español — API REST",
+      "categoria": "cultura-datos",
+      "descripcion": "Resúmenes y contenido de artículos de la Wikipedia en español.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://es.wikipedia.org/api/rest_v1/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://es.wikipedia.org/api/rest_v1/page/summary/Caracas",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "title",
+            "extract"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy",
+        "uso_comercial": "no-especificado",
+        "atribucion": "obligatoria",
+        "limites": "La política de Wikimedia exige un User-Agent que identifique tu aplicación.",
+        "licencia": "CC-BY-SA",
+        "limites_en": "Wikimedia's policy requires a User-Agent that identifies your application."
+      },
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 275,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Summaries and content of articles from the Spanish-language Wikipedia."
+    },
+    {
+      "id": "nager-date",
+      "nombre": "Nager.Date — feriados públicos",
+      "categoria": "cultura-datos",
+      "descripcion": "Feriados públicos de más de 100 países, por año, incluidos los de Latinoamérica.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://date.nager.at/Api",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://date.nager.at/api/v3/PublicHolidays/2026/VE",
+        "espera": {
+          "tipo": "lista",
+          "claves": [
+            "date",
+            "countryCode"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://date.nager.at/Api",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": "Sin límite de peticiones, según su documentación.",
+        "licencia": null,
+        "limites_en": "No request limit, according to its documentation."
+      },
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        },
+        {
+          "fuente": "nager/Nager.Date",
+          "url": "https://github.com/nager/Nager.Date",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 219,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Public holidays of more than 100 countries, by year, including those in Latin America."
+    },
+    {
+      "id": "fakestoreapi",
+      "nombre": "FakeStoreAPI",
+      "categoria": "tienda-demo",
+      "descripcion": "Productos, carritos y usuarios de ejemplo para prototipar una tienda en línea.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://fakestoreapi.com/docs",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://fakestoreapi.com/products?limit=2",
+        "espera": {
+          "tipo": "lista",
+          "claves": [
+            "id",
+            "title",
+            "price",
+            "image"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://fakestoreapi.com/docs",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        },
+        {
+          "fuente": "keikaavousi/fake-store-api",
+          "url": "https://github.com/keikaavousi/fake-store-api",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 695,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Sample products, carts and users to prototype an online store."
+    },
+    {
+      "id": "dummyjson",
+      "nombre": "DummyJSON",
+      "categoria": "tienda-demo",
+      "descripcion": "Datos ficticios (productos, carritos, usuarios, recetas) para desarrollar y probar aplicaciones.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://dummyjson.com/docs",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://dummyjson.com/products?limit=2",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "products",
+            "total"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://dummyjson.com/docs",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        },
+        {
+          "fuente": "Ovi/DummyJSON",
+          "url": "https://github.com/Ovi/DummyJSON"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 360,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Fake data (products, carts, users, recipes) to develop and test applications."
+    },
+    {
+      "id": "randomuser",
+      "nombre": "Random User Generator",
+      "categoria": "tienda-demo",
+      "descripcion": "Perfiles de usuarios aleatorios; con nat=es genera nombres y direcciones de España.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://randomuser.me/documentation",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://randomuser.me/api/?nat=es&results=1",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "results",
+            "info"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://randomuser.me/documentation",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        },
+        {
+          "fuente": "RandomAPI/Randomuser.me-Node",
+          "url": "https://github.com/RandomAPI/Randomuser.me-Node",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 204,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Random user profiles; with nat=es it generates names and addresses from Spain."
+    },
+    {
+      "id": "jsonplaceholder",
+      "nombre": "JSONPlaceholder",
+      "categoria": "tienda-demo",
+      "descripcion": "API REST falsa y gratuita para pruebas y prototipos: publicaciones, comentarios y usuarios.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://jsonplaceholder.typicode.com/",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://jsonplaceholder.typicode.com/posts/1",
+        "espera": {
+          "tipo": "objeto",
+          "claves": [
+            "id",
+            "title",
+            "body"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://jsonplaceholder.typicode.com/",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": null
+      },
+      "creditos": [
+        {
+          "fuente": "public-apis/public-apis",
+          "url": "https://github.com/public-apis/public-apis",
+          "licencia": "MIT"
+        },
+        {
+          "fuente": "typicode/jsonplaceholder",
+          "url": "https://github.com/typicode/jsonplaceholder",
+          "licencia": "MIT"
+        }
+      ],
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 166,
+        "metodo": "llamada"
+      },
+      "descripcion_en": "Free fake REST API for testing and prototypes: posts, comments and users."
+    }
+  ]
+}
