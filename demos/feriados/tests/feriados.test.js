@@ -76,3 +76,20 @@ test("textoFaltan distingue hoy, mañana y el resto", () => {
 test("fechaCompleta escribe el día de la semana sin correrse por la zona horaria", () => {
   assert.match(fechaCompleta("2026-01-01"), /jueves.*1.*enero/);
 });
+
+test("esFinDeSemanaLargo marca lunes y viernes, no el resto", async () => {
+  const { esFinDeSemanaLargo } = await import("../lib/feriados.js");
+  assert.equal(esFinDeSemanaLargo("2026-05-01"), true); // viernes
+  assert.equal(esFinDeSemanaLargo("2026-06-24"), false); // miércoles
+  assert.equal(esFinDeSemanaLargo("2026-04-06"), true); // lunes
+  assert.equal(esFinDeSemanaLargo("2026-01-01"), false); // jueves
+});
+
+test("generarCsv escapa comillas y neutraliza fórmulas de hoja de cálculo", async () => {
+  const { generarCsv } = await import("../lib/feriados.js");
+  const csv = generarCsv([{ fecha: "2026-05-01", nombre: '=HYPERLINK("x")' }, { fecha: "2026-06-24", nombre: 'Día "de" San Juan, patrono' }], "VE", 2026);
+  const filas = csv.trimEnd().split("\n");
+  assert.equal(filas[0], "fecha,dia,feriado,fin_de_semana_largo");
+  assert.equal(filas[1], `"2026-05-01","viernes","'=HYPERLINK(""x"")","sí"`);
+  assert.equal(filas[2], `"2026-06-24","miércoles","Día ""de"" San Juan, patrono","no"`);
+});

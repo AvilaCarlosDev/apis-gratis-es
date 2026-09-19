@@ -2,7 +2,7 @@
 
 [Español](README.md)
 
-Search any place in the world (a neighbourhood, a square, a city, an address) and get up to five matches with their address, coordinates and a link to see them on the map. It can also estimate your approximate location, with country, city, time zone and calling code. It is a demo of using two free APIs from the [catalog](../../README.en.md) with no backend and no keys.
+Search any place in the world (a neighbourhood, a square, a city, an address) and get up to five matches with their address, coordinates and a link to see them on the map. It can also estimate your approximate location, with country, city, public IP, time zone, local time, calling code, provider and an embedded OpenStreetMap map with its marker. Coordinates are shown in decimal degrees and in degrees, minutes and seconds. It is a demo of using two free APIs from the [catalog](../../README.en.md) with no backend and no keys.
 
 It stores nothing: not what you search and not your location.
 
@@ -31,7 +31,7 @@ Both are listed in [`data/apis.json`](../../data/apis.json) with their latest ve
 
 ## Privacy
 
-The location estimate is **only requested when you press the button**, never when the page opens. At that moment your browser asks ipwho.is, which sees your IP address; it is the same data any site receives when you visit it. The demo does not use the browser's geolocation and asks for no permission, and the result is an estimate that can land in another city, or another country if you use a VPN. Your IP address is neither shown nor stored.
+The location estimate is **only requested when you press the button**, never when the page opens. At that moment your browser asks ipwho.is, which sees your IP address; it is the same data any site receives when you visit it. The demo does not use the browser's geolocation and asks for no permission, and the result is an estimate that can land in another city, or another country if you use a VPN. Your IP address is shown only on your screen and never stored.
 
 ## What happens when something fails
 
@@ -54,5 +54,7 @@ The location estimate is **only requested when you press the button**, never whe
 
 - Places from [Photon](https://photon.komoot.io/) ([komoot/photon](https://github.com/komoot/photon), Apache-2.0), with data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors, under the ODbL license. That is why the page carries this attribution.
 - Approximate location from [ipwho.is](https://ipwho.is/).
+- Embedded map from [OpenStreetMap](https://www.openstreetmap.org/copyright) (ODbL).
+- The screen design was generated with Stitch from our own description of the idea (show where you are and search places); it does not copy the code, texts or design of any existing page.
 - **Bricolage Grotesque** typeface, under the SIL Open Font License 1.1 (see [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
 - Demo code: MIT, like the rest of the repository.

@@ -5,10 +5,10 @@ import { crearDocumentoFalso } from "../../compartido/tests/helpers/dom-falso.js
 import { crearApp } from "../lib/app.js";
 
 const crudo = JSON.parse(readFileSync(new URL("./fixtures/ve-2026.json", import.meta.url), "utf8"));
-const IDS = ["aviso", "pais", "anio-ant", "anio-sig", "anio", "proximo", "lista"];
+const IDS = ["aviso", "pais", "anio-ant", "anio-sig", "anio", "proximo", "lista", "csv"];
 const respuesta = (cuerpo, status = 200) => ({ ok: status < 300, status, json: async () => cuerpo });
 
-function nuevo({ fallo = false, hoy = new Date(2026, 4, 10) } = {}) {
+function nuevo({ fallo = false, hoy = new Date(2026, 4, 10), descargas = [] } = {}) {
   const doc = crearDocumentoFalso(IDS);
   doc.getElementById("pais").value = "VE";
   const llamadas = [];
@@ -16,7 +16,7 @@ function nuevo({ fallo = false, hoy = new Date(2026, 4, 10) } = {}) {
     llamadas.push(new URL(url));
     return fallo ? respuesta({}, 503) : respuesta(crudo);
   };
-  const app = crearApp({ doc, fetch, ahora: () => hoy });
+  const app = crearApp({ doc, fetch, ahora: () => hoy, descargar: (nombre, contenido) => descargas.push({ nombre, contenido }) });
   return { doc, app, llamadas, texto: (id) => doc.getElementById(id).textContent };
 }
 
@@ -80,4 +80,30 @@ test("los botones de año se desactivan en los límites", async () => {
   await app.iniciar();
   assert.equal(doc.getElementById("anio-ant").disabled, true);
   assert.equal(doc.getElementById("anio-sig").disabled, false);
+});
+
+test("Descargar CSV entrega los feriados cargados con nombre de archivo por país y año", async () => {
+  const descargas = [];
+  const { app, doc } = nuevo({ descargas });
+  await app.iniciar();
+  assert.equal(doc.getElementById("csv").disabled, false);
+  await doc.getElementById("csv").disparar("click");
+  assert.equal(descargas.length, 1);
+  assert.equal(descargas[0].nombre, "feriados-VE-2026.csv");
+  assert.match(descargas[0].contenido, /^fecha,dia,feriado,fin_de_semana_largo\n"2026-01-01"/);
+});
+
+test("si falla la carga el botón CSV queda desactivado y no descarga nada", async () => {
+  const descargas = [];
+  const { app, doc } = nuevo({ fallo: true, descargas });
+  await app.iniciar();
+  assert.equal(doc.getElementById("csv").disabled, true);
+  await doc.getElementById("csv").disparar("click");
+  assert.equal(descargas.length, 0);
+});
+
+test("los feriados en lunes o viernes llevan la etiqueta de fin de semana largo", async () => {
+  const { app, texto } = nuevo();
+  await app.iniciar();
+  assert.match(texto("lista"), /Fin de semana largo/);
 });

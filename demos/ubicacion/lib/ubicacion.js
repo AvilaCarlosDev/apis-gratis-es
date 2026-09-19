@@ -56,5 +56,41 @@ export function normalizarIp(datos) {
     zona: texto(datos.timezone?.id),
     utc: texto(datos.timezone?.utc),
     prefijo: texto(datos.calling_code),
+    ip: texto(datos.ip),
+    proveedor: texto(datos.connection?.isp) || texto(datos.connection?.org),
+    postal: texto(datos.postal),
+    latitud: esNumero(datos.latitude) ? datos.latitude : null,
+    longitud: esNumero(datos.longitude) ? datos.longitude : null,
   };
+}
+
+// Mapa incrustado de OpenStreetMap: recuadro de ~0,02° alrededor del punto y un marcador.
+export function urlMapaIncrustado(latitud, longitud) {
+  if (!coordenadasValidas(latitud, longitud)) throw new RangeError("Coordenadas fuera de rango");
+  const d = 0.02;
+  const caja = [longitud - d, latitud - d, longitud + d, latitud + d].map((n) => n.toFixed(5)).join(",");
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(caja)}&layer=mapnik&marker=${latitud.toFixed(5)}%2C${longitud.toFixed(5)}`;
+}
+
+function grados(valor, positivo, negativo) {
+  const abs = Math.abs(valor);
+  const g = Math.floor(abs);
+  const minutos = (abs - g) * 60;
+  const m = Math.floor(minutos);
+  const seg = ((minutos - m) * 60).toFixed(1);
+  return `${g}° ${m}' ${seg}" ${valor >= 0 ? positivo : negativo}`;
+}
+
+export function formatearGrados(lat, lon) {
+  if (!coordenadasValidas(lat, lon)) throw new RangeError("Coordenadas fuera de rango");
+  return `${grados(lat, "N", "S")}, ${grados(lon, "E", "O")}`;
+}
+
+// Hora local en la zona que informa la API; si la zona no es válida, devuelve "".
+export function horaLocal(zona, ahora = new Date()) {
+  try {
+    return new Intl.DateTimeFormat("es-VE", { timeStyle: "medium", hourCycle: "h23", timeZone: zona }).format(ahora);
+  } catch {
+    return "";
+  }
 }

@@ -52,3 +52,20 @@ export function textoFaltan(dias) {
   if (dias === 1) return "Es mañana";
   return `Faltan ${dias} días`;
 }
+
+// Un feriado en lunes o viernes arma un fin de semana de tres días; los demás no se marcan.
+export const esFinDeSemanaLargo = (fecha) => [1, 5].includes(aUtc(fecha).getUTCDay());
+
+// Evita que Excel o Calc interpreten un texto de la API como fórmula (=, +, -, @) y escapa comillas.
+const celda = (v) => {
+  const t = String(v).replace(/[\r\n]+/g, " ");
+  const seguro = /^[=+\-@\t]/.test(t) ? `'${t}` : t;
+  return `"${seguro.replaceAll('"', '""')}"`;
+};
+
+export function generarCsv(feriados, pais, anio) {
+  const filas = feriados.map((f) => [f.fecha, nombreDiaSemana(f.fecha), f.nombre, esFinDeSemanaLargo(f.fecha) ? "sí" : "no"].map(celda).join(","));
+  return ["fecha,dia,feriado,fin_de_semana_largo", ...filas].join("\n") + "\n";
+}
+
+export const nombreArchivoCsv = (pais, anio) => `feriados-${pais}-${anio}.csv`;
