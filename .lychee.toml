@@ -1,6 +1,7 @@
-# Se aceptan 403 y 429: varios proveedores bloquean a los clientes automáticos y eso no
-# significa que el enlace esté roto (esos datos se marcan ⚠️ en el README).
-accept = [200, 202, 206, 403, 429]
+# Se aceptan 403 y 429 (varios proveedores bloquean a los clientes automáticos) y 307 (las
+# consolas con inicio de sesión, como console.mistral.ai, redirigen al login). Nada de eso
+# significa que el enlace esté roto; los datos que no se pueden comprobar se marcan ⚠️ en el README.
+accept = [200, 202, 206, 307, 403, 429]
 max_retries = 3
 retry_wait_time = 5
 # Endpoints de API que solo aceptan POST o exigen clave, y direcciones locales.
