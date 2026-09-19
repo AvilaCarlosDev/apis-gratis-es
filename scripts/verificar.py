@@ -97,7 +97,7 @@ def modelos_retirados_groq(pagina):
 
 
 def descargar(url):
-    peticion = urllib.request.Request(url, headers={"User-Agent": "free-apis-ia-espanol verificador"})
+    peticion = urllib.request.Request(url, headers={"User-Agent": "apis-gratis-es verificador"})
     try:
         with urllib.request.urlopen(peticion, timeout=30) as respuesta:
             return respuesta.status, respuesta.read(4_000_000).decode("utf8", "ignore")

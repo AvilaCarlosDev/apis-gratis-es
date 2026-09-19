@@ -12,7 +12,7 @@ Este repositorio es una lista documental: no ejecuta código de terceros ni aloj
 
 ### Cómo reportar
 
-Usa el aviso privado de vulnerabilidades de GitHub: <https://github.com/AvilaCarlosDev/free-apis-ia-espanol/security/advisories/new>. Para un dato desactualizado (sin riesgo), abre un issue normal con la fuente.
+Usa el aviso privado de vulnerabilidades de GitHub: <https://github.com/AvilaCarlosDev/apis-gratis-es/security/advisories/new>. Para un dato desactualizado (sin riesgo), abre un issue normal con la fuente.
 
 No incluyas claves reales en el reporte. Solo se mantiene la rama `main`.
 
@@ -26,6 +26,6 @@ This repository is a documentation list: it does not run third-party code or hos
 
 ### Reporting
 
-Use GitHub's private vulnerability reporting: <https://github.com/AvilaCarlosDev/free-apis-ia-espanol/security/advisories/new>. For an outdated fact (no risk), open a regular issue with the source.
+Use GitHub's private vulnerability reporting: <https://github.com/AvilaCarlosDev/apis-gratis-es/security/advisories/new>. For an outdated fact (no risk), open a regular issue with the source.
 
 Do not include real keys in the report. Only the `main` branch is maintained.
