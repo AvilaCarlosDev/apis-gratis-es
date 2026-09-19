@@ -1,10 +1,10 @@
-# Free LLM APIs (Spanish-speaking community)
+# Free APIs in Spanish
 
 **English** · [Español](README.md)
 
-**A list of LLM APIs with a free tier, for the Spanish-speaking community. Every fact says how and when it was checked; whatever could not be checked is flagged.**
+**A catalog of free APIs for the Spanish-speaking community: AI, currencies, open data from Spain and Latin America, weather, geolocation and demo APIs. Every fact says how and when it was checked; whatever could not be checked is flagged.**
 
-[![CI](https://github.com/AvilaCarlosDev/free-apis-ia-espanol/actions/workflows/quality.yml/badge.svg)](https://github.com/AvilaCarlosDev/free-apis-ia-espanol/actions/workflows/quality.yml)
+[![CI](https://github.com/AvilaCarlosDev/apis-gratis-es/actions/workflows/quality.yml/badge.svg)](https://github.com/AvilaCarlosDev/apis-gratis-es/actions/workflows/quality.yml)
 [![License: MIT](https://img.shields.io/badge/licencia-MIT-yellow.svg)](LICENSE)
 
 > **Last review: 2026-09-19.** Free tiers change often (that review found several outdated facts; see [docs/verificaciones.md](docs/verificaciones.md)). Before relying on a limit, confirm it at the linked source.
@@ -29,6 +29,8 @@ Every fact carries a verification mark:
 
 ## Contents
 
+- [Keyless API catalog](#keyless-api-catalog)
+- [Artificial intelligence (LLM)](#artificial-intelligence-llm)
 - [Providers with a free tier](#providers-with-a-free-tier)
 - [No sign-up, with conditions](#no-sign-up-with-conditions)
 - [Providers with trial credits](#providers-with-trial-credits)
@@ -39,6 +41,82 @@ Every fact carries a verification mark:
 - [Code examples](#code-examples)
 - [How we verify](#how-we-verify)
 - [Additional resources](#additional-resources)
+
+---
+
+## Keyless API catalog
+
+APIs you can call **without signing up or getting a key**, each with an example verified by a **real call** and its terms of use (license, attribution, limits), which are often overlooked. The table is generated from [`data/apis.json`](data/apis.json) (schema in [docs/esquema.md](docs/esquema.md)), and every week CI calls each API again.
+
+**How it is verified:** a `200` is not enough. Valid JSON, the expected type and the expected keys are required, because some APIs answer `200` with an error inside the body (for example, a deprecated version). **CORS** is measured in a separate request with the `Origin` header, as a browser would; results that could not be measured are marked "Unknown". Rejected candidates, with the reason, are in [docs/verificaciones.md](docs/verificaciones.md).
+
+<!-- catalogo:inicio -->
+### Currencies and economy
+
+| API | What it offers | Commercial use | Attribution | Limits and notes | CORS | Verified |
+|---|---|---|---|---|---|---|
+| [DolarAPI — Venezuela](https://dolarapi.com/docs/venezuela/) | Dollar exchange rates in Venezuela, including the official BCV rate, as JSON. (Venezuela) | Not specified | Not specified | Third-party service with no availability guarantee; for anything critical, host your own copy of the project (MIT). | Open | ✅ 2026-09-19 · 191 ms |
+| [DolarAPI — Argentina](https://dolarapi.com/docs/) | Rates from the different dollar exchange houses in Argentina, as JSON. (Argentina) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 182 ms |
+| [mindicador.cl](https://mindicador.cl/) | Daily economic indicators for Chile (dollar, euro, UF and others) as JSON. (Chile) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 626 ms |
+| [apis.net.pe — tipo de cambio SUNAT](https://apis.net.pe/) | The SUNAT (Peru) dollar exchange rate for the day, as JSON. (Perú) | Not specified | Not specified | Third-party service that queries SUNAT. It applies a strict rate limit: in testing it returned 429 after a few consecutive calls, and its CORS could not be measured. Cache the response and use your own proxy if you call it from a browser. | Unknown | ✅ 2026-09-19 · 1324 ms |
+| [Frankfurter — tipos de cambio del BCE](https://frankfurter.dev/) | Reference exchange rates from the European Central Bank and other sources, no key. (Global) | Yes | Not specified | No daily or monthly quotas; there is a rate limit against abuse. | Open | ✅ 2026-09-19 · 172 ms |
+
+### Government and open data
+
+| API | What it offers | Commercial use | Attribution | Limits and notes | CORS | Verified |
+|---|---|---|---|---|---|---|
+| [Datos abiertos de España (datos.gob.es)](https://datos.gob.es/es/apidata) | Catalog of open datasets from Spain's public administrations. (España) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 1904 ms |
+| [INE — Instituto Nacional de Estadística (España)](https://www.ine.es/dyngs/DAB/index.htm?cid=1099) | Operations and statistical series from Spain's INE, as JSON. (España) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 2369 ms |
+| [Georef — normalización geográfica de Argentina](https://datosgobar.github.io/georef-ar-api/) | Provinces, departments, localities and streets of Argentina, with name normalization. (Argentina) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 684 ms |
+| [Series de tiempo de Argentina](https://datosgobar.github.io/series-tiempo-ar-api/) | Official economic and statistical series from Argentina, queryable by identifier. (Argentina) | Not specified | Not specified | The project's repository has had no changes since June 2024, although the API responded in the latest verification. | Open | ✅ 2026-09-19 · 1293 ms |
+| [API Colombia](https://api-colombia.com/) | General data about Colombia: country, departments, cities, regions and attractions. (Colombia) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 460 ms |
+
+### Weather and geolocation
+
+| API | What it offers | Commercial use | Attribution | Limits and notes | CORS | Verified |
+|---|---|---|---|---|---|---|
+| [Open-Meteo — pronóstico](https://open-meteo.com/en/docs) | Weather forecast and meteorological data by coordinates, no key. (Global) | No | Required (CC-BY-4.0) | Fewer than 10,000 calls per day, 5,000 per hour and 600 per minute; the free tier is for non-commercial use only. | Open | ✅ 2026-09-19 · 693 ms |
+| [Open-Meteo — geocodificación](https://open-meteo.com/en/docs/geocoding-api) | Search places by name and get their coordinates, in the language you ask for. (Global) | No | Required (CC-BY-4.0) | Fewer than 10,000 calls per day, 5,000 per hour and 600 per minute; the free tier is for non-commercial use only. | Open | ✅ 2026-09-19 · 724 ms |
+| [Nominatim (OpenStreetMap)](https://nominatim.org/release-docs/latest/api/Search/) | Geocoding with OpenStreetMap data: from an address or place to coordinates, and back. (Global) | Not specified | Required (ODbL) | Absolute maximum of 1 request per second; a User-Agent or Referer identifying your application is mandatory (a library's generic one is blocked). In the 2026-09-19 measurement, with the accept-language parameter in the URL the response arrived without a CORS header; without that parameter it includes it. To ask for a language from a browser, use the Accept-Language header. | Open | ✅ 2026-09-19 · 372 ms |
+| [Photon (Komoot)](https://photon.komoot.io/) | Place search and geocoding with OpenStreetMap data, with a GeoJSON response. (Global) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 768 ms |
+| [ipwho.is — geolocalización por IP](https://ipwho.is/) | Country, city, time zone and other approximate data from an IP address. (Global) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 180 ms |
+
+### Culture and data
+
+| API | What it offers | Commercial use | Attribution | Limits and notes | CORS | Verified |
+|---|---|---|---|---|---|---|
+| [Wikipedia en español — API REST](https://es.wikipedia.org/api/rest_v1/) | Summaries and content of articles from the Spanish-language Wikipedia. (Global) | Not specified | Required (CC-BY-SA) | Wikimedia's policy requires a User-Agent that identifies your application. | Open | ✅ 2026-09-19 · 275 ms |
+| [Nager.Date — feriados públicos](https://date.nager.at/Api) | Public holidays of more than 100 countries, by year, including those in Latin America. (Global) | Not specified | Not specified | No request limit, according to its documentation. | Open | ✅ 2026-09-19 · 219 ms |
+
+### Demo store
+
+| API | What it offers | Commercial use | Attribution | Limits and notes | CORS | Verified |
+|---|---|---|---|---|---|---|
+| [FakeStoreAPI](https://fakestoreapi.com/docs) | Sample products, carts and users to prototype an online store. (Global) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 695 ms |
+| [DummyJSON](https://dummyjson.com/docs) | Fake data (products, carts, users, recipes) to develop and test applications. (Global) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 360 ms |
+| [Random User Generator](https://randomuser.me/documentation) | Random user profiles; with nat=es it generates names and addresses from Spain. (Global) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 204 ms |
+| [JSONPlaceholder](https://jsonplaceholder.typicode.com/) | Free fake REST API for testing and prototypes: posts, comments and users. (Global) | Not specified | Not specified | — | Open | ✅ 2026-09-19 · 166 ms |
+
+**Discovered from or built on:**
+
+- [datosgobar/georef-ar-api](https://github.com/datosgobar/georef-ar-api) (MIT) — Georef — normalización geográfica de Argentina
+- [datosgobar/series-tiempo-ar-api](https://github.com/datosgobar/series-tiempo-ar-api) (MIT) — Series de tiempo de Argentina
+- [enzonotario/dolarapi.com](https://github.com/enzonotario/dolarapi.com) (MIT) — DolarAPI — Venezuela, DolarAPI — Argentina
+- [keikaavousi/fake-store-api](https://github.com/keikaavousi/fake-store-api) (MIT) — FakeStoreAPI
+- [komoot/photon](https://github.com/komoot/photon) (Apache-2.0) — Photon (Komoot)
+- [nager/Nager.Date](https://github.com/nager/Nager.Date) (MIT) — Nager.Date — feriados públicos
+- [osm-search/Nominatim](https://github.com/osm-search/Nominatim) (GPL-3.0) — Nominatim (OpenStreetMap)
+- [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) — DummyJSON
+- [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT) — Datos abiertos de España (datos.gob.es), Open-Meteo — pronóstico, Open-Meteo — geocodificación, Nominatim (OpenStreetMap), Nager.Date — feriados públicos, FakeStoreAPI, DummyJSON, Random User Generator, JSONPlaceholder
+- [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) (MIT) — Random User Generator
+- [typicode/jsonplaceholder](https://github.com/typicode/jsonplaceholder) (MIT) — JSONPlaceholder
+<!-- catalogo:fin -->
+
+---
+
+## Artificial intelligence (LLM)
+
+The following sections, up to "How we verify", cover the **AI** category: LLM providers with a free tier. Almost all of them require a key here, so their verification is documentary and is marked with the symbols above.
 
 ---
 
@@ -328,6 +406,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the format and rules. Every new figur
 ## Credits
 
 - **This list builds on the work of [FreeLLMAPI](https://github.com/tashfeenahmed/freellmapi) by [tashfeenahmed](https://github.com/tashfeenahmed)** (MIT): the providers that dropped their free tier, the no-sign-up services and their conditions, and the aggregator section come from that project's public documentation, cited in each case. It is not this repository's work: here it is only documented and linked to its original source. Thank you.
+- **The keyless API catalog builds on [public-apis/public-apis](https://github.com/public-apis/public-apis)** (MIT): its entries helped discover candidates; each API was verified independently and its descriptions and terms are our own. The credits of each project, with its license, are in the catalog's credits table and in each entry's `creditos` field. Thank you.
 - This list was inspired by `free-llm-api-resources`, by cheahjs; that repository is no longer available on GitHub, so it is not linked.
 - Maintained by [Carlos Avila](https://github.com/AvilaCarlosDev). Developed with the support of Claude (Anthropic) as a review and source-verification assistant; the selection and the final review are the author's.
 
