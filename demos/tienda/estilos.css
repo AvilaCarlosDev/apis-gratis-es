@@ -32,3 +32,18 @@
 .linea-cantidad button { width: 2rem; height: 2rem; border: 1px solid var(--linea); border-radius: .375rem; background: var(--hoja); color: var(--tinta); }
 .linea-precio { text-align: right; font-variant-numeric: tabular-nums; }
 .total { margin-block: 1rem; }
+
+/* Mismo aspecto que la portada: gris neutro, cabecera plana y tarjetas de borde fino. */
+:root { --hoja: #0a0a0b; --papel: #151517; --lateral: #0d0d0f; --tinta: #ececee; --tinta-suave: #a1a1a8; --linea: #26262a; --cobalto: #f4f4f5; --cobalto-texto: #0a0a0b; --enlace: #6ea0ee; --pizarra: #0d0d0f; --pizarra-texto: #ececee; --pizarra-suave: #a1a1a8; }
+@media (prefers-color-scheme: light) {
+  :root { --hoja: #f7f7f8; --papel: #ffffff; --lateral: #ffffff; --tinta: #16161a; --tinta-suave: #5b5b63; --linea: #e3e3e6; --cobalto: #16161a; --cobalto-texto: #ffffff; --enlace: #1f5fbf; --pizarra: #ffffff; --pizarra-texto: #16161a; --pizarra-suave: #5b5b63; }
+}
+.pizarra { border-bottom: 1px solid var(--linea); padding: 1rem 0; }
+.pizarra h1 { color: var(--tinta); font-size: 1.125rem; font-weight: 700; }
+.pizarra-interior { align-items: center; }
+.tasa-ecuacion { font-size: clamp(1.5rem, 5vw, 2.25rem); margin-top: .25rem; }
+.pizarra a, .pie a, .aviso a { color: var(--enlace); }
+button.texto { color: var(--enlace); }
+.producto, .panel-carrito, .dia { border-radius: .625rem; }
+button.chip[aria-pressed="true"] { background: var(--tinta); color: var(--hoja); }
+:focus-visible { outline-color: var(--enlace); }
