@@ -12,32 +12,64 @@
   <link rel="stylesheet" href="./portada.css">
 </head>
 <body>
-  <header class="pizarra">
-    <div class="contenedor">
-      <h1>apis-gratis-es</h1>
-      <p class="titular">Aplicaciones reales hechas con APIs gratuitas.</p>
-      <p class="pizarra-nota">Cada demo usa solo APIs verificadas del <a href="https://github.com/AvilaCarlosDev/apis-gratis-es">catálogo</a>, sin backend ni claves.</p>
+  <a class="salto" href="#demos">Ir a las demos</a>
+
+  <div class="app">
+    <aside class="lateral">
+      <a class="marca" href="./">APIS GRATIS ES</a>
+      <nav aria-label="Principal">
+        <p class="grupo">Demos</p>
+        <ul>
+          <li><a href="./demos/tienda/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l9-9h9v9l-9 9z"/><circle cx="16.5" cy="7.5" r="1.25"/></svg>Tienda</a></li>
+          <li><a href="./demos/clima/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>Clima</a></li>
+        </ul>
+        <p class="grupo">Proyecto</p>
+        <ul>
+          <li><a href="https://github.com/AvilaCarlosDev/apis-gratis-es#readme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10"/></svg>Catálogo de APIs</a></li>
+          <li><a href="https://github.com/AvilaCarlosDev/apis-gratis-es/tree/main/demos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>Código de las demos</a></li>
+          <li><a href="https://github.com/AvilaCarlosDev/apis-gratis-es/blob/main/CONTRIBUTING.md"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Cómo contribuir</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="cuerpo">
+      <header class="barra-superior">
+        <p>Apps de ejemplo con APIs gratuitas y verificadas.</p>
+        <a class="boton" href="https://github.com/AvilaCarlosDev/apis-gratis-es">Ver en GitHub</a>
+      </header>
+
+      <main id="demos">
+        <h1>Demos</h1>
+        <p class="intro">Cada una usa solo APIs del <a href="https://github.com/AvilaCarlosDev/apis-gratis-es#readme">catálogo</a>. No hay backend ni claves: abrís la página y funciona.</p>
+        <ul class="demos">
+          <li>
+            <a class="tarjeta" href="./demos/tienda/">
+              <span class="tarjeta-titulo"><span class="icono icono-tienda"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l9-9h9v9l-9 9z"/><circle cx="16.5" cy="7.5" r="1.25"/></svg></span><h2>Tienda</h2></span>
+              <span class="tarjeta-texto">Productos con el precio en dólares y en bolívares a la tasa oficial del día. Búsqueda, categorías y carrito.</span>
+              <span class="tarjeta-apis">DolarAPI, FakeStoreAPI y DummyJSON</span>
+            </a>
+          </li>
+          <li>
+            <a class="tarjeta" href="./demos/clima/">
+              <span class="tarjeta-titulo"><span class="icono icono-clima"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span><h2>Clima</h2></span>
+              <span class="tarjeta-texto">El clima de hoy y el pronóstico de siete días de cualquier ciudad.</span>
+              <span class="tarjeta-apis">Open-Meteo</span>
+            </a>
+          </li>
+          <li>
+            <a class="tarjeta" href="https://github.com/AvilaCarlosDev/apis-gratis-es#readme">
+              <span class="tarjeta-titulo"><span class="icono icono-catalogo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><h2>Catálogo de APIs</h2></span>
+              <span class="tarjeta-texto">La lista completa de APIs gratuitas en español: IA, divisas, datos abiertos, clima y geolocalización.</span>
+              <span class="tarjeta-apis">Verificado en GitHub</span>
+            </a>
+          </li>
+        </ul>
+      </main>
+
+      <footer class="pie-portada">
+        <p>Código, pruebas y créditos de cada demo en el <a href="https://github.com/AvilaCarlosDev/apis-gratis-es/tree/main/demos">repositorio</a>. Tipografía Bricolage Grotesque (SIL OFL).</p>
+      </footer>
     </div>
-  </header>
-
-  <main class="contenedor">
-    <h2>Demos</h2>
-    <ul class="demos">
-      <li class="demo">
-        <h3><a href="./demos/tienda/">Tienda</a></h3>
-        <p>Productos con el precio en dólares y en bolívares a la tasa oficial del día. Búsqueda, categorías y carrito.</p>
-        <p class="apis">DolarAPI, FakeStoreAPI y DummyJSON.</p>
-      </li>
-      <li class="demo">
-        <h3><a href="./demos/clima/">Clima</a></h3>
-        <p>El clima de hoy y el pronóstico de siete días de cualquier ciudad.</p>
-        <p class="apis">Open-Meteo.</p>
-      </li>
-    </ul>
-  </main>
-
-  <footer class="contenedor pie">
-    <p>Código, pruebas y créditos de cada demo en el <a href="https://github.com/AvilaCarlosDev/apis-gratis-es/tree/main/demos">repositorio</a>. Tipografía Bricolage Grotesque (SIL OFL).</p>
-  </footer>
+  </div>
 </body>
 </html>

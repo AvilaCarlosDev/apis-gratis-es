@@ -75,12 +75,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Reject AI watermarks in files and commit messages
+      - name: Require the AI-assistance disclosure in both READMEs
         run: |
-          pattern='Generated (by|with) (AI|Claude|ChatGPT|Copilot)|claude\.ai/code|Claude-Session'
-          if git grep -nEi "$pattern" -- . ':!README*.md' ':!.github/workflows/quality.yml'; then
-            echo "::error::AI watermark found in tracked files"; exit 1
-          fi
-          if git log --format=%B | grep -Ei "^(Co-Authored-By: *(Claude|ChatGPT|Copilot)|Claude-Session:)"; then
-            echo "::error::AI trailer found in commit messages"; exit 1
-          fi
+          grep -Eiq "Claude \(Anthropic\)" README.md || { echo "::error::README.md is missing the AI-assistance disclosure"; exit 1; }
+          grep -Eiq "Claude \(Anthropic\)" README.en.md || { echo "::error::README.en.md is missing the AI-assistance disclosure"; exit 1; }

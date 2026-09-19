@@ -29,3 +29,40 @@
   .dia-max { grid-column: 4; }
   .dia-min { grid-column: 5; }
 }
+
+/* Aspecto de app de clima para el celular: columna angosta, cabecera azul y hoja oscura con tarjetas redondeadas. */
+:root { --hoja: #0e1a2f; --papel: #172440; --tinta: #eef2fb; --tinta-suave: #9fb0d0; --linea: #22335a; --cobalto: #4a9dff; --cobalto-texto: #ffffff; }
+html { background: #060d19; }
+body { max-width: 30rem; margin-inline: auto; min-height: 100vh; }
+
+.pizarra { padding: 1.25rem 0 3.5rem; color: #fff; background: linear-gradient(#1a67d0 0%, #2f86ea 100%); }
+.pizarra h1 { color: #fff; font-size: .9375rem; font-weight: 600; letter-spacing: .04em; }
+.pizarra .buscar { margin-top: .75rem; flex-wrap: nowrap; }
+.pizarra .buscar input[type="search"] { flex: 1 1 auto; min-width: 0; max-width: none; }
+.pizarra input[type="search"], .pizarra .campo { background: rgba(255, 255, 255, .18); color: #fff; border: 0; border-radius: 999px; padding-inline: 1rem; }
+.pizarra input[type="search"]::placeholder { color: rgba(255, 255, 255, .75); }
+.pizarra .campo option { color: #10231c; }
+.pizarra button.primario { background: #fff; color: #1a67d0; border-radius: 999px; }
+.pizarra button.chip { background: rgba(255, 255, 255, .18); color: #fff; border: 0; }
+.pizarra button.chip[aria-pressed="true"] { background: #fff; color: #1a67d0; }
+.pizarra a, .pizarra .pizarra-nota { color: rgba(255, 255, 255, .85); }
+
+.actual { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .25rem 1rem; margin-top: 1rem; }
+.actual h2 { grid-column: 1 / -1; margin: 0; font-size: .9375rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #fff; }
+.actual .temperatura { grid-row: 2 / 4; font-size: clamp(3.5rem, 20vw, 5rem); font-weight: 500; letter-spacing: -.02em; }
+.actual .condicion { grid-column: 2; margin: 0; font-size: 1.125rem; font-weight: 600; text-align: right; }
+.actual .datos { grid-column: 2; margin: 0; flex-direction: column; gap: 0; text-align: right; font-size: .875rem; color: #fff; }
+.actual .vacio { grid-column: 1 / -1; color: #fff; }
+.pizarra .pizarra-nota { margin-top: 1rem; font-size: .875rem; }
+
+main { position: relative; margin-top: -2rem; background: var(--hoja); border-radius: 1.5rem 1.5rem 0 0; padding: 1.5rem 1rem 3rem; width: 100%; }
+h2#titulo-dias { font-size: 1.25rem; font-weight: 700; }
+
+.dias { background: transparent; border: 0; display: grid; gap: .5rem; }
+.dia { background: var(--papel); border: 0; border-radius: 1rem; padding: .875rem 1rem; }
+.dia-max { color: #fff; }
+main.contenedor { width: 100%; }
+.dia { grid-template-columns: 5.5rem 1fr auto auto; }
+.dia-lluvia { grid-column: 2; grid-row: 2; }
+.dia-max { grid-column: 3; grid-row: 1; }
+.dia-min { grid-column: 4; grid-row: 1; }
