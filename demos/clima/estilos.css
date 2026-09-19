@@ -66,3 +66,9 @@ main.contenedor { width: 100%; }
 .dia-lluvia { grid-column: 2; grid-row: 2; }
 .dia-max { grid-column: 3; grid-row: 1; }
 .dia-min { grid-column: 4; grid-row: 1; }
+
+.actual .esq { background: rgba(255, 255, 255, .25); }
+.esq-lugar { grid-column: 1 / -1; width: 60%; height: 1rem; }
+.esq-temp { grid-row: 2 / 4; width: 8rem; height: 4rem; border-radius: .75rem; }
+.esq-cond { grid-column: 2; width: 6rem; height: 2.5rem; justify-self: end; }
+.esq-dia { height: 4.25rem; border-radius: 1rem; margin-bottom: .5rem; background: var(--papel); }
