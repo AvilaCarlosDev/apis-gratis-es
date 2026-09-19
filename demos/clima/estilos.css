@@ -29,3 +29,27 @@
   .dia-max { grid-column: 4; }
   .dia-min { grid-column: 5; }
 }
+
+/* Aspecto tomado de open-meteo.com: noche azul marino y un cielo con nubes arriba. */
+:root {
+  --hoja: #050b1f; --papel: #0c1530; --tinta: #eef2fb; --tinta-suave: #a9b6d3; --linea: #1d2a4d; --cobalto: #3d8bff; --cobalto-texto: #ffffff;
+}
+.pizarra {
+  text-align: center; padding: 2.5rem 0 5rem; color: #fff;
+  background:
+    radial-gradient(ellipse 22% 14% at 12% 96%, #fff 60%, transparent 62%),
+    radial-gradient(ellipse 30% 20% at 26% 102%, #f4f8ff 60%, transparent 62%),
+    radial-gradient(ellipse 26% 16% at 50% 104%, #fff 60%, transparent 62%),
+    radial-gradient(ellipse 32% 22% at 74% 102%, #f4f8ff 60%, transparent 62%),
+    radial-gradient(ellipse 24% 14% at 92% 96%, #fff 60%, transparent 62%),
+    linear-gradient(#1c58b8 0%, #3f86e0 55%, #8fbdf0 100%);
+}
+.pizarra h1 { color: #fff; font-size: clamp(2rem, 6vw, 3rem); font-weight: 600; }
+.pizarra, .pizarra p, .pizarra h1, .pizarra h2, .pizarra li { text-shadow: 0 1px 6px rgba(0, 20, 60, .55); }
+.pizarra .buscar, .pizarra .lugares, .pizarra .datos { justify-content: center; }
+.pizarra .datos, .pizarra .actual h2, .pizarra .actual .vacio, .pizarra .pizarra-nota, .pizarra a { color: #fff; }
+.pizarra input[type="search"], .pizarra .campo { background: rgba(255, 255, 255, .92); color: #10231c; border-color: transparent; }
+.pizarra button.primario { background: #0d6efd; color: #fff; }
+.pizarra button.chip { background: rgba(255, 255, 255, .18); color: #fff; border-color: rgba(255, 255, 255, .6); }
+.pizarra button.chip[aria-pressed="true"] { background: #fff; color: #0b3a80; }
+.pizarra button, .pizarra input, .pizarra select { text-shadow: none; }

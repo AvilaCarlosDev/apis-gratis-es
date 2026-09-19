@@ -1,8 +1,49 @@
-.titular { margin: .5rem 0 0; font-size: clamp(1.75rem, 6vw, 3.25rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.05; max-width: 20ch; }
+/* Portada al estilo de un directorio de APIs: lateral con navegación y rejilla de tarjetas. */
+:root {
+  --hoja: #0a0a0b; --papel: #151517; --lateral: #0d0d0f; --tinta: #ececee; --tinta-suave: #a1a1a8; --linea: #26262a; --boton: #f4f4f5; --boton-texto: #0a0a0b; --acento: #6ea0ee;
+}
+@media (prefers-color-scheme: light) {
+  :root { --hoja: #f7f7f8; --papel: #ffffff; --lateral: #ffffff; --tinta: #16161a; --tinta-suave: #5b5b63; --linea: #e3e3e6; --boton: #16161a; --boton-texto: #ffffff; --acento: #1f5fbf; }
+}
 
-.demos { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
-.demo { background: var(--papel); border: 1px solid var(--linea); border-radius: .5rem; padding: 1.25rem; }
-.demo h3 { font-size: 1.375rem; margin-bottom: .5rem; }
-.demo a { color: var(--cobalto); }
-.demo p { margin: 0 0 .5rem; }
-.apis { color: var(--tinta-suave); font-size: .9375rem; }
+svg { width: 1.125rem; height: 1.125rem; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+a { color: var(--acento); }
+
+.app { display: flex; flex-direction: column; min-height: 100vh; }
+@media (min-width: 60rem) { .app { flex-direction: row; } }
+
+.lateral { background: var(--lateral); border-bottom: 1px solid var(--linea); padding: 1rem; }
+@media (min-width: 60rem) { .lateral { position: sticky; top: 0; height: 100vh; width: 15rem; flex: none; border-bottom: 0; border-right: 1px solid var(--linea); padding: 1.5rem 1rem; overflow-y: auto; } }
+.marca { display: block; color: var(--tinta); text-decoration: none; font-weight: 800; letter-spacing: .12em; font-size: 1.125rem; margin-bottom: 1.25rem; }
+.grupo { margin: 1.25rem 0 .25rem; padding-inline: .5rem; color: var(--tinta-suave); font-size: .8125rem; font-weight: 600; }
+.lateral ul { list-style: none; margin: 0; padding: 0; }
+.lateral li a { display: flex; align-items: center; gap: .625rem; padding: .5rem; border-radius: .375rem; color: var(--tinta); text-decoration: none; font-size: .9375rem; }
+.lateral li a:hover { background: var(--papel); }
+
+.cuerpo { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.barra-superior { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; border-bottom: 1px solid var(--linea); }
+.barra-superior p { margin: 0; color: var(--tinta-suave); font-size: .9375rem; }
+.boton { background: var(--boton); color: var(--boton-texto); text-decoration: none; font-weight: 600; font-size: .9375rem; border-radius: .375rem; padding: .4rem .9rem; white-space: nowrap; }
+.boton:hover { opacity: .88; }
+
+#demos { width: min(64rem, 100%); padding: 2rem 1rem 3rem; margin-inline: auto; flex: 1; }
+@media (min-width: 60rem) { #demos { padding-inline: 2.5rem; } }
+h1 { margin: 0; color: var(--tinta); font-size: 1.75rem; font-weight: 700; letter-spacing: -.01em; }
+.intro { margin: .5rem 0 1.5rem; max-width: 60ch; color: var(--tinta-suave); }
+
+.demos { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); }
+.tarjeta { display: flex; flex-direction: column; gap: .75rem; height: 100%; background: var(--papel); border: 1px solid var(--linea); border-radius: .625rem; padding: 1.25rem; color: var(--tinta); text-decoration: none; }
+.tarjeta:hover { border-color: var(--tinta-suave); }
+.tarjeta:focus-visible { outline-offset: 2px; }
+.tarjeta-titulo { display: flex; align-items: center; gap: .75rem; }
+.tarjeta h2 { margin: 0; font-size: 1.125rem; font-weight: 600; }
+.tarjeta-texto { color: var(--tinta-suave); font-size: .9375rem; line-height: 1.45; }
+.tarjeta-apis { margin-top: auto; padding-top: .25rem; color: var(--tinta-suave); font-size: .8125rem; }
+
+.icono { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: .5rem; color: #fff; }
+.icono-tienda { background: #d98e04; }
+.icono-clima { background: #1f5fbf; }
+.icono-catalogo { background: #52525b; }
+
+.pie-portada { padding: 1.5rem 1rem; border-top: 1px solid var(--linea); color: var(--tinta-suave); font-size: .875rem; }
+.pie-portada p { margin: 0; max-width: 70ch; }
