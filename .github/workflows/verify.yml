@@ -7,7 +7,7 @@ on:
     - cron: "0 7 * * 1"
   workflow_dispatch:
   pull_request:
-    paths: ["README.md", "README.en.md", "scripts/verificar.py"]
+    paths: ["README.md", "README.en.md", "scripts/verificar.py", "scripts/catalogo.py", "data/apis.json"]
 
 permissions:
   contents: read
@@ -20,3 +20,6 @@ jobs:
 
       - name: Check README claims against public sources
         run: python3 scripts/verificar.py README.md
+
+      - name: Call every API in the catalog and check the response
+        run: python3 scripts/catalogo.py verificar
