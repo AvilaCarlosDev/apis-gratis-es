@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-Los feriados de cada año en 20 países de habla hispana y portuguesa, con el próximo feriado, los días que faltan y la lista por mes. Se puede cambiar de país y de año. Es una demo de cómo usar una API gratuita del [catálogo](../../README.md) sin backend ni claves.
+Los feriados de cada año en 20 países de habla hispana y portuguesa, con el próximo feriado, los días que faltan la lista por mes con los fines de semana largos marcados (feriado en lunes o viernes) y un botón para descargar el año en CSV. Se puede cambiar de país y de año. Es una demo de cómo usar una API gratuita del [catálogo](../../README.md) sin backend ni claves.
 
 No guarda nada: ni el país ni el año. Arranca en Venezuela, con el año en curso.
 
@@ -38,6 +38,7 @@ Figura en [`data/apis.json`](../../data/apis.json) con su última verificación.
 ## Seguridad
 
 - Los nombres de los feriados llegan de la API y se tratan como no confiables: se escriben con `textContent`, nunca como HTML.
+- El CSV neutraliza los textos que empiezan por `=`, `+`, `-` o `@` para que una hoja de cálculo no los ejecute como fórmula.
 - El país solo puede ser uno de la lista del selector y el año un número entre 2000 y 2100; se validan antes de construir la URL.
 - `index.html` declara una política de seguridad de contenido: scripts solo propios, conexiones solo a `date.nager.at`, sin imágenes externas.
 - Las peticiones no envían cookies ni referrer.
@@ -46,4 +47,5 @@ Figura en [`data/apis.json`](../../data/apis.json) con su última verificación.
 
 - Feriados de [Nager.Date](https://date.nager.at/), proyecto de código abierto bajo licencia MIT ([nager/Nager.Date](https://github.com/nager/Nager.Date)).
 - Tipografía **Bricolage Grotesque**, con licencia SIL Open Font License 1.1 (ver [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
+- El diseño de la pantalla se generó con Stitch a partir de una descripción propia de la idea (elegir país y año, ver el próximo feriado y la lista); no copia el código, los textos ni el diseño de ninguna página existente.
 - Código de la demo: MIT, como el resto del repositorio.

@@ -91,3 +91,20 @@ test("una respuesta con success false se trata como error", async () => {
   assert.match(texto("aviso"), /No se pudo estimar/);
   assert.equal(texto("ip"), "");
 });
+
+test("la ubicación estimada muestra IP, proveedor y un mapa de OpenStreetMap con marcador", async () => {
+  const { doc, texto } = nuevo();
+  await doc.getElementById("ubicar").disparar("click");
+  assert.match(texto("ip"), /8\.8\.8\.8/);
+  assert.match(texto("ip"), /Google LLC/);
+  const marco = doc.getElementById("ip").porEtiqueta("iframe")[0];
+  assert.match(marco.getAttribute("src"), /^https:\/\/www\.openstreetmap\.org\/export\/embed\.html\?bbox=.*&marker=37\.33939%2C-121\.89496$/);
+  assert.equal(marco.getAttribute("referrerpolicy"), "no-referrer");
+});
+
+test("sin coordenadas en la respuesta no se pinta el mapa", async () => {
+  const { doc, texto } = nuevo({ ip: { success: true, country: "Chile", country_code: "CL", ip: "1.2.3.4" } });
+  await doc.getElementById("ubicar").disparar("click");
+  assert.match(texto("ip"), /Chile/);
+  assert.equal(doc.getElementById("ip").porEtiqueta("iframe").length, 0);
+});

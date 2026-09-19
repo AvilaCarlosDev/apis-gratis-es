@@ -8,7 +8,7 @@ const base = leer("compartido/base.css");
 const DEMOS = {
   tienda: { conexiones: ["https://dummyjson.com", "https://fakestoreapi.com", "https://ve.dolarapi.com"], imagenes: ["https://cdn.dummyjson.com", "https://fakestoreapi.com"] },
   clima: { conexiones: ["https://api.open-meteo.com", "https://geocoding-api.open-meteo.com"], imagenes: [] },
-  ubicacion: { conexiones: ["https://ipwho.is", "https://photon.komoot.io"], imagenes: [] },
+  ubicacion: { conexiones: ["https://ipwho.is", "https://photon.komoot.io"], imagenes: [], marcos: ["https://www.openstreetmap.org"] },
   feriados: { conexiones: ["https://date.nager.at"], imagenes: [] },
 };
 
@@ -34,6 +34,12 @@ for (const [demo, permitido] of Object.entries(DEMOS)) {
 
   test(`${demo}: img-src permite solo los hosts de imágenes que necesita`, () => {
     assert.deepEqual(hosts("img-src"), ["'self'", ...permitido.imagenes].sort());
+  });
+
+  test(`${demo}: frame-src permite solo los marcos que necesita`, () => {
+    const esperado = permitido.marcos ?? [];
+    assert.deepEqual(hosts("frame-src"), esperado.slice().sort());
+    if (!esperado.length) assert.doesNotMatch(csp, /frame-src/);
   });
 
   test(`${demo}: sin plugins, sin base ni formularios externos`, () => {

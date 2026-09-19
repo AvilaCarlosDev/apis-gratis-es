@@ -3,7 +3,6 @@
 h1 { font-size: 1.125rem; }
 
 .paneles { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
-@media (min-width: 56rem) { .paneles { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); } }
 .panel { background: var(--papel); border: 1px solid var(--linea); border-radius: .625rem; padding: 1.25rem; }
 .panel h2 { margin-bottom: .25rem; }
 .panel-ayuda { margin: 0 0 1rem; color: var(--tinta-suave); font-size: .9375rem; max-width: 60ch; }
@@ -21,11 +20,19 @@ h1 { font-size: 1.125rem; }
 .lugar-mapa { justify-self: start; color: var(--enlace); font-size: .9375rem; }
 
 .ip { margin-top: 1rem; }
-.ip-pais { margin: 0 0 .5rem; font-size: 1.5rem; font-weight: 700; }
-.ip-datos { display: grid; grid-template-columns: auto 1fr; gap: .25rem 1rem; margin: 0; }
-.ip-datos dt { color: var(--tinta-suave); }
-.ip-datos dd { margin: 0; font-weight: 600; }
-.ip-nota { margin: 1rem 0 0; color: var(--tinta-suave); font-size: .875rem; }
+.ip-resultado { display: grid; gap: 1.25rem; }
+@media (min-width: 56rem) { .ip-resultado.con-mapa { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+.ip-pais { margin: 0 0 .75rem; font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.fichas { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: .5rem; margin: 0; }
+.ficha { border: 1px solid var(--linea); border-radius: .5rem; padding: .5rem .75rem; background: var(--hoja); }
+.ficha dt { color: var(--tinta-suave); font-size: .8125rem; }
+.ficha dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.ip-nota { margin: 1rem 0 0; padding: .625rem .875rem; border-left: 3px solid #f2c230; color: var(--tinta-suave); font-size: .875rem; }
+.mapa { margin: 0; }
+.mapa iframe { display: block; width: 100%; height: 20rem; border: 1px solid var(--linea); border-radius: .5rem; background: var(--hoja); }
+.mapa-pie { margin: .5rem 0 0; color: var(--tinta-suave); font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.mapa-pie a { color: var(--enlace); }
+.lugar-grados { color: var(--tinta-suave); }
 
 button:disabled { opacity: .5; cursor: default; }
 

@@ -2,7 +2,7 @@
 
 [Español](README.md)
 
-The public holidays of each year in 20 Spanish- and Portuguese-speaking countries, with the next holiday, the days left and a month-by-month list. You can switch country and year. It is a demo of using one free API from the [catalog](../../README.en.md) with no backend and no keys.
+The public holidays of each year in 20 Spanish- and Portuguese-speaking countries, with the next holiday, the days left a month-by-month list with long weekends flagged (a holiday on Monday or Friday) and a button to download the year as CSV. You can switch country and year. It is a demo of using one free API from the [catalog](../../README.en.md) with no backend and no keys.
 
 It stores nothing: not the country and not the year. It starts on Venezuela, with the current year.
 
@@ -37,6 +37,7 @@ It is listed in [`data/apis.json`](../../data/apis.json) with its latest verific
 
 ## Security
 
+- The CSV neutralises text starting with `=`, `+`, `-` or `@` so a spreadsheet does not run it as a formula.
 - Holiday names come from the API and are treated as untrusted: they are written with `textContent`, never as HTML.
 - The country can only be one from the selector's list and the year a number between 2000 and 2100; both are validated before the URL is built.
 - `index.html` declares a content security policy: only its own scripts, connections only to `date.nager.at`, no external images.
@@ -46,4 +47,5 @@ It is listed in [`data/apis.json`](../../data/apis.json) with its latest verific
 
 - Holidays from [Nager.Date](https://date.nager.at/), an open-source project under the MIT license ([nager/Nager.Date](https://github.com/nager/Nager.Date)).
 - **Bricolage Grotesque** typeface, under the SIL Open Font License 1.1 (see [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
+- The screen design was generated with Stitch from our own description of the idea (pick a country and year, see the next holiday and the list); it does not copy the code, texts or design of any existing page.
 - Demo code: MIT, like the rest of the repository.

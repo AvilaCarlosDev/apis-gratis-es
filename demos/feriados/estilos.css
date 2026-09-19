@@ -10,7 +10,11 @@ h1 { font-size: 1.125rem; }
 .pizarra button.chip { background: transparent; color: var(--pizarra-texto); border-color: #3c5148; min-width: 2.5rem; }
 .pizarra button.chip:disabled { opacity: .35; cursor: default; }
 
-.proximo { margin-top: 1.5rem; min-height: 8rem; }
+.proximo { margin-top: 1.5rem; min-height: 8rem; display: grid; grid-template-columns: auto 1fr; column-gap: 1.5rem; align-items: center; }
+.proximo > * { grid-column: 2; }
+.proximo > .proximo-dia { grid-column: 1; grid-row: 1 / span 4; margin: 0; font-size: clamp(4rem, 14vw, 8rem); font-weight: 800; line-height: .9; letter-spacing: -.04em; font-variant-numeric: tabular-nums; color: #f2c230; }
+.proximo > .esq { grid-column: 1 / -1; }
+.proximo > .proximo-faltan { justify-self: start; }
 .proximo h2 { margin: 0; font-size: 1rem; font-weight: 600; color: var(--pizarra-suave); }
 .proximo-nombre { margin: .25rem 0 0; font-size: clamp(2rem, 7vw, 3.5rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.05; }
 .proximo-fecha { margin: .25rem 0 0; font-size: 1.25rem; }
@@ -25,6 +29,7 @@ h1 { font-size: 1.125rem; }
 .feriado-dia { font-size: 1.25rem; font-weight: 800; font-variant-numeric: tabular-nums; }
 .feriado-semana { color: var(--tinta-suave); font-size: .875rem; text-transform: capitalize; }
 .feriado-nombre { font-weight: 600; }
+.etiqueta-largo { grid-column: 3; justify-self: start; padding: .125rem .5rem; border-radius: .25rem; background: #f2c230; color: #10231c; font-size: .75rem; font-weight: 700; white-space: nowrap; }
 .feriado.pasado { opacity: .6; }
 
 .esq-proximo { width: min(24rem, 100%); height: 6rem; }

@@ -1,5 +1,5 @@
 import { el } from "../../compartido/dom.js";
-import { agruparPorMes, diasHasta, fechaCompleta, nombreDiaSemana, textoFaltan } from "./feriados.js";
+import { agruparPorMes, diasHasta, esFinDeSemanaLargo, fechaCompleta, nombreDiaSemana, textoFaltan } from "./feriados.js";
 
 export function pintarProximo(doc, contenedor, proximo, hoy) {
   if (!proximo) {
@@ -8,6 +8,7 @@ export function pintarProximo(doc, contenedor, proximo, hoy) {
   }
   contenedor.replaceChildren(
     el(doc, "h2", { texto: "Próximo feriado" }),
+    el(doc, "p", { clase: "proximo-dia", texto: String(Number(proximo.fecha.slice(8))), atributos: { "aria-hidden": "true" } }),
     el(doc, "p", { clase: "proximo-nombre", texto: proximo.nombre }),
     el(doc, "p", { clase: "proximo-fecha", texto: fechaCompleta(proximo.fecha) }),
     el(doc, "p", { clase: "proximo-faltan", texto: textoFaltan(diasHasta(proximo.fecha, hoy)) }));
@@ -23,5 +24,6 @@ export function pintarLista(doc, contenedor, feriados, hoy) {
     el(doc, "ul", { clase: "feriados" }, ...g.feriados.map((f) => el(doc, "li", { clase: f.fecha < hoy ? "feriado pasado" : "feriado" },
       el(doc, "span", { clase: "feriado-dia", texto: String(Number(f.fecha.slice(8))) }),
       el(doc, "span", { clase: "feriado-semana", texto: nombreDiaSemana(f.fecha) }),
-      el(doc, "span", { clase: "feriado-nombre", texto: f.nombre })))))));
+      el(doc, "span", { clase: "feriado-nombre", texto: f.nombre }),
+      ...(esFinDeSemanaLargo(f.fecha) ? [el(doc, "span", { clase: "etiqueta-largo", texto: "Fin de semana largo" })] : [])))))));
 }
