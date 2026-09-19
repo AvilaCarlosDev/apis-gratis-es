@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self' https://date.nager.at; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <title>Feriados de tu país</title>
+  <meta name="description" content="Demo de apis-gratis-es: los feriados de cada año en 20 países, con el próximo y los días que faltan, con datos de Nager.Date.">
+  <link rel="stylesheet" href="../compartido/base.css">
+  <link rel="stylesheet" href="./estilos.css">
+  <script type="module" src="./main.js"></script>
+</head>
+<body>
+  <a class="salto" href="#lista">Ir a la lista de feriados</a>
+
+  <header class="pizarra">
+    <div class="contenedor">
+      <div class="cabecera">
+        <h1>Feriados</h1>
+        <p class="pizarra-enlace"><a href="../">Ver todas las demos</a></p>
+      </div>
+      <div class="controles">
+        <label class="campo-etiquetado">País
+          <select id="pais" class="campo">
+          <option value="VE">Venezuela</option>
+          <option value="CO">Colombia</option>
+          <option value="MX">México</option>
+          <option value="AR">Argentina</option>
+          <option value="CL">Chile</option>
+          <option value="PE">Perú</option>
+          <option value="EC">Ecuador</option>
+          <option value="UY">Uruguay</option>
+          <option value="BO">Bolivia</option>
+          <option value="PY">Paraguay</option>
+          <option value="BR">Brasil</option>
+          <option value="PA">Panamá</option>
+          <option value="CR">Costa Rica</option>
+          <option value="DO">República Dominicana</option>
+          <option value="GT">Guatemala</option>
+          <option value="HN">Honduras</option>
+          <option value="SV">El Salvador</option>
+          <option value="NI">Nicaragua</option>
+          <option value="ES">España</option>
+          <option value="US">Estados Unidos</option>
+          </select>
+        </label>
+        <div class="anio" role="group" aria-label="Año">
+          <button id="anio-ant" type="button" class="chip" aria-label="Año anterior">&lt;</button>
+          <output id="anio" aria-live="polite">2026</output>
+          <button id="anio-sig" type="button" class="chip" aria-label="Año siguiente">&gt;</button>
+        </div>
+      </div>
+      <div id="proximo" class="proximo" aria-live="polite"><span class="esq esq-proximo" aria-hidden="true"></span></div>
+    </div>
+  </header>
+
+  <main id="lista-principal" class="contenedor">
+    <div id="aviso" class="aviso" hidden></div>
+    <div id="lista" class="lista-meses"><span class="esq esq-mes" aria-hidden="true"></span><span class="esq esq-mes" aria-hidden="true"></span><span class="esq esq-mes" aria-hidden="true"></span></div>
+  </main>
+
+  <footer class="contenedor pie">
+    <p>Demo del repositorio <a href="https://github.com/AvilaCarlosDev/apis-gratis-es">apis-gratis-es</a>. No guarda nada: ni tu país ni tu búsqueda.</p>
+    <p>Feriados de <a href="https://date.nager.at/Api">Nager.Date</a> (MIT). Solo se muestran los feriados de todo el país, no los regionales. Tipografía Bricolage Grotesque (SIL OFL).</p>
+  </footer>
+</body>
+</html>

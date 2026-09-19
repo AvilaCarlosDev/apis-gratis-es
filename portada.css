@@ -43,6 +43,7 @@ h1 { margin: 0; color: var(--tinta); font-size: 1.75rem; font-weight: 700; lette
 .icono { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: .5rem; color: #fff; }
 .icono-tienda { background: #d98e04; }
 .icono-clima { background: #1f5fbf; }
+.icono-feriados { background: #7c4dbd; }
 .icono-catalogo { background: #52525b; }
 
 .pie-portada { padding: 1.5rem 1rem; border-top: 1px solid var(--linea); color: var(--tinta-suave); font-size: .875rem; }

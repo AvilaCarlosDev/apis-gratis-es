@@ -912,6 +912,53 @@
         "metodo": "llamada"
       },
       "descripcion_en": "Free fake REST API for testing and prototypes: posts, comments and users."
+    },
+    {
+      "id": "nager-feriados",
+      "nombre": "Nager.Date — Feriados",
+      "categoria": "cultura-datos",
+      "descripcion": "Feriados públicos de más de 100 países por año, sin clave y con CORS abierto.",
+      "descripcion_en": "Public holidays for more than 100 countries by year, with no key and open CORS.",
+      "ambito": [
+        "global"
+      ],
+      "documentacion": "https://date.nager.at/Api",
+      "autenticacion": "ninguna",
+      "ejemplo": {
+        "url": "https://date.nager.at/api/v3/PublicHolidays/2026/VE",
+        "espera": {
+          "tipo": "lista",
+          "claves": [
+            "date",
+            "localName",
+            "name",
+            "countryCode"
+          ]
+        }
+      },
+      "terminos": {
+        "fuente": "https://github.com/nager/Nager.Date",
+        "uso_comercial": "no-especificado",
+        "atribucion": "no-especificada",
+        "limites": null,
+        "licencia": "MIT"
+      },
+      "creditos": [
+        {
+          "fuente": "nager/Nager.Date",
+          "url": "https://github.com/nager/Nager.Date",
+          "licencia": "MIT"
+        }
+      ],
+      "notas": "Servicio de terceros sin garantía de disponibilidad; el proyecto es de código abierto (MIT) y se puede alojar por cuenta propia.",
+      "notas_en": "Third-party service with no availability guarantee; the project is open source (MIT) and can be self-hosted.",
+      "verificacion": {
+        "fecha": "2026-09-19",
+        "estado": "ok",
+        "cors": "abierto",
+        "ms": 251,
+        "metodo": "llamada"
+      }
     }
   ]
 }
