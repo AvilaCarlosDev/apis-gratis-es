@@ -93,3 +93,13 @@ test("generarCsv escapa comillas y neutraliza fórmulas de hoja de cálculo", as
   assert.equal(filas[1], `"2026-05-01","viernes","'=HYPERLINK(""x"")","sí"`);
   assert.equal(filas[2], `"2026-06-24","miércoles","Día ""de"" San Juan, patrono","no"`);
 });
+
+test("resumenAnual cuenta feriados y fines de semana largos y halla el próximo puente", async () => {
+  const { resumenAnual } = await import("../lib/feriados.js");
+  const lista = [{ fecha: "2026-01-01", nombre: "A" }, { fecha: "2026-02-16", nombre: "B" }, { fecha: "2026-05-01", nombre: "C" }];
+  const r = resumenAnual(lista, "2026-03-01");
+  assert.equal(r.total, 3);
+  assert.equal(r.largos, 2);
+  assert.equal(r.proximoPuente.nombre, "C");
+  assert.equal(resumenAnual(lista, "2026-12-01").proximoPuente, null);
+});

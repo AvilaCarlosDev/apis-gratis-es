@@ -2,7 +2,7 @@ import { pedirJson } from "../../compartido/api.js";
 import { pintarMensaje } from "../../compartido/dom.js";
 import { ANIO_MAXIMO, ANIO_MINIMO, PAIS_INICIAL } from "./config.js";
 import { generarCsv, hoyIso, nombreArchivoCsv, normalizarFeriados, proximoFeriado, urlFeriados } from "./feriados.js";
-import { pintarLista, pintarProximo } from "./render.js";
+import { pintarLista, pintarProximo, pintarResumen } from "./render.js";
 
 export function crearApp({ doc, fetch, ahora = () => new Date(), descargar = () => {} }) {
   const $ = (id) => doc.getElementById(id);
@@ -34,6 +34,7 @@ export function crearApp({ doc, fetch, ahora = () => new Date(), descargar = () 
       feriadosActuales = [];
       $("csv").disabled = true;
       pintarProximo(doc, $("proximo"), null, hoy);
+      pintarResumen(doc, $("resumen"), [], hoy);
       $("lista").replaceChildren();
       pintarMensaje(doc, $("aviso"), "No se pudieron cargar los feriados.", cargar);
       return;
@@ -41,6 +42,7 @@ export function crearApp({ doc, fetch, ahora = () => new Date(), descargar = () 
     feriadosActuales = feriados;
     $("csv").disabled = feriados.length === 0;
     pintarProximo(doc, $("proximo"), anio === anioActual ? proximoFeriado(feriados, hoy) : null, hoy);
+    pintarResumen(doc, $("resumen"), feriados, hoy);
     pintarLista(doc, $("lista"), feriados, hoy);
     pintarMensaje(doc, $("aviso"), "");
   }

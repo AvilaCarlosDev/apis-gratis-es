@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const leer = (ruta) => readFileSync(new URL(`../../${ruta}`, import.meta.url), "utf8");
 const base = leer("compartido/base.css");
@@ -54,6 +54,15 @@ for (const [demo, permitido] of Object.entries(DEMOS)) {
     assert.match(html, /href="\.\.\/compartido\/base\.css"/);
     assert.doesNotMatch(html + css + base, /fonts\.googleapis|fonts\.gstatic/);
     assert.doesNotMatch(css, /url\(/, "las rutas de fuentes viven en base.css");
+  });
+
+  test(`${demo}: "Ver todas las demos" apunta a una portada que existe`, () => {
+    const href = html.match(/<a href="([^"]+)">Ver todas las demos<\/a>/)?.[1];
+    assert.ok(href, "falta el enlace");
+    const destino = new URL(href, new URL(`../../${demo}/index.html`, import.meta.url));
+    const archivo = destino.pathname.endsWith("/") ? new URL("index.html", destino) : destino;
+    assert.ok(existsSync(archivo), `${href} no lleva a ningún archivo`);
+    assert.equal(archivo.pathname, new URL("../../../index.html", import.meta.url).pathname);
   });
 
   test(`${demo}: declara idioma y viewport`, () => {

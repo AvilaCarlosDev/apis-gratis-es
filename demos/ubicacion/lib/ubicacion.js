@@ -51,6 +51,7 @@ export function normalizarIp(datos) {
   return {
     pais: texto(datos.country),
     bandera: banderaEmoji(datos.country_code),
+    codigo: /^[A-Za-z]{2}$/.test(datos.country_code ?? "") ? datos.country_code.toUpperCase() : "",
     region: texto(datos.region),
     ciudad: texto(datos.city),
     zona: texto(datos.timezone?.id),

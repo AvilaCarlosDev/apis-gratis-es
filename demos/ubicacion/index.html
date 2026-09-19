@@ -9,45 +9,53 @@
   <title>Buscar un lugar y ubicarte</title>
   <meta name="description" content="Demo de apis-gratis-es: busca cualquier lugar del mundo y obtén sus coordenadas, o estima tu ubicación aproximada, con datos de Photon (OpenStreetMap) e ipwho.is.">
   <link rel="stylesheet" href="../compartido/base.css">
+  <link rel="stylesheet" href="../compartido/papel.css">
   <link rel="stylesheet" href="./estilos.css">
   <script type="module" src="./main.js"></script>
 </head>
 <body>
   <a class="salto" href="#lugares">Ir a los resultados</a>
 
-  <header class="pizarra">
-    <div class="contenedor cabecera">
-      <h1>Ubicación</h1>
-      <p class="pizarra-enlace"><a href="../">Ver todas las demos</a></p>
+  <header class="barra">
+    <div class="contenedor">
+      <h1>¿Dónde estoy?</h1>
+      <p class="volver"><a href="../../">Ver todas las demos</a></p>
     </div>
   </header>
 
   <main class="contenedor">
     <div id="aviso" class="aviso" hidden></div>
 
-    <div class="paneles">
-      <section class="panel panel-ip" aria-labelledby="titulo-ip">
-        <h2 id="titulo-ip">¿Dónde estoy?</h2>
-        <p class="panel-ayuda">Al pulsar el botón, tu navegador consulta a ipwho.is, que ve tu dirección IP para estimar el país y la ciudad. No se pide permiso de ubicación ni se guarda nada.</p>
-        <button id="ubicar" type="button" class="primario">Estimar mi ubicación</button>
-        <div id="ip" class="ip" aria-live="polite"></div>
-      </section>
-
-      <section class="panel" aria-labelledby="titulo-buscar">
-        <h2 id="titulo-buscar">Buscar un lugar</h2>
-        <p class="panel-ayuda">Un barrio, una plaza, una ciudad o una dirección. Devuelve hasta cinco coincidencias con sus coordenadas.</p>
-        <div class="buscar">
-          <input id="buscador" type="search" placeholder="Plaza Altamira, Caracas" aria-label="Buscar un lugar" autocomplete="off" maxlength="80">
-          <button id="buscar" type="button" class="primario">Buscar</button>
-        </div>
-        <div id="lugares" class="lugares" aria-live="polite"></div>
-      </section>
+    <div class="aviso-precision">
+      <h2>Aviso de precisión para vos</h2>
+      <p>La ubicación por IP estima tu zona a nivel de ciudad o de la central de tu proveedor de internet. Puede diferir varias decenas de kilómetros de tu puerta: no usa el GPS ni pide permiso de ubicación.</p>
     </div>
+
+    <section class="bloque" aria-labelledby="titulo-ip">
+      <h2 id="titulo-ip" class="oculto">Tu ubicación estimada</h2>
+      <div class="ip-inicio" id="ip-inicio">
+        <p class="panel-ayuda">Al pulsar el botón, tu navegador consulta a ipwho.is, que ve tu dirección IP para estimar el país y la ciudad. No se guarda nada.</p>
+        <button id="ubicar" type="button" class="primario">Estimar mi ubicación</button>
+      </div>
+      <div id="ip" class="ip" aria-live="polite"></div>
+    </section>
+
+    <section class="bloque caja" aria-labelledby="titulo-buscar">
+      <p class="eyebrow">Geodesia y conversión directa</p>
+      <h2 id="titulo-buscar">Buscar un lugar</h2>
+      <p class="panel-ayuda">Escribí el nombre de una ciudad, un barrio, una plaza o una dirección y obtené hasta cinco coincidencias con sus coordenadas.</p>
+      <label class="etiqueta" for="buscador">Ingresá un punto de referencia o dirección</label>
+      <div class="buscar">
+        <input id="buscador" type="search" placeholder="Plaza Altamira, Caracas" autocomplete="off" maxlength="80">
+        <button id="buscar" type="button" class="primario">Buscar</button>
+      </div>
+      <div id="lugares" class="lugares" aria-live="polite"></div>
+    </section>
   </main>
 
   <footer class="contenedor pie">
-    <p>Demo del repositorio <a href="https://github.com/AvilaCarlosDev/apis-gratis-es">apis-gratis-es</a>. No guarda nada: ni lo que buscas ni tu ubicación.</p>
-    <p>Lugares de <a href="https://photon.komoot.io/">Photon</a>, con datos de © <a href="https://www.openstreetmap.org/copyright">colaboradores de OpenStreetMap</a> (ODbL). Ubicación aproximada de <a href="https://ipwho.is/">ipwho.is</a>. Mapa incrustado de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>. Tipografía Bricolage Grotesque (SIL OFL).</p>
+    <p>Demo del repositorio <a href="https://github.com/AvilaCarlosDev/apis-gratis-es">apis-gratis-es</a>. No guarda nada: ni lo que buscás ni tu ubicación.</p>
+    <p>Lugares de <a href="https://photon.komoot.io/">Photon</a>, con datos de © <a href="https://www.openstreetmap.org/copyright">colaboradores de OpenStreetMap</a> (ODbL). Ubicación aproximada de <a href="https://ipwho.is/">ipwho.is</a>. Mapa incrustado de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>. Tipografías Bricolage Grotesque, Newsreader y Space Mono (SIL OFL).</p>
   </footer>
 </body>
 </html>

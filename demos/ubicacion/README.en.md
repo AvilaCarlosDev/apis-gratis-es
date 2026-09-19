@@ -56,5 +56,5 @@ The location estimate is **only requested when you press the button**, never whe
 - Approximate location from [ipwho.is](https://ipwho.is/).
 - Embedded map from [OpenStreetMap](https://www.openstreetmap.org/copyright) (ODbL).
 - The screen design was generated with Stitch from our own description of the idea (show where you are and search places); it does not copy the code, texts or design of any existing page.
-- **Bricolage Grotesque** typeface, under the SIL Open Font License 1.1 (see [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
+- **Bricolage Grotesque**, **Newsreader** and **Space Mono** typefaces, under the SIL Open Font License 1.1 (see [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
 - Demo code: MIT, like the rest of the repository.
