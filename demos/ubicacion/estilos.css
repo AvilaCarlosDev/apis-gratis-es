@@ -1,0 +1,39 @@
+.cabecera { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; }
+.pizarra-enlace { margin: 0; font-size: .9375rem; }
+h1 { font-size: 1.125rem; }
+
+.paneles { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 56rem) { .paneles { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); } }
+.panel { background: var(--papel); border: 1px solid var(--linea); border-radius: .625rem; padding: 1.25rem; }
+.panel h2 { margin-bottom: .25rem; }
+.panel-ayuda { margin: 0 0 1rem; color: var(--tinta-suave); font-size: .9375rem; max-width: 60ch; }
+
+.buscar { display: flex; gap: .5rem; }
+.buscar input[type="search"] { flex: 1 1 auto; min-width: 0; }
+
+.lugares { margin-top: 1rem; }
+.lugares-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.lugar { display: grid; gap: .125rem; padding: .75rem 1rem; border: 1px solid var(--linea); border-radius: .5rem; background: var(--hoja); }
+.lugar h3 { font-size: 1.0625rem; }
+.lugar p { margin: 0; }
+.lugar-direccion { color: var(--tinta-suave); font-size: .9375rem; }
+.lugar-coordenadas { font-variant-numeric: tabular-nums; font-size: .9375rem; }
+.lugar-mapa { justify-self: start; color: var(--enlace); font-size: .9375rem; }
+
+.ip { margin-top: 1rem; }
+.ip-pais { margin: 0 0 .5rem; font-size: 1.5rem; font-weight: 700; }
+.ip-datos { display: grid; grid-template-columns: auto 1fr; gap: .25rem 1rem; margin: 0; }
+.ip-datos dt { color: var(--tinta-suave); }
+.ip-datos dd { margin: 0; font-weight: 600; }
+.ip-nota { margin: 1rem 0 0; color: var(--tinta-suave); font-size: .875rem; }
+
+button:disabled { opacity: .5; cursor: default; }
+
+/* Mismo aspecto que la portada: gris neutro, cabecera plana y tarjetas de borde fino. */
+:root { --hoja: #0a0a0b; --papel: #151517; --tinta: #ececee; --tinta-suave: #a1a1a8; --linea: #26262a; --cobalto: #f4f4f5; --cobalto-texto: #0a0a0b; --enlace: #6ea0ee; --pizarra: #0d0d0f; --pizarra-texto: #ececee; --pizarra-suave: #a1a1a8; }
+@media (prefers-color-scheme: light) {
+  :root { --hoja: #f7f7f8; --papel: #ffffff; --tinta: #16161a; --tinta-suave: #5b5b63; --linea: #e3e3e6; --cobalto: #16161a; --cobalto-texto: #ffffff; --enlace: #1a5fb4; --pizarra: #ffffff; --pizarra-texto: #16161a; --pizarra-suave: #5b5b63; }
+}
+.pizarra { border-bottom: 1px solid var(--linea); }
+.pizarra h1 { color: var(--tinta); font-weight: 700; }
+.pizarra a, .pie a, .aviso a { color: var(--enlace); }
