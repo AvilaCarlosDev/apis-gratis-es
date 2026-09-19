@@ -1,11 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { crearDocumentoFalso } from "./helpers/dom-falso.js";
+import { crearDocumentoFalso } from "../../compartido/tests/helpers/dom-falso.js";
 import { crearApp } from "../lib/app.js";
 
 const leer = (n) => JSON.parse(readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8"));
-const IDS = ["aviso", "tasa", "clima", "selector-ciudad", "productos", "carrito", "contador"];
+const IDS = ["aviso", "tasa", "productos", "carrito", "contador", "categorias", "buscador", "orden", "resultados"];
 
 const respuesta = (cuerpo, status = 200) => ({ ok: status < 300, status, json: async () => cuerpo });
 
@@ -19,7 +19,6 @@ function redFalsa({ fallos = [] } = {}) {
     if (host === "ve.dolarapi.com") return respuesta(leer("dolarapi-ve.json"));
     if (host === "fakestoreapi.com") return respuesta(leer("fakestore.json"));
     if (host === "dummyjson.com") return respuesta(leer("dummyjson.json"));
-    if (host === "api.open-meteo.com") return respuesta(leer("open-meteo.json"));
     throw new Error(`host inesperado: ${host}`);
   };
   return { fetch, llamadas };
@@ -32,13 +31,13 @@ const nuevo = (opciones) => {
   return { doc, red, app, texto: (id) => doc.getElementById(id).textContent };
 };
 
-test("al iniciar muestra productos de ambos proveedores, la tasa y el clima", async () => {
+test("al iniciar muestra productos de ambos proveedores y la tasa", async () => {
   const { app, doc, texto } = nuevo();
   await app.iniciar();
   const tarjetas = doc.getElementById("productos").porEtiqueta("article");
   assert.equal(tarjetas.length, leer("fakestore.json").length + leer("dummyjson.json").products.length);
   assert.match(texto("tasa"), /Bs\. 848,55/);
-  assert.match(texto("clima"), /25,9 °C/);
+  assert.match(texto("resultados"), /\d+ productos/);
   assert.equal(doc.getElementById("aviso").hidden, true);
 });
 
@@ -69,13 +68,6 @@ test("si fallan ambos proveedores, no hay tarjetas y el aviso permite reintentar
   assert.ok(red.llamadas.length > antes, "reintentar vuelve a llamar a la red");
 });
 
-test("si falla el clima, el resto de la tienda funciona", async () => {
-  const { app, doc, texto } = nuevo({ fallos: ["api.open-meteo.com"] });
-  await app.iniciar();
-  assert.match(texto("clima"), /no disponible/i);
-  assert.ok(doc.getElementById("productos").porEtiqueta("article").length > 0);
-});
-
 test("agregar al carrito actualiza líneas, contador y total", async () => {
   const { app, doc, texto } = nuevo();
   await app.iniciar();
@@ -97,31 +89,59 @@ test("quitar y vaciar dejan el carrito vacío", async () => {
   assert.match(texto("carrito"), /carrito está vacío/i);
 });
 
-test("cambiar de ciudad pide el clima con las coordenadas de esa ciudad", async () => {
-  const { app, doc, red } = nuevo();
-  await app.iniciar();
-  const selector = doc.getElementById("selector-ciudad");
-  assert.ok(selector.porEtiqueta("option").length >= 5);
-  const otra = selector.porEtiqueta("option").find((o) => o.value !== "caracas");
-  selector.value = otra.value;
-  await selector.disparar("change");
-  const ultima = new URL(red.llamadas.filter((u) => u.includes("open-meteo")).at(-1));
-  assert.notEqual(ultima.searchParams.get("latitude"), "10.4806");
-});
-
-test("una ciudad desconocida en el selector se ignora sin llamar a la red", async () => {
-  const { app, doc, red } = nuevo();
-  await app.iniciar();
-  const antes = red.llamadas.length;
-  const selector = doc.getElementById("selector-ciudad");
-  selector.value = "atlantida";
-  await selector.disparar("change");
-  assert.equal(red.llamadas.length, antes);
-});
-
 test("las peticiones solo van a los hosts declarados en el catálogo", async () => {
   const { app, red } = nuevo();
   await app.iniciar();
   const hosts = new Set(red.llamadas.map((u) => new URL(u).host));
-  assert.deepEqual([...hosts].sort(), ["api.open-meteo.com", "dummyjson.com", "fakestoreapi.com", "ve.dolarapi.com"]);
+  assert.deepEqual([...hosts].sort(), ["dummyjson.com", "fakestoreapi.com", "ve.dolarapi.com"]);
+});
+
+const todos = () => [...leer("fakestore.json").map((x) => ({ titulo: x.title, precio: x.price, cat: x.category })), ...leer("dummyjson.json").products.map((x) => ({ titulo: x.title, precio: x.price, cat: x.category }))];
+
+test("las categorías se listan en español y filtran los productos", async () => {
+  const { app, doc, texto } = nuevo();
+  await app.iniciar();
+  const botones = doc.getElementById("categorias").porEtiqueta("button");
+  assert.match(botones[0].textContent, /^Todas/);
+  const alguna = todos()[0].cat;
+  const esperados = todos().filter((x) => x.cat === alguna).length;
+  const boton = botones.find((b) => new RegExp(`\\(${esperados}\\)$`).test(b.textContent) && b !== botones[0]);
+  assert.ok(boton, "hay un botón para la categoría con su cantidad");
+  await boton.disparar("click");
+  assert.equal(doc.getElementById("productos").porEtiqueta("article").length, esperados);
+  assert.match(texto("resultados"), new RegExp(`^${esperados} producto`));
+});
+
+test("buscar por texto filtra, y sin coincidencias avisa con un estado vacío", async () => {
+  const { app, doc, texto } = nuevo();
+  await app.iniciar();
+  const buscador = doc.getElementById("buscador");
+  buscador.value = "zzzz-no-existe";
+  await buscador.disparar("input");
+  assert.equal(doc.getElementById("productos").porEtiqueta("article").length, 0);
+  assert.match(texto("resultados"), /No hay productos/);
+  buscador.value = todos()[0].titulo.slice(0, 6).toUpperCase();
+  await buscador.disparar("input");
+  assert.ok(doc.getElementById("productos").porEtiqueta("article").length >= 1);
+});
+
+test("ordenar por precio ascendente pone primero el más barato", async () => {
+  const { app, doc } = nuevo();
+  await app.iniciar();
+  const orden = doc.getElementById("orden");
+  orden.value = "precio-asc";
+  await orden.disparar("change");
+  const masBarato = Math.min(...todos().map((x) => x.precio));
+  const primero = doc.getElementById("productos").porEtiqueta("article")[0].textContent;
+  assert.ok(primero.includes(`US$ ${masBarato.toFixed(2).replace(".", ",")}`), primero);
+});
+
+test("cambiar el filtro no borra el carrito", async () => {
+  const { app, doc, texto } = nuevo();
+  await app.iniciar();
+  await doc.getElementById("productos").porEtiqueta("article")[0].porEtiqueta("button")[0].disparar("click");
+  const buscador = doc.getElementById("buscador");
+  buscador.value = "zzzz";
+  await buscador.disparar("input");
+  assert.equal(texto("contador"), "1");
 });

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { formatearUsd, formatearBs, formatearFechaLarga } from "../lib/formato.js";
+import { formatearUsd, formatearBs, formatearFechaLarga } from "../formato.js";
 
 test("formatea dólares con prefijo propio, coma decimal y dos decimales", () => {
   assert.equal(formatearUsd(109.95), "US$ 109,95");

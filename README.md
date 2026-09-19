@@ -46,7 +46,10 @@ Cada dato lleva una marca de verificación:
 
 ## Demo en funcionamiento
 
-La [tienda demo](demos/tienda/README.md) combina cuatro APIs de este catálogo (tasa oficial en bolívares, dos proveedores de productos y clima) sin backend ni claves, con pruebas y créditos a cada proyecto.
+Cada demo es una aplicación distinta, con su propia página, README, pruebas y créditos, y usa solo APIs de este catálogo sin backend ni claves. Portada: https://avilacarlosdev.github.io/apis-gratis-es/
+
+- [Tienda](demos/tienda/README.md): precios en dólares y bolívares a la tasa oficial, con búsqueda, categorías y carrito.
+- [Clima](demos/clima/README.md): el clima de hoy y el pronóstico de siete días de cualquier ciudad.
 
 ## Catálogo de APIs sin clave
 

@@ -1,5 +1,5 @@
 import { HOSTS_IMAGEN } from "./config.js";
-import { esUrlPermitida, limitarTexto } from "./seguro.js";
+import { esUrlPermitida, limitarTexto } from "../../compartido/seguro.js";
 
 export class ErrorDeRespuesta extends Error {
   constructor(mensaje) {

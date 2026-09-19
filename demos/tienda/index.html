@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://fakestoreapi.com https://cdn.dummyjson.com; connect-src 'self' https://ve.dolarapi.com https://fakestoreapi.com https://dummyjson.com https://api.open-meteo.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://fakestoreapi.com https://cdn.dummyjson.com; connect-src 'self' https://ve.dolarapi.com https://fakestoreapi.com https://dummyjson.com; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <meta name="color-scheme" content="light dark">
   <title>Tienda con precios en dólares y bolívares</title>
-  <meta name="description" content="Demo de apis-gratis-es: una tienda que muestra cada precio en dólares y en bolívares a la tasa oficial del día, con productos y clima de APIs gratuitas.">
+  <meta name="description" content="Demo de apis-gratis-es: una tienda que muestra cada precio en dólares y en bolívares a la tasa oficial del día, con productos de APIs gratuitas.">
+  <link rel="stylesheet" href="../compartido/base.css">
   <link rel="stylesheet" href="./estilos.css">
   <script type="module" src="./main.js"></script>
 </head>
@@ -20,11 +21,7 @@
         <h1>Tienda demo</h1>
         <div id="tasa" class="tasa" aria-live="polite"></div>
       </div>
-      <div class="clima-caja">
-        <label for="selector-ciudad">Clima en</label>
-        <select id="selector-ciudad"></select>
-        <div id="clima" class="clima" aria-live="polite"></div>
-      </div>
+      <p class="pizarra-enlace"><a href="../">Ver todas las demos</a></p>
     </div>
   </header>
 
@@ -34,6 +31,17 @@
     <div class="disposicion">
       <section aria-labelledby="titulo-productos">
         <h2 id="titulo-productos">Productos</h2>
+        <div class="barra">
+          <input id="buscador" type="search" placeholder="Buscar un producto" aria-label="Buscar un producto" autocomplete="off" maxlength="60">
+          <select id="orden" class="campo" aria-label="Ordenar productos">
+            <option value="relevancia">Orden original</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+            <option value="nombre">Nombre</option>
+          </select>
+        </div>
+        <div id="categorias" class="categorias" role="group" aria-label="Categorías"></div>
+        <p id="resultados" class="resultados" aria-live="polite"></p>
         <div id="productos" class="rejilla"></div>
       </section>
 
@@ -46,7 +54,7 @@
 
   <footer class="contenedor pie">
     <p>Demo del repositorio <a href="https://github.com/AvilaCarlosDev/apis-gratis-es">apis-gratis-es</a>. No vende nada: el carrito vive solo en esta página.</p>
-    <p>Tasa de <a href="https://dolarapi.com/docs/venezuela/">DolarAPI</a>, productos de <a href="https://fakestoreapi.com/docs">FakeStoreAPI</a> y <a href="https://dummyjson.com/docs">DummyJSON</a>, clima de <a href="https://open-meteo.com/">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>, solo uso no comercial). Tipografía Bricolage Grotesque (SIL OFL).</p>
+    <p>Tasa de <a href="https://dolarapi.com/docs/venezuela/">DolarAPI</a>, productos de <a href="https://fakestoreapi.com/docs">FakeStoreAPI</a> y <a href="https://dummyjson.com/docs">DummyJSON</a>. Los nombres y las categorías de los productos vienen de esas APIs en inglés; las categorías se muestran traducidas. Tipografía Bricolage Grotesque (SIL OFL).</p>
   </footer>
 </body>
 </html>

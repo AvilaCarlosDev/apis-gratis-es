@@ -1,0 +1,8 @@
+.titular { margin: .5rem 0 0; font-size: clamp(1.75rem, 6vw, 3.25rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.05; max-width: 20ch; }
+
+.demos { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
+.demo { background: var(--papel); border: 1px solid var(--linea); border-radius: .5rem; padding: 1.25rem; }
+.demo h3 { font-size: 1.375rem; margin-bottom: .5rem; }
+.demo a { color: var(--cobalto); }
+.demo p { margin: 0 0 .5rem; }
+.apis { color: var(--tinta-suave); font-size: .9375rem; }

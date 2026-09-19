@@ -1,0 +1,11 @@
+{
+  "name": "demos-apis-gratis-es",
+  "private": true,
+  "type": "module",
+  "description": "Demos de apis-gratis-es: cada una compone APIs gratuitas verificadas del catálogo.",
+  "scripts": {
+    "test": "node --test \"**/tests/*.test.js\"",
+    "servir": "python3 -m http.server 8080 --directory .."
+  },
+  "license": "MIT"
+}
