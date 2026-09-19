@@ -94,6 +94,7 @@ APIs que se pueden llamar **sin registrarse ni pedir una clave**, con su ejemplo
 |---|---|---|---|---|---|---|
 | [Wikipedia en español — API REST](https://es.wikipedia.org/api/rest_v1/) | Resúmenes y contenido de artículos de la Wikipedia en español. (Global) | No especificado | Obligatoria (CC-BY-SA) | La política de Wikimedia exige un User-Agent que identifique tu aplicación. | Abierto | ✅ 2026-09-19 · 275 ms |
 | [Nager.Date — feriados públicos](https://date.nager.at/Api) | Feriados públicos de más de 100 países, por año, incluidos los de Latinoamérica. (Global) | No especificado | No especificada | Sin límite de peticiones, según su documentación. | Abierto | ✅ 2026-09-19 · 219 ms |
+| [Nager.Date — Feriados](https://date.nager.at/Api) | Feriados públicos de más de 100 países por año, sin clave y con CORS abierto. (Global) | No especificado | No especificada (MIT) | Servicio de terceros sin garantía de disponibilidad; el proyecto es de código abierto (MIT) y se puede alojar por cuenta propia. | Abierto | ✅ 2026-09-19 · 251 ms |
 
 ### Tienda demo
 
@@ -111,7 +112,7 @@ APIs que se pueden llamar **sin registrarse ni pedir una clave**, con su ejemplo
 - [enzonotario/dolarapi.com](https://github.com/enzonotario/dolarapi.com) (MIT) — DolarAPI — Venezuela, DolarAPI — Argentina
 - [keikaavousi/fake-store-api](https://github.com/keikaavousi/fake-store-api) (MIT) — FakeStoreAPI
 - [komoot/photon](https://github.com/komoot/photon) (Apache-2.0) — Photon (Komoot)
-- [nager/Nager.Date](https://github.com/nager/Nager.Date) (MIT) — Nager.Date — feriados públicos
+- [nager/Nager.Date](https://github.com/nager/Nager.Date) (MIT) — Nager.Date — feriados públicos, Nager.Date — Feriados
 - [osm-search/Nominatim](https://github.com/osm-search/Nominatim) (GPL-3.0) — Nominatim (OpenStreetMap)
 - [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) — DummyJSON
 - [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT) — Datos abiertos de España (datos.gob.es), Open-Meteo — pronóstico, Open-Meteo — geocodificación, Nominatim (OpenStreetMap), Nager.Date — feriados públicos, FakeStoreAPI, DummyJSON, Random User Generator, JSONPlaceholder
