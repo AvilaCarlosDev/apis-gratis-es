@@ -56,5 +56,5 @@ La estimación de ubicación **solo se pide cuando pulsas el botón**, nunca al 
 - Ubicación aproximada de [ipwho.is](https://ipwho.is/).
 - Mapa incrustado de [OpenStreetMap](https://www.openstreetmap.org/copyright) (ODbL).
 - El diseño de la pantalla se generó con Stitch a partir de una descripción propia de la idea (mostrar dónde estás y buscar lugares); no copia el código, los textos ni el diseño de ninguna página existente.
-- Tipografía **Bricolage Grotesque**, con licencia SIL Open Font License 1.1 (ver [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
+- Tipografías **Bricolage Grotesque**, **Newsreader** y **Space Mono**, con licencia SIL Open Font License 1.1 (ver [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
 - Código de la demo: MIT, como el resto del repositorio.

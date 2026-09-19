@@ -69,3 +69,12 @@ export function generarCsv(feriados, pais, anio) {
 }
 
 export const nombreArchivoCsv = (pais, anio) => `feriados-${pais}-${anio}.csv`;
+
+export function resumenAnual(feriados, hoy) {
+  const largos = feriados.filter((f) => esFinDeSemanaLargo(f.fecha));
+  return { total: feriados.length, largos: largos.length, proximoPuente: largos.find((f) => f.fecha >= hoy) ?? null };
+}
+
+export const diaYMes = (fecha) => `${Number(fecha.slice(8))} de ${nombreMes(fecha)}`;
+export const abreviaturaDia = (fecha) => nombreDiaSemana(fecha).slice(0, 3);
+export const abreviaturaMes = (fecha) => nombreMes(fecha).slice(0, 3);

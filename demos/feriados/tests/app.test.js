@@ -5,7 +5,7 @@ import { crearDocumentoFalso } from "../../compartido/tests/helpers/dom-falso.js
 import { crearApp } from "../lib/app.js";
 
 const crudo = JSON.parse(readFileSync(new URL("./fixtures/ve-2026.json", import.meta.url), "utf8"));
-const IDS = ["aviso", "pais", "anio-ant", "anio-sig", "anio", "proximo", "lista", "csv"];
+const IDS = ["aviso", "pais", "anio-ant", "anio-sig", "anio", "proximo", "resumen", "lista", "csv"];
 const respuesta = (cuerpo, status = 200) => ({ ok: status < 300, status, json: async () => cuerpo });
 
 function nuevo({ fallo = false, hoy = new Date(2026, 4, 10), descargas = [] } = {}) {
@@ -106,4 +106,12 @@ test("los feriados en lunes o viernes llevan la etiqueta de fin de semana largo"
   const { app, texto } = nuevo();
   await app.iniciar();
   assert.match(texto("lista"), /Fin de semana largo/);
+});
+
+test("muestra el resumen del año con total y fines de semana largos", async () => {
+  const { app, texto } = nuevo();
+  await app.iniciar();
+  assert.match(texto("resumen"), /Total del año/);
+  assert.match(texto("resumen"), /\d+ feriados/);
+  assert.match(texto("resumen"), /fines de semana largos|fin de semana largo/);
 });

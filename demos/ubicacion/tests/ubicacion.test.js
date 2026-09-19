@@ -109,3 +109,8 @@ test("horaLocal usa la zona de la API y no rompe con una zona inválida", () => 
   assert.equal(horaLocal("UTC", new Date("2026-01-01T15:04:05Z")), "15:04:05");
   assert.equal(horaLocal("No/Existe"), "");
 });
+
+test("normalizarIp devuelve el código de país en mayúsculas y vacío si no es válido", () => {
+  assert.equal(normalizarIp({ success: true, country_code: "ve" }).codigo, "VE");
+  assert.equal(normalizarIp({ success: true, country_code: "<b>" }).codigo, "");
+});

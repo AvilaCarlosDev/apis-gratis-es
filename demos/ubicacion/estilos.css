@@ -1,46 +1,41 @@
-.cabecera { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; }
-.pizarra-enlace { margin: 0; font-size: .9375rem; }
-h1 { font-size: 1.125rem; }
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+main { padding-block: 1.5rem 3rem; }
+.bloque { margin-bottom: 1.5rem; }
+.bloque.caja { padding: 1.5rem; }
+.panel-ayuda { margin: 0 0 1rem; color: var(--tinta-suave); max-width: 62ch; }
+.bloque h2 { margin-bottom: .25rem; font-size: clamp(1.5rem, 3.5vw, 2.25rem); letter-spacing: -.02em; }
+.bloque h2.oculto { margin: 0; }
 
-.paneles { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
-.panel { background: var(--papel); border: 1px solid var(--linea); border-radius: .625rem; padding: 1.25rem; }
-.panel h2 { margin-bottom: .25rem; }
-.panel-ayuda { margin: 0 0 1rem; color: var(--tinta-suave); font-size: .9375rem; max-width: 60ch; }
+.ip-inicio { padding: 1.5rem; background: var(--papel); border: 1px solid var(--linea); }
+.ip-inicio .panel-ayuda { margin-bottom: 1rem; }
+.ip-inicio[hidden] { display: none; }
+.segun { margin: 0; font-style: italic; color: var(--tinta-suave); }
+.lugar-grande { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem; margin: .25rem 0 1.25rem; font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: clamp(2.25rem, 7vw, 4rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+.bandera { font-size: .9em; }
+.marca.pais { align-self: center; background: #e8ede9; color: var(--tinta); border: 1px solid var(--linea); font-weight: 400; }
 
-.buscar { display: flex; gap: .5rem; }
-.buscar input[type="search"] { flex: 1 1 auto; min-width: 0; }
-
-.lugares { margin-top: 1rem; }
-.lugares-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
-.lugar { display: grid; gap: .125rem; padding: .75rem 1rem; border: 1px solid var(--linea); border-radius: .5rem; background: var(--hoja); }
-.lugar h3 { font-size: 1.0625rem; }
-.lugar p { margin: 0; }
-.lugar-direccion { color: var(--tinta-suave); font-size: .9375rem; }
-.lugar-coordenadas { font-variant-numeric: tabular-nums; font-size: .9375rem; }
-.lugar-mapa { justify-self: start; color: var(--enlace); font-size: .9375rem; }
-
-.ip { margin-top: 1rem; }
-.ip-resultado { display: grid; gap: 1.25rem; }
-@media (min-width: 56rem) { .ip-resultado.con-mapa { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
-.ip-pais { margin: 0 0 .75rem; font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
-.fichas { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: .5rem; margin: 0; }
-.ficha { border: 1px solid var(--linea); border-radius: .5rem; padding: .5rem .75rem; background: var(--hoja); }
-.ficha dt { color: var(--tinta-suave); font-size: .8125rem; }
-.ficha dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
-.ip-nota { margin: 1rem 0 0; padding: .625rem .875rem; border-left: 3px solid #f2c230; color: var(--tinta-suave); font-size: .875rem; }
-.mapa { margin: 0; }
-.mapa iframe { display: block; width: 100%; height: 20rem; border: 1px solid var(--linea); border-radius: .5rem; background: var(--hoja); }
-.mapa-pie { margin: .5rem 0 0; color: var(--tinta-suave); font-size: .8125rem; font-variant-numeric: tabular-nums; }
-.mapa-pie a { color: var(--enlace); }
-.lugar-grados { color: var(--tinta-suave); }
-
-button:disabled { opacity: .5; cursor: default; }
-
-/* Mismo aspecto que la portada: gris neutro, cabecera plana y tarjetas de borde fino. */
-:root { --hoja: #0a0a0b; --papel: #151517; --tinta: #ececee; --tinta-suave: #a1a1a8; --linea: #26262a; --cobalto: #f4f4f5; --cobalto-texto: #0a0a0b; --enlace: #6ea0ee; --pizarra: #0d0d0f; --pizarra-texto: #ececee; --pizarra-suave: #a1a1a8; }
-@media (prefers-color-scheme: light) {
-  :root { --hoja: #f7f7f8; --papel: #ffffff; --tinta: #16161a; --tinta-suave: #5b5b63; --linea: #e3e3e6; --cobalto: #16161a; --cobalto-texto: #ffffff; --enlace: #1a5fb4; --pizarra: #ffffff; --pizarra-texto: #16161a; --pizarra-suave: #5b5b63; }
+.telemetria { display: grid; background: var(--papel); border: 1px solid var(--linea); }
+.registro { padding: 1.25rem; }
+.registro .etiqueta { margin: 0 0 .75rem; padding-bottom: .5rem; border-bottom: 1px solid var(--linea); }
+.fichas { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: .625rem; margin: 0; }
+.ip-nota { margin: 1rem 0 0; padding: .625rem .875rem; background: #eef2ef; color: var(--tinta-suave); font-size: .9375rem; }
+.mapa { margin: 0; border-top: 1px solid var(--linea); }
+.mapa iframe { display: block; width: 100%; height: 22rem; border: 0; background: var(--hoja); }
+.mapa-pie { margin: 0; padding: .5rem .875rem; border-top: 1px solid var(--linea); font-family: var(--mono); font-size: .75rem; color: var(--tinta-suave); }
+@media (min-width: 56rem) {
+  .telemetria.con-mapa { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .mapa { border-top: 0; border-left: 1px solid var(--linea); display: grid; grid-template-rows: 1fr auto; }
+  .mapa iframe { height: 100%; min-height: 24rem; }
 }
-.pizarra { border-bottom: 1px solid var(--linea); }
-.pizarra h1 { color: var(--tinta); font-weight: 700; }
-.pizarra a, .pie a, .aviso a { color: var(--enlace); }
+
+.buscar { display: flex; gap: .5rem; margin-top: .375rem; max-width: 40rem; }
+.buscar input[type="search"] { flex: 1 1 auto; min-width: 0; }
+.lugares { margin-top: 1.25rem; }
+.lugares-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.lugar { padding: 1rem 1.25rem; background: var(--hoja); border: 1px solid var(--linea); }
+.lugar .etiqueta { margin: 0; color: var(--cobalto); }
+.lugar h3 { margin: .25rem 0; font-size: 1.375rem; letter-spacing: -.01em; }
+.lugar-direccion { margin: 0 0 .75rem; color: var(--tinta-suave); }
+.lugar-formatos { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .625rem; margin: 0; }
+.lugar-mapa { margin: .75rem 0 0; font-family: var(--mono); font-size: .8125rem; }
+.ip { margin-top: 1.5rem; }

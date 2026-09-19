@@ -1,48 +1,51 @@
-.cabecera { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; }
-.pizarra-enlace { margin: 0; color: var(--pizarra-suave); font-size: .9375rem; }
-h1 { font-size: 1.125rem; }
+main { padding-block: 1.5rem 3rem; }
+.controles { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem 2rem; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+.campo-etiquetado { display: grid; gap: .25rem; }
+.campo-etiquetado .campo { min-width: 15rem; font-size: 1.0625rem; text-transform: none; letter-spacing: 0; }
+.anio { display: flex; align-items: center; gap: .5rem; font-family: var(--mono); font-size: 1.125rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.controles #csv { margin-left: auto; }
 
-.controles { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem 2rem; margin-top: 1rem; }
-.campo-etiquetado { display: grid; gap: .25rem; font-size: .875rem; color: var(--pizarra-suave); }
-.pizarra .campo { background: transparent; color: var(--pizarra-texto); border-color: #3c5148; min-width: 14rem; }
-.pizarra .campo option { color: #10231c; }
-.anio { display: flex; align-items: center; gap: .75rem; font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-.pizarra button.chip { background: transparent; color: var(--pizarra-texto); border-color: #3c5148; min-width: 2.5rem; }
-.pizarra button.chip:disabled { opacity: .35; cursor: default; }
+.proximo { margin-bottom: 1.5rem; min-height: 8rem; }
+.proximo-caja { display: grid; background: var(--papel); border: 2px solid var(--tinta); }
+@media (min-width: 52rem) { .proximo-caja { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
+.proximo-cuerpo { padding: 1.25rem 1.5rem; }
+.proximo-marcas { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; }
+.proximo-titular { display: flex; gap: 1.25rem; align-items: center; }
+.proximo-dia { margin: 0; font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: clamp(4rem, 12vw, 7rem); font-weight: 800; line-height: .85; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+.proximo-fecha { margin: 0 0 .25rem; font-family: var(--mono); font-size: .8125rem; letter-spacing: .06em; text-transform: uppercase; color: var(--cobalto); }
+.proximo-nombre { margin: 0; font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+.proximo-cuenta { padding: 1.25rem 1.5rem; background: #eef2ef; border-top: 1px solid var(--linea); text-align: center; align-content: center; }
+@media (min-width: 52rem) { .proximo-cuenta { border-top: 0; border-left: 1px solid var(--linea); } }
+.proximo-cuenta .etiqueta { margin: 0; }
+.proximo-numero { margin: .25rem 0 0; font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 4rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.proximo-faltan { margin: .25rem 0 0; font-weight: 600; }
 
-.proximo { margin-top: 1.5rem; min-height: 8rem; display: grid; grid-template-columns: auto 1fr; column-gap: 1.5rem; align-items: center; }
-.proximo > * { grid-column: 2; }
-.proximo > .proximo-dia { grid-column: 1; grid-row: 1 / span 4; margin: 0; font-size: clamp(4rem, 14vw, 8rem); font-weight: 800; line-height: .9; letter-spacing: -.04em; font-variant-numeric: tabular-nums; color: #f2c230; }
-.proximo > .esq { grid-column: 1 / -1; }
-.proximo > .proximo-faltan { justify-self: start; }
-.proximo h2 { margin: 0; font-size: 1rem; font-weight: 600; color: var(--pizarra-suave); }
-.proximo-nombre { margin: .25rem 0 0; font-size: clamp(2rem, 7vw, 3.5rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.05; }
-.proximo-fecha { margin: .25rem 0 0; font-size: 1.25rem; }
-.proximo-fecha::first-letter { text-transform: uppercase; }
-.proximo-faltan { display: inline-block; margin: .75rem 0 0; padding: .25rem .75rem; border-radius: 999px; background: var(--oro); color: #10231c; font-weight: 700; }
+.resumen { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-bottom: 2rem; }
+.tarjeta { padding: 1rem 1.25rem; background: var(--papel); border: 1px solid var(--linea); }
+.tarjeta p { margin: 0; }
+.tarjeta-grande { margin-top: .25rem !important; font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -.01em; }
+.tarjeta-pie { margin-top: .25rem !important; color: var(--tinta-suave); font-size: .9375rem; }
 
-.lista-meses { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); }
-.mes h3 { margin-bottom: .5rem; font-size: 1.125rem; text-transform: capitalize; }
-.feriados { list-style: none; margin: 0; padding: 0; background: var(--papel); border: 1px solid var(--linea); border-radius: .5rem; }
-.feriado { display: grid; grid-template-columns: 2.5rem 6rem 1fr; gap: .5rem; align-items: baseline; padding: .625rem 1rem; border-bottom: 1px solid var(--linea); }
-.feriado:last-child { border-bottom: 0; }
-.feriado-dia { font-size: 1.25rem; font-weight: 800; font-variant-numeric: tabular-nums; }
-.feriado-semana { color: var(--tinta-suave); font-size: .875rem; text-transform: capitalize; }
-.feriado-nombre { font-weight: 600; }
-.etiqueta-largo { grid-column: 3; justify-self: start; padding: .125rem .5rem; border-radius: .25rem; background: #f2c230; color: #10231c; font-size: .75rem; font-weight: 700; white-space: nowrap; }
+.cronograma { margin: 0 0 1rem; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.02em; }
+.lista-meses { border: 1px solid var(--linea); background: var(--papel); }
+.mes-titulo { display: flex; justify-content: space-between; align-items: baseline; padding: .625rem 1.25rem; background: #eef2ef; border-top: 1px solid var(--linea); font-size: 1.125rem; text-transform: capitalize; }
+.mes:first-child .mes-titulo { border-top: 0; }
+.mes-titulo .etiqueta { text-transform: none; letter-spacing: .04em; }
+.feriados { list-style: none; margin: 0; padding: 0; }
+.feriado { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr) auto; gap: 1rem; align-items: center; padding: .75rem 1.25rem; border-left: 4px solid var(--cobalto); border-top: 1px solid var(--linea); }
+.feriado:first-child { border-top: 0; }
+.feriado.largo { border-left-color: var(--oro); }
+.feriado-ficha { display: grid; justify-items: center; padding: .375rem .25rem; background: var(--hoja); border: 1px solid var(--linea); }
+.feriado.largo .feriado-ficha { background: var(--oro-suave); border-color: var(--oro); }
+.feriado-dia { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 1.5rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.feriado-semana { font-family: var(--mono); font-size: .625rem; letter-spacing: .05em; text-transform: uppercase; color: var(--tinta-suave); }
+.feriado-cuerpo { display: flex; flex-wrap: wrap; align-items: baseline; gap: .125rem .75rem; }
+.feriado-nombre { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 1.1875rem; font-weight: 600; }
+.feriado-dia-largo { color: var(--tinta-suave); font-size: .9375rem; text-transform: capitalize; }
+.feriado-estado { font-family: var(--mono); font-size: .8125rem; color: var(--cobalto); text-align: right; }
 .feriado.pasado { opacity: .6; }
+.feriado.pasado .feriado-estado { color: var(--tinta-suave); }
+@media (max-width: 36rem) { .feriado { grid-template-columns: 4rem minmax(0, 1fr); } .feriado-estado { grid-column: 2; text-align: left; } }
 
-.esq-proximo { width: min(24rem, 100%); height: 6rem; }
-.esq-mes { height: 12rem; }
-
-/* Mismo aspecto que la portada: gris neutro, cabecera plana y tarjetas de borde fino. */
-:root { --hoja: #0a0a0b; --papel: #151517; --tinta: #ececee; --tinta-suave: #a1a1a8; --linea: #26262a; --cobalto: #f4f4f5; --cobalto-texto: #0a0a0b; --enlace: #6ea0ee; --pizarra: #0d0d0f; --pizarra-texto: #ececee; --pizarra-suave: #a1a1a8; }
-@media (prefers-color-scheme: light) {
-  :root { --hoja: #f7f7f8; --papel: #ffffff; --tinta: #16161a; --tinta-suave: #5b5b63; --linea: #e3e3e6; --cobalto: #16161a; --cobalto-texto: #ffffff; --enlace: #1a5fb4; --pizarra: #ffffff; --pizarra-texto: #16161a; --pizarra-suave: #5b5b63; }
-}
-.pizarra { border-bottom: 1px solid var(--linea); }
-.pizarra h1 { color: var(--tinta); font-weight: 700; }
-.pizarra a, .pie a { color: var(--enlace); }
-.pizarra .campo, .pizarra button.chip { border-color: var(--linea); }
-.proximo-faltan { background: #f2c230; }
-.feriados { border-radius: .625rem; }
+.esq-proximo { height: 8rem; }
+.esq-mes { height: 10rem; margin: 1rem; }

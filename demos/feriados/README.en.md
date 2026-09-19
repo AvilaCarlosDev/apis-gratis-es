@@ -46,6 +46,6 @@ It is listed in [`data/apis.json`](../../data/apis.json) with its latest verific
 ## Credits and licenses
 
 - Holidays from [Nager.Date](https://date.nager.at/), an open-source project under the MIT license ([nager/Nager.Date](https://github.com/nager/Nager.Date)).
-- **Bricolage Grotesque** typeface, under the SIL Open Font License 1.1 (see [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
+- **Bricolage Grotesque**, **Newsreader** and **Space Mono** typefaces, under the SIL Open Font License 1.1 (see [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
 - The screen design was generated with Stitch from our own description of the idea (pick a country and year, see the next holiday and the list); it does not copy the code, texts or design of any existing page.
 - Demo code: MIT, like the rest of the repository.

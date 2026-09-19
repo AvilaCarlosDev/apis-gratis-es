@@ -46,6 +46,6 @@ Figura en [`data/apis.json`](../../data/apis.json) con su última verificación.
 ## Créditos y licencias
 
 - Feriados de [Nager.Date](https://date.nager.at/), proyecto de código abierto bajo licencia MIT ([nager/Nager.Date](https://github.com/nager/Nager.Date)).
-- Tipografía **Bricolage Grotesque**, con licencia SIL Open Font License 1.1 (ver [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
+- Tipografías **Bricolage Grotesque**, **Newsreader** y **Space Mono**, con licencia SIL Open Font License 1.1 (ver [`compartido/fuentes/OFL.txt`](../compartido/fuentes/OFL.txt)).
 - El diseño de la pantalla se generó con Stitch a partir de una descripción propia de la idea (elegir país y año, ver el próximo feriado y la lista); no copia el código, los textos ni el diseño de ninguna página existente.
 - Código de la demo: MIT, como el resto del repositorio.
