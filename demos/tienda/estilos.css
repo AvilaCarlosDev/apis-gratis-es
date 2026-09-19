@@ -87,3 +87,6 @@ input[type="search"], select.campo { border-radius: 999px; padding-inline: 1rem;
 .esq-foto { aspect-ratio: 3 / 4; border-radius: 0; background: #e8e8e8; }
 .esq-linea { height: .875rem; background: #e8e8e8; }
 .esq-linea.corta { width: 55%; }
+
+.pizarra-interior { gap: .5rem 1.5rem; }
+.pizarra-enlace { margin: 0; }
