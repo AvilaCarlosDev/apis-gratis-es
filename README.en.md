@@ -192,7 +192,7 @@ curl -s https://openrouter.ai/api/v1/models | jq -r '.data[] | select(.id | ends
 - ✅ **Trial keys** are free and limited to **1,000 API calls per month**; chat models (for example Command A+) allow 20 requests/minute on trial. Source: [Cohere limits](https://docs.cohere.com/docs/rate-limits).
 - Trial keys are not for commercial use.
 
-### [GitHub Models](https://github.com/marketplace/models)
+### [GitHub Models](https://docs.github.com/en/github-models)
 
 - ⚠️ Limits depend on your GitHub Copilot plan and are measured per minute and per day. The table this list used to show ("200 requests per month on the free plan", etc.) **could not be confirmed and was probably wrong**, so it was removed. Check the [current limits](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models).
 
