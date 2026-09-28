@@ -192,7 +192,7 @@ curl -s https://openrouter.ai/api/v1/models | jq -r '.data[] | select(.id | ends
 - ✅ Las **claves de prueba** son gratuitas y están limitadas a **1.000 llamadas a la API al mes**; los modelos de chat (por ejemplo Command A+) permiten 20 solicitudes/minuto en prueba. Fuente: [límites de Cohere](https://docs.cohere.com/docs/rate-limits).
 - Las claves de prueba no son para uso comercial.
 
-### [GitHub Models](https://github.com/marketplace/models)
+### [GitHub Models](https://docs.github.com/en/github-models)
 
 - ⚠️ Los límites dependen de tu plan de GitHub Copilot y se miden por minuto y por día. La tabla que esta lista mostraba antes ("200 solicitudes al mes en el plan gratuito", etc.) **no se pudo confirmar y probablemente era incorrecta**, así que se retiró. Consulta los [límites vigentes](https://docs.github.com/en/github-models/use-github-models/prototyping-with-ai-models).
 
