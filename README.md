@@ -143,7 +143,6 @@ Las secciones siguientes, hasta «Cómo verificamos», cubren la categoría **IA
 |---|---|
 | `google/gemma-4-31b-it:free` | 262 K |
 | `google/gemma-4-26b-a4b-it:free` | 262 K |
-| `deepseek/deepseek-v4-flash-0731:free` | 1 M |
 | `nvidia/nemotron-3-super-120b-a12b:free` | 262 K |
 | `nvidia/nemotron-3-ultra-550b-a55b:free` | 1 M |
 | `qwen/qwen3.8-27b:free` | 262 K |
