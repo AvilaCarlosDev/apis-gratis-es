@@ -9,4 +9,6 @@ exclude = [
   '^https://openrouter\.ai/api/v1/chat/completions',
   '^https://openrouter\.ai/api/v1/models',
   '^http://localhost',
+  # Temporal (2026-09-28): fakestoreapi.com devuelve 523 (origen caído). Quitar cuando vuelva.
+  '^https://fakestoreapi\.com/',
 ]
