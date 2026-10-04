@@ -77,7 +77,8 @@ TEXTOS = {
         "creditos": "## Créditos",
         "creditos_txt": (
             "Todas las entradas de esta página provienen de [{fuente}]({url}), publicada bajo licencia {licencia} "
-            "por sus colaboradores. El mérito de reunirlas es suyo; este proyecto solo las reordena y traduce las categorías."
+            "por sus colaboradores. El mérito de reunirlas es suyo; este proyecto solo las reordena y traduce las categorías. "
+            "Su aviso de copyright y su licencia completos están en [LICENCIAS-DE-TERCEROS.md](../LICENCIAS-DE-TERCEROS.md)."
         ),
     },
     "en": {
@@ -104,7 +105,8 @@ TEXTOS = {
         "creditos": "## Credits",
         "creditos_txt": (
             "Every entry on this page comes from [{fuente}]({url}), published under the {licencia} license by its "
-            "contributors. The credit for gathering them is theirs; this project only rearranges them and translates the categories."
+            "contributors. The credit for gathering them is theirs; this project only rearranges them and translates the categories. "
+            "Its full copyright notice and license are in [LICENCIAS-DE-TERCEROS.md](../LICENCIAS-DE-TERCEROS.md)."
         ),
     },
 }
