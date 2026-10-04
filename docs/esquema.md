@@ -43,6 +43,10 @@ El **CORS** se mide en una segunda petición con la cabecera `Origin`, como har�
 5. `python3 scripts/generar_readme.py` para regenerar las tablas.
 6. Si descartas una candidata, anótala con su motivo en [`verificaciones.md`](verificaciones.md).
 
+### Directorio ampliado
+
+[`data/directorio.json`](../data/directorio.json) es un nivel aparte: entradas importadas de listas con licencia abierta, **sin verificar**. Cada una lleva `nombre`, `url`, `descripcion_en` (texto original de la fuente), `categoria`, `autenticacion` (`ninguna`, `clave`, `oauth` o `user-agent`) y `cors` (`si`, `no` o `desconocido`), tal como los declara la fuente; `fuentes` guarda el repositorio, su licencia, el commit y la fecha de lectura. Se regenera con `python3 scripts/directorio.py importar LISTA.md --commit SHA --fecha AAAA-MM-DD` y las páginas con `python3 scripts/directorio.py generar`. No se edita a mano: para corregir una entrada, verifícala y pásala al catálogo.
+
 ## English
 
 The catalog lives in [`data/apis.json`](../data/apis.json). **It is the single source of truth**: the tables in `README.md` and `README.en.md` are generated from it (`python3 scripts/generar_readme.py`), so Spanish and English cannot diverge.
@@ -83,3 +87,7 @@ The catalog lives in [`data/apis.json`](../data/apis.json). **It is the single s
 4. `python3 scripts/catalogo.py verificar --actualizar --id YOUR-ID` to call it and store the real result.
 5. `python3 scripts/generar_readme.py` to regenerate the tables.
 6. If you reject a candidate, record it with its reason in [`verificaciones.md`](verificaciones.md).
+
+### Extended directory
+
+[`data/directorio.json`](../data/directorio.json) is a separate tier: entries imported from openly licensed lists, **not verified**. Each one has `nombre`, `url`, `descripcion_en` (the source's original text), `categoria`, `autenticacion` (`ninguna`, `clave`, `oauth` or `user-agent`) and `cors` (`si`, `no` or `desconocido`), as declared by the source; `fuentes` records the repository, its license, the commit and the date it was read. Regenerate it with `python3 scripts/directorio.py importar LIST.md --commit SHA --fecha YYYY-MM-DD` and the pages with `python3 scripts/directorio.py generar`. It is not edited by hand: to fix an entry, verify it and move it into the catalog.

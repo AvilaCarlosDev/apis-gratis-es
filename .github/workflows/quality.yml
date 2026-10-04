@@ -36,6 +36,9 @@ jobs:
       - name: README tables are up to date with data/apis.json
         run: python3 scripts/generar_readme.py --comprobar
 
+      - name: Extended directory pages are up to date with data/directorio.json
+        run: python3 scripts/directorio.py generar --comprobar
+
       - name: Spanish and English READMEs link the same resources
         run: scripts/check-parity.sh README.md README.en.md
 

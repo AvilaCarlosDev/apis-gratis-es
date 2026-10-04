@@ -12,3 +12,6 @@ exclude = [
   # Temporal (2026-09-28): fakestoreapi.com devuelve 523 (origen caído). Quitar cuando vuelva.
   '^https://fakestoreapi\.com/',
 ]
+
+# El directorio ampliado son enlaces importados y declarados "sin verificar": no se comprueban aquí.
+exclude_path = ["docs/directorio.md", "docs/directorio.en.md"]

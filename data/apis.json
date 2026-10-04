@@ -804,7 +804,8 @@
         },
         {
           "fuente": "Ovi/DummyJSON",
-          "url": "https://github.com/Ovi/DummyJSON"
+          "url": "https://github.com/Ovi/DummyJSON",
+          "licencia": "MIT"
         }
       ],
       "verificacion": {

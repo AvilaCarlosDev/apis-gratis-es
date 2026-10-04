@@ -30,6 +30,7 @@ Every fact carries a verification mark:
 ## Contents
 
 - [Keyless API catalog](#keyless-api-catalog)
+- [Extended directory](#extended-directory)
 - [Artificial intelligence (LLM)](#artificial-intelligence-llm)
 - [Providers with a free tier](#providers-with-a-free-tier)
 - [No sign-up, with conditions](#no-sign-up-with-conditions)
@@ -118,13 +119,26 @@ APIs you can call **without signing up or getting a key**, each with an example 
 - [komoot/photon](https://github.com/komoot/photon) (Apache-2.0) — Photon (Komoot)
 - [nager/Nager.Date](https://github.com/nager/Nager.Date) (MIT) — Nager.Date — feriados públicos, Nager.Date — Feriados
 - [osm-search/Nominatim](https://github.com/osm-search/Nominatim) (GPL-3.0) — Nominatim (OpenStreetMap)
-- [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) — DummyJSON
+- [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) (MIT) — DummyJSON
 - [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT) — Datos abiertos de España (datos.gob.es), Open-Meteo — pronóstico, Open-Meteo — geocodificación, Nominatim (OpenStreetMap), Nager.Date — feriados públicos, FakeStoreAPI, DummyJSON, Random User Generator, JSONPlaceholder, Wikipedia en español — búsqueda y resúmenes
 - [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) (MIT) — Random User Generator
 - [typicode/jsonplaceholder](https://github.com/typicode/jsonplaceholder) (MIT) — JSONPlaceholder
 <!-- catalogo:fin -->
 
 ---
+
+## Extended directory
+
+Looking for something that is not above? The **[extended directory](docs/directorio.en.md)** gathers **1777 more APIs in 51 categories**, imported from [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT license) with credit to the source.
+
+These are two separate tiers and they are never mixed:
+
+| Tier | How many | What it guarantees |
+|---|---|---|
+| [Verified catalog](#keyless-api-catalog) | 23 | Real call, terms read and CORS measured; CI calls them again every week |
+| [Extended directory](docs/directorio.en.md) | 1777 | **Nothing yet**: listed exactly as the source publishes them, to discover and then check |
+
+When an API from the directory passes verification, it moves up to the catalog. [Here is how to help](CONTRIBUTING.md).
 
 ## Artificial intelligence (LLM)
 
@@ -400,6 +414,7 @@ If you find an outdated fact, open an issue with the source.
 
 ### Related lists
 
+- [public-apis/public-apis](https://github.com/public-apis/public-apis) — the English list the [extended directory](docs/directorio.en.md) comes from; MIT-licensed.
 - [open-free-llm-api/awesome-freellm-apis](https://github.com/open-free-llm-api/awesome-freellm-apis) — an English list with more than 40 providers; active, MIT-licensed.
 
 ### In Spanish
@@ -423,4 +438,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the format and rules. Every new figur
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). The copyright and license notices of the projects content is imported from are in [LICENCIAS-DE-TERCEROS.md](LICENCIAS-DE-TERCEROS.md).

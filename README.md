@@ -30,6 +30,7 @@ Cada dato lleva una marca de verificación:
 ## Contenido
 
 - [Catálogo de APIs sin clave](#catálogo-de-apis-sin-clave)
+- [Directorio ampliado](#directorio-ampliado)
 - [Inteligencia artificial (LLM)](#inteligencia-artificial-llm)
 - [Proveedores con nivel gratuito](#proveedores-con-nivel-gratuito)
 - [Sin registro y con condiciones](#sin-registro-y-con-condiciones)
@@ -118,13 +119,26 @@ APIs que se pueden llamar **sin registrarse ni pedir una clave**, con su ejemplo
 - [komoot/photon](https://github.com/komoot/photon) (Apache-2.0) — Photon (Komoot)
 - [nager/Nager.Date](https://github.com/nager/Nager.Date) (MIT) — Nager.Date — feriados públicos, Nager.Date — Feriados
 - [osm-search/Nominatim](https://github.com/osm-search/Nominatim) (GPL-3.0) — Nominatim (OpenStreetMap)
-- [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) — DummyJSON
+- [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) (MIT) — DummyJSON
 - [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT) — Datos abiertos de España (datos.gob.es), Open-Meteo — pronóstico, Open-Meteo — geocodificación, Nominatim (OpenStreetMap), Nager.Date — feriados públicos, FakeStoreAPI, DummyJSON, Random User Generator, JSONPlaceholder, Wikipedia en español — búsqueda y resúmenes
 - [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) (MIT) — Random User Generator
 - [typicode/jsonplaceholder](https://github.com/typicode/jsonplaceholder) (MIT) — JSONPlaceholder
 <!-- catalogo:fin -->
 
 ---
+
+## Directorio ampliado
+
+¿Buscas algo que no está arriba? El **[directorio ampliado](docs/directorio.md)** reúne **1777 APIs más en 51 categorías**, importadas de [public-apis/public-apis](https://github.com/public-apis/public-apis) (licencia MIT) con crédito a la fuente.
+
+Son dos niveles distintos y no se mezclan:
+
+| Nivel | Cuántas | Qué garantiza |
+|---|---|---|
+| [Catálogo verificado](#catálogo-de-apis-sin-clave) | 23 | Llamada real, términos leídos y CORS medido; el CI las vuelve a llamar cada semana |
+| [Directorio ampliado](docs/directorio.md) | 1777 | **Nada todavía**: están tal cual las publica la fuente, para descubrir y luego comprobar |
+
+Cuando una API del directorio pasa la verificación, sube al catálogo. [Así puedes ayudar](CONTRIBUTING.md).
 
 ## Inteligencia artificial (LLM)
 
@@ -400,6 +414,7 @@ Si encuentras un dato desactualizado, abre un issue con la fuente.
 
 ### Listas relacionadas
 
+- [public-apis/public-apis](https://github.com/public-apis/public-apis) — la lista en inglés de la que sale el [directorio ampliado](docs/directorio.md); licencia MIT.
 - [open-free-llm-api/awesome-freellm-apis](https://github.com/open-free-llm-api/awesome-freellm-apis) — lista en inglés con más de 40 proveedores; activa, con licencia MIT.
 
 ### En español
@@ -423,4 +438,4 @@ Consulta [CONTRIBUTING.md](CONTRIBUTING.md) para el formato y las reglas. Toda c
 
 ## Licencia
 
-MIT — ver [LICENSE](LICENSE).
+MIT — ver [LICENSE](LICENSE). Los avisos de copyright y licencia de los proyectos de los que se importa contenido están en [LICENCIAS-DE-TERCEROS.md](LICENCIAS-DE-TERCEROS.md).
