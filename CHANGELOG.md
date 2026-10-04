@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file. / Todos los cam
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project is a living catalog rather than versioned software, so entries are grouped by date. / El proyecto es un catálogo vivo y no software con versiones, así que las entradas se agrupan por fecha.
 
+## 2026-10-04
+
+### Added / Añadido
+
+- Extended directory: 1777 unverified APIs in 51 categories imported from public-apis/public-apis (MIT) with credit, kept separate from the verified catalog; importer, generator, tests and CI check. / Directorio ampliado: 1777 APIs sin verificar en 51 categorías, importadas de public-apis/public-apis (MIT) con crédito y separadas del catálogo verificado; importador, generador, pruebas y comprobación en el CI.
+
 ## 2026-09-19
 
 ### Added / Añadido

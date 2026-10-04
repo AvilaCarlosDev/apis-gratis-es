@@ -30,6 +30,7 @@ Every fact carries a verification mark:
 ## Contents
 
 - [Keyless API catalog](#keyless-api-catalog)
+- [Extended directory](#extended-directory)
 - [Artificial intelligence (LLM)](#artificial-intelligence-llm)
 - [Providers with a free tier](#providers-with-a-free-tier)
 - [No sign-up, with conditions](#no-sign-up-with-conditions)
@@ -125,6 +126,19 @@ APIs you can call **without signing up or getting a key**, each with an example 
 <!-- catalogo:fin -->
 
 ---
+
+## Extended directory
+
+Looking for something that is not above? The **[extended directory](docs/directorio.en.md)** gathers **1777 more APIs in 51 categories**, imported from [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT license) with credit to the source.
+
+These are two separate tiers and they are never mixed:
+
+| Tier | How many | What it guarantees |
+|---|---|---|
+| [Verified catalog](#keyless-api-catalog) | 23 | Real call, terms read and CORS measured; CI calls them again every week |
+| [Extended directory](docs/directorio.en.md) | 1777 | **Nothing yet**: listed exactly as the source publishes them, to discover and then check |
+
+When an API from the directory passes verification, it moves up to the catalog. [Here is how to help](CONTRIBUTING.md).
 
 ## Artificial intelligence (LLM)
 
@@ -400,6 +414,7 @@ If you find an outdated fact, open an issue with the source.
 
 ### Related lists
 
+- [public-apis/public-apis](https://github.com/public-apis/public-apis) — the English list the [extended directory](docs/directorio.en.md) comes from; MIT-licensed.
 - [open-free-llm-api/awesome-freellm-apis](https://github.com/open-free-llm-api/awesome-freellm-apis) — an English list with more than 40 providers; active, MIT-licensed.
 
 ### In Spanish
