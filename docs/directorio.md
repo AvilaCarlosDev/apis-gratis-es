@@ -2099,4 +2099,4 @@
 
 ## Créditos
 
-Todas las entradas de esta página provienen de [public-apis/public-apis](https://github.com/public-apis/public-apis), publicada bajo licencia MIT por sus colaboradores. El mérito de reunirlas es suyo; este proyecto solo las reordena y traduce las categorías.
+Todas las entradas de esta página provienen de [public-apis/public-apis](https://github.com/public-apis/public-apis), publicada bajo licencia MIT por sus colaboradores. El mérito de reunirlas es suyo; este proyecto solo las reordena y traduce las categorías. Su aviso de copyright y su licencia completos están en [LICENCIAS-DE-TERCEROS.md](../LICENCIAS-DE-TERCEROS.md).

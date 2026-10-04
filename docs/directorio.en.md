@@ -2099,4 +2099,4 @@
 
 ## Credits
 
-Every entry on this page comes from [public-apis/public-apis](https://github.com/public-apis/public-apis), published under the MIT license by its contributors. The credit for gathering them is theirs; this project only rearranges them and translates the categories.
+Every entry on this page comes from [public-apis/public-apis](https://github.com/public-apis/public-apis), published under the MIT license by its contributors. The credit for gathering them is theirs; this project only rearranges them and translates the categories. Its full copyright notice and license are in [LICENCIAS-DE-TERCEROS.md](../LICENCIAS-DE-TERCEROS.md).
