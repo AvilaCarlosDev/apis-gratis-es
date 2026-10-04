@@ -119,7 +119,7 @@ APIs you can call **without signing up or getting a key**, each with an example 
 - [komoot/photon](https://github.com/komoot/photon) (Apache-2.0) — Photon (Komoot)
 - [nager/Nager.Date](https://github.com/nager/Nager.Date) (MIT) — Nager.Date — feriados públicos, Nager.Date — Feriados
 - [osm-search/Nominatim](https://github.com/osm-search/Nominatim) (GPL-3.0) — Nominatim (OpenStreetMap)
-- [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) — DummyJSON
+- [Ovi/DummyJSON](https://github.com/Ovi/DummyJSON) (MIT) — DummyJSON
 - [public-apis/public-apis](https://github.com/public-apis/public-apis) (MIT) — Datos abiertos de España (datos.gob.es), Open-Meteo — pronóstico, Open-Meteo — geocodificación, Nominatim (OpenStreetMap), Nager.Date — feriados públicos, FakeStoreAPI, DummyJSON, Random User Generator, JSONPlaceholder, Wikipedia en español — búsqueda y resúmenes
 - [RandomAPI/Randomuser.me-Node](https://github.com/RandomAPI/Randomuser.me-Node) (MIT) — Random User Generator
 - [typicode/jsonplaceholder](https://github.com/typicode/jsonplaceholder) (MIT) — JSONPlaceholder
@@ -438,4 +438,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the format and rules. Every new figur
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). The copyright and license notices of the projects content is imported from are in [LICENCIAS-DE-TERCEROS.md](LICENCIAS-DE-TERCEROS.md).
