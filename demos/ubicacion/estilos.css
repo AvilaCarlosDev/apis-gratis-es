@@ -148,10 +148,10 @@ button:active:not(:disabled) { transform: scale(.97); }
 .panel-pie { margin-top: 1rem; padding-top: .875rem; border-top: 1px solid var(--linea); font-size: .75rem; color: var(--texto-suave); }
 .panel-pie p { margin: 0 0 .375rem; }
 .panel-pie a { color: inherit; }
-.panel-pie .volver { font-size: .875rem; }
-.panel-pie .volver a { color: var(--azul-texto); font-weight: 600; text-decoration: none; }
-.panel-pie .volver a::before { content: "← "; }
-.panel-pie .volver a:hover { text-decoration: underline; }
+.panel-pie .volver { margin-bottom: .75rem; }
+/* El panel es siempre claro: la píldora de vuelta usa sus colores, no los del tema del sistema. */
+.panel-pie .volver a { background: var(--azul-suave); border-color: transparent; color: var(--azul-texto); }
+.panel-pie .volver a:hover { border-color: var(--azul); }
 
 /* ——— Controles del mapa ——— */
 .controles { position: fixed; z-index: 5; right: .75rem; bottom: 2rem; display: flex; flex-direction: column; align-items: flex-end; gap: .625rem; }

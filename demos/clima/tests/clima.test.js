@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { descripcionClima, urlPronostico, resumenPronostico, urlGeocodificacion, lugaresDe, nombreDia, formatearGrados, etiquetaLugar, ErrorDePronostico, ErrorDeGeocodificacion } from "../lib/clima.js";
+import { descripcionClima, tipoClima, rangoDia, urlPronostico, resumenPronostico, urlGeocodificacion, lugaresDe, nombreDia, formatearGrados, etiquetaLugar, ErrorDePronostico, ErrorDeGeocodificacion } from "../lib/clima.js";
 
 const leer = (n) => JSON.parse(readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8"));
 const lugar = { id: 1, nombre: "Caracas", region: "Distrito Federal", pais: "Venezuela", latitud: 10.48801, longitud: -66.87919, zona: "America/Caracas" };
@@ -50,7 +50,7 @@ test("resume la respuesta real: condiciones actuales y siete días", () => {
   assert.equal(r.actual.unidad, "°C");
   assert.equal(r.actual.descripcion, descripcionClima(real.current.weather_code));
   assert.equal(r.dias.length, 7);
-  assert.deepEqual(Object.keys(r.dias[0]).sort(), ["descripcion", "fecha", "lluvia", "max", "min"]);
+  assert.deepEqual(Object.keys(r.dias[0]).sort(), ["descripcion", "fecha", "lluvia", "max", "min", "tipo"]);
   assert.equal(r.dias[0].fecha, real.daily.time[0]);
   assert.equal(r.dias[3].max, real.daily.temperature_2m_max[3]);
 });
@@ -119,4 +119,27 @@ test("formatearGrados redondea y pone la unidad; sin dato muestra un guion", () 
   assert.equal(formatearGrados(80.06, "°F"), "80 °F");
   assert.equal(formatearGrados(null, "°C"), "—");
   assert.equal(formatearGrados(NaN, "°C"), "—");
+});
+
+test("tipoClima agrupa los códigos WMO en tipos de cielo", () => {
+  assert.equal(tipoClima(0), "despejado");
+  assert.equal(tipoClima(1), "despejado");
+  assert.equal(tipoClima(2), "parcial");
+  assert.equal(tipoClima(3), "nublado");
+  assert.equal(tipoClima(45), "niebla");
+  assert.equal(tipoClima(53), "lluvia");
+  assert.equal(tipoClima(81), "lluvia");
+  assert.equal(tipoClima(73), "nieve");
+  assert.equal(tipoClima(96), "tormenta");
+  assert.equal(tipoClima(12345), "desconocido");
+  assert.equal(tipoClima(undefined), "desconocido");
+  assert.equal(tipoClima("0"), "desconocido");
+});
+
+test("rangoDia ubica la barra del día dentro del rango de la semana", () => {
+  assert.deepEqual(rangoDia(20, 30, 10, 30), { desde: 50, hasta: 100 });
+  assert.deepEqual(rangoDia(10, 15, 10, 30), { desde: 0, hasta: 25 });
+  assert.deepEqual(rangoDia(18, 18, 18, 18), { desde: 0, hasta: 100 }, "semana sin variación");
+  assert.deepEqual(rangoDia(5, 40, 10, 30), { desde: 0, hasta: 100 }, "se recorta a 0–100");
+  assert.equal(rangoDia(null, 20, 10, 30), null);
 });

@@ -38,13 +38,20 @@
 
   <main>
     <section class="heroe ancho" aria-labelledby="titulo">
-      <p class="antetitulo">En español · sin claves · sin backend</p>
-      <h1 id="titulo">APIs gratuitas que funcionan, <em>probadas en apps de verdad.</em></h1>
-      <p class="bajada">Un catálogo de APIs abiertas que se vuelve a comprobar cada semana, y cinco demos que las usan desde el navegador. Abrís la página y anda: no hay servidor propio ni claves que pedir.</p>
-      <p class="llamadas">
-        <a class="boton grande" href="#demos">Ver las demos</a>
-        <a class="enlace-flecha" href="https://github.com/AvilaCarlosDev/apis-gratis-es#readme">Explorar el catálogo</a>
-      </p>
+      <div class="heroe-texto">
+        <p class="antetitulo">En español · sin claves · sin backend</p>
+        <h1 id="titulo">APIs gratuitas que funcionan, <em>probadas en apps de verdad.</em></h1>
+        <p class="bajada">Un catálogo de APIs abiertas que se vuelve a comprobar cada semana, y cinco demos que las usan desde el navegador. Abrís la página y anda: no hay servidor propio ni claves que pedir.</p>
+        <p class="llamadas">
+          <a class="boton grande" href="#demos">Ver las demos</a>
+          <a class="enlace-flecha" href="https://github.com/AvilaCarlosDev/apis-gratis-es#readme">Explorar el catálogo</a>
+        </p>
+      </div>
+      <div class="heroe-collage" aria-hidden="true">
+        <img class="collage-mapa" src="./assets/demos/ubicacion.webp" width="1200" height="719" alt="">
+        <img class="collage-clima" src="./assets/demos/clima.webp" width="480" height="600" alt="">
+        <span class="collage-sello">GET 200 · CORS ✓</span>
+      </div>
       <dl class="cifras">
         <div><dt>APIs verificadas</dt><dd>23</dd></div>
         <div><dt>en el directorio ampliado</dt><dd>1777</dd></div>
@@ -73,7 +80,7 @@
         </li>
         <li class="vertical">
           <a class="demo" href="./demos/clima/">
-            <img src="./assets/demos/clima.webp" width="480" height="600" loading="lazy" alt="Clima de Caracas: 23 °C y nublado, con el pronóstico de los próximos días.">
+            <img src="./assets/demos/clima.webp" width="480" height="600" loading="lazy" alt="Clima de Caracas: 23 °C y nublado, con el pronóstico de los próximos días y su rango de temperaturas.">
             <span class="demo-cuerpo">
               <h3>Clima</h3>
               <span class="demo-texto">El clima de hoy y el pronóstico de siete días de cualquier ciudad.</span>
@@ -83,7 +90,7 @@
         </li>
         <li>
           <a class="demo" href="./demos/tienda/">
-            <img src="./assets/demos/tienda.webp" width="960" height="600" loading="lazy" alt="Tienda de ejemplo con categorías, productos y precios en dólares y en bolívares.">
+            <img src="./assets/demos/tienda.webp" width="960" height="600" loading="lazy" alt="Tienda de ejemplo con la tasa oficial del día, productos con precios en dólares y en bolívares y un carrito con dos artículos.">
             <span class="demo-cuerpo">
               <h3>Tienda</h3>
               <span class="demo-texto">Precios en dólares y en bolívares a la tasa oficial del día. Búsqueda, categorías y carrito.</span>
@@ -103,7 +110,7 @@
         </li>
         <li>
           <a class="demo" href="./demos/wikipedia/">
-            <img src="./assets/demos/wikipedia.webp" width="960" height="600" loading="lazy" alt="Buscador de la enciclopedia con sugerencias de temas.">
+            <img src="./assets/demos/wikipedia.webp" width="960" height="600" loading="lazy" alt="Síntesis del Salto Ángel con su foto, junto a la lista de coincidencias de la búsqueda.">
             <span class="demo-cuerpo">
               <h3>Enciclopedia al paso</h3>
               <span class="demo-texto">Buscá un tema y leé su síntesis en español, con imagen y enlace al artículo.</span>
@@ -138,8 +145,23 @@
   </main>
 
   <footer class="pie-portada">
-    <div class="ancho">
-      <p>Código, pruebas y créditos de cada demo en el <a href="https://github.com/AvilaCarlosDev/apis-gratis-es/tree/main/demos">repositorio</a>. Código bajo licencia MIT. Mapas © colaboradores de OpenStreetMap. Tipografías Bricolage Grotesque y Space Mono (SIL OFL).</p>
+    <div class="ancho pie-fila">
+      <div class="pie-marca">
+        <a class="marca" href="./"><span class="marca-sello" aria-hidden="true">{ }</span>apis-gratis-es</a>
+        <p>APIs gratuitas en español, verificadas cada semana.</p>
+      </div>
+      <nav aria-label="Pie">
+        <ul>
+          <li><a href="https://github.com/AvilaCarlosDev/apis-gratis-es#readme">Catálogo</a></li>
+          <li><a href="https://github.com/AvilaCarlosDev/apis-gratis-es/blob/main/docs/directorio.md">Directorio</a></li>
+          <li><a href="https://github.com/AvilaCarlosDev/apis-gratis-es/tree/main/demos">Código de las demos</a></li>
+          <li><a href="https://github.com/AvilaCarlosDev/apis-gratis-es/blob/main/CONTRIBUTING.md">Contribuir</a></li>
+          <li><a href="https://github.com/AvilaCarlosDev/apis-gratis-es/blob/main/SECURITY.md">Seguridad</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="ancho pie-legal">
+      <p>Código, pruebas y créditos de cada demo en el <a href="https://github.com/AvilaCarlosDev/apis-gratis-es/tree/main/demos">repositorio</a>. Código bajo licencia MIT. Mapas © colaboradores de OpenStreetMap. Tipografías Bricolage Grotesque, Newsreader y Space Mono (SIL OFL). Esta página no usa scripts, cookies ni analítica.</p>
     </div>
   </footer>
 </body>

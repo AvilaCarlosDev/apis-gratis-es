@@ -5,20 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://thumb.wikimedia.org; connect-src 'self' https://es.wikipedia.org; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
-  <meta name="color-scheme" content="light">
+  <meta name="color-scheme" content="light dark">
   <title>Enciclopedia al paso</title>
   <meta name="description" content="Demo de apis-gratis-es: busca un tema y lee su síntesis, con datos de Wikipedia en español.">
   <link rel="stylesheet" href="../compartido/base.css">
-  <link rel="stylesheet" href="../compartido/papel.css">
   <link rel="stylesheet" href="./estilos.css">
   <script type="module" src="./main.js"></script>
 </head>
 <body>
   <a class="salto" href="#resumen">Ir al resumen</a>
 
-  <header class="barra">
-    <div class="contenedor">
-      <h1>Enciclopedia al paso</h1>
+  <header class="barra-demo">
+    <div class="contenedor barra-demo-fila">
+      <span class="sello" aria-hidden="true">{ }</span>
+      <div class="barra-demo-titulo">
+        <h1>Enciclopedia al paso</h1>
+        <p class="etiqueta">Demo · Wikipedia en español</p>
+      </div>
       <p class="volver"><a href="../../">Ver todas las demos</a></p>
     </div>
   </header>
@@ -26,12 +29,12 @@
   <main class="contenedor">
     <div id="aviso" class="aviso" hidden></div>
 
-    <section class="busqueda caja" aria-labelledby="titulo-busqueda">
-      <p class="eyebrow">Consulta rápida</p>
+    <section class="busqueda" aria-labelledby="titulo-busqueda">
+      <p class="etiqueta">Consulta rápida · síntesis en español</p>
       <h2 id="titulo-busqueda">¿Qué querés saber?</h2>
       <p class="panel-ayuda">Escribí un concepto, un personaje, un lugar o un acontecimiento para leer una síntesis clara al instante.</p>
-      <div class="buscar">
-        <input id="buscador" type="search" placeholder="Simón Bolívar" aria-label="Tema a buscar" autocomplete="off" maxlength="80">
+      <div class="buscar" role="search">
+        <input id="buscador" type="search" placeholder="Simón Bolívar" aria-label="Tema a buscar" autocomplete="off" maxlength="80" enterkeyhint="search">
         <button id="buscar" type="button" class="primario">Buscar</button>
         <button id="azar" type="button" class="secundario">Artículo al azar</button>
       </div>

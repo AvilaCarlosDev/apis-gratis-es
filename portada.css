@@ -62,9 +62,26 @@ code { font-family: var(--mono); font-size: .875em; padding: .05em .3em; border-
 .heroe { position: relative; padding-block: clamp(3.5rem, 9vw, 7rem) clamp(3rem, 6vw, 4.5rem); }
 .heroe::before { content: ""; position: absolute; z-index: -1; inset: -10% -20% auto auto; width: 40rem; height: 28rem; background: radial-gradient(closest-side, var(--brillo), transparent); pointer-events: none; }
 .antetitulo { margin: 0 0 1.25rem; font-family: var(--mono); font-size: .8125rem; color: var(--acento-texto); }
+.heroe { display: grid; column-gap: 3rem; }
+@media (min-width: 64rem) { .heroe { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; } .cifras { grid-column: 1 / -1; } }
 .heroe h1 { max-width: 15ch; margin: 0 0 1.5rem; color: var(--texto); font-size: clamp(2.5rem, 6.4vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -.035em; word-spacing: .04em; text-wrap: balance; }
 .heroe h1 em { font-style: normal; color: var(--suave); }
 .bajada { max-width: 56ch; margin: 0 0 2rem; color: var(--suave); font-size: clamp(1.0625rem, 1.6vw, 1.25rem); line-height: 1.55; text-wrap: pretty; }
+
+/* Composición de capturas reales junto al título: el mapa de fondo y el clima por delante. */
+.heroe-collage { display: none; }
+@media (min-width: 64rem) {
+  .heroe-collage { position: relative; display: block; aspect-ratio: 1 / .86; }
+  .heroe-collage img { position: absolute; display: block; height: auto; border-radius: 1rem; border: 1px solid var(--linea); background: var(--superficie-2); box-shadow: var(--sombra), 0 30px 60px -30px rgb(40 30 10 / .45); }
+  .collage-mapa { top: 4%; left: 0; width: 88%; transform: rotate(-2deg); }
+  .collage-clima { right: 0; bottom: 0; width: 38%; border-radius: 1.25rem; transform: rotate(3deg); }
+  .collage-sello { position: absolute; left: 6%; bottom: 10%; padding: .45rem .8rem; border-radius: .5rem; background: var(--acento); color: var(--sobre-acento); font-family: var(--mono); font-size: .75rem; font-weight: 700; box-shadow: var(--sombra); transform: rotate(-3deg); }
+}
+@media (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
+  .heroe-collage img, .collage-sello { transition: transform .6s var(--suave-curva, ease); }
+  .heroe-collage:hover .collage-mapa { transform: rotate(-1deg) translateY(-4px); }
+  .heroe-collage:hover .collage-clima { transform: rotate(1.5deg) translateY(-8px); }
+}
 
 .cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); margin: clamp(2.5rem, 6vw, 4rem) 0 0; border-top: 1px solid var(--linea); }
 .cifras div { display: flex; flex-direction: column-reverse; gap: .25rem; padding: 1.25rem 1.25rem 0 0; }
@@ -120,8 +137,14 @@ code { font-family: var(--mono); font-size: .875em; padding: .05em .3em; border-
 .cierre { text-align: left; }
 .cierre p:not(.llamadas) { max-width: 60ch; margin: .75rem 0 1.75rem; color: var(--suave); font-size: 1.0625rem; }
 
-.pie-portada { padding-block: 2rem 2.5rem; border-top: 1px solid var(--linea); color: var(--suave); font-size: .875rem; }
-.pie-portada p { margin: 0; max-width: 75ch; }
+.pie-portada { padding-block: 2.5rem; border-top: 1px solid var(--linea); color: var(--suave); font-size: .875rem; }
+.pie-fila { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem 3rem; padding-bottom: 1.5rem; }
+.pie-marca p { margin: .625rem 0 0; }
+.pie-portada nav ul { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin: 0; padding: 0; list-style: none; }
+.pie-portada nav a { color: var(--texto); font-weight: 500; text-decoration: none; }
+.pie-portada nav a:hover { text-decoration: underline; }
+.pie-legal { padding-top: 1.5rem; border-top: 1px solid var(--linea); }
+.pie-legal p { margin: 0; max-width: 80ch; font-size: .8125rem; }
 
 @media (max-width: 40rem) {
   .solo-ancho, .cabecera nav ul { display: none; }
