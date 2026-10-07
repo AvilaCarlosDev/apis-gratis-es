@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { banderaEmoji, formatearCoordenadas, formatearGrados, horaLocal, urlMapaIncrustado, normalizarIp, normalizarLugares, urlBusqueda, urlOpenStreetMap } from "../lib/ubicacion.js";
+import { banderaEmoji, formatearCoordenadas, formatearGrados, formatearPrecision, horaLocal, urlReversa, normalizarIp, normalizarLugares, urlBusqueda, urlOpenStreetMap } from "../lib/ubicacion.js";
 
 const leer = (n) => JSON.parse(readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8"));
 
@@ -90,13 +90,19 @@ test("normalizarIp deja coordenadas nulas si la API no las manda", () => {
   assert.equal(d.longitud, null);
 });
 
-test("urlMapaIncrustado arma el mapa de OpenStreetMap con marcador y rechaza coordenadas malas", () => {
-  const u = new URL(urlMapaIncrustado(10.5, -66.9));
-  assert.equal(u.origin + u.pathname, "https://www.openstreetmap.org/export/embed.html");
-  assert.equal(u.searchParams.get("marker"), "10.50000,-66.90000");
-  assert.equal(u.searchParams.get("bbox"), "-66.92000,10.48000,-66.88000,10.52000");
-  assert.throws(() => urlMapaIncrustado(95, 0), RangeError);
-  assert.throws(() => urlMapaIncrustado(NaN, 0), RangeError);
+test("urlReversa redondea el punto, pide un solo lugar y rechaza coordenadas malas", () => {
+  assert.equal(urlReversa(10.4966123, -66.8536987), "https://photon.komoot.io/reverse?lat=10.49661&lon=-66.85370&limit=1");
+  assert.throws(() => urlReversa(95, 0), RangeError);
+  assert.throws(() => urlReversa(NaN, 0), RangeError);
+});
+
+test("formatearPrecision habla en metros o kilómetros y calla si no hay dato", () => {
+  assert.equal(formatearPrecision(12.4), "±12 m");
+  assert.equal(formatearPrecision(0.2), "±1 m");
+  assert.equal(formatearPrecision(1500), "±1,5 km");
+  assert.equal(formatearPrecision(25000), "±25 km");
+  assert.equal(formatearPrecision(undefined), "");
+  assert.equal(formatearPrecision(-3), "");
 });
 
 test("formatearGrados convierte a grados, minutos y segundos con N/S/E/O", () => {

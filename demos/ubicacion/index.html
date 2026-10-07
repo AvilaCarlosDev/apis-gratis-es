@@ -2,60 +2,80 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src https://www.openstreetmap.org; connect-src 'self' https://photon.komoot.io https://ipwho.is; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://tile.openstreetmap.org; connect-src 'self' https://photon.komoot.io https://ipwho.is; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
   <title>Buscar un lugar y ubicarte</title>
-  <meta name="description" content="Demo de apis-gratis-es: busca cualquier lugar del mundo y obtén sus coordenadas, o estima tu ubicación aproximada, con datos de Photon (OpenStreetMap) e ipwho.is.">
+  <meta name="description" content="Demo de apis-gratis-es: un mapa para buscar cualquier lugar del mundo, tocar un punto para saber qué hay y ubicarte por GPS o por IP, con Photon (OpenStreetMap) e ipwho.is, sobre teselas de OpenStreetMap.">
   <link rel="stylesheet" href="../compartido/base.css">
-  <link rel="stylesheet" href="../compartido/papel.css">
   <link rel="stylesheet" href="./estilos.css">
   <script type="module" src="./main.js"></script>
 </head>
-<body>
-  <a class="salto" href="#lugares">Ir a los resultados</a>
+<body class="pantalla-mapa">
+  <a class="salto" href="#buscador">Ir al buscador</a>
 
-  <header class="barra">
-    <div class="contenedor">
-      <h1>¿Dónde estoy?</h1>
-      <p class="volver"><a href="../../">Ver todas las demos</a></p>
-    </div>
-  </header>
+  <div id="mapa" class="mapa-vista" tabindex="0" role="region" aria-label="Mapa interactivo. Arrastrá para moverte, usá las flechas y las teclas + y − para el zoom, o tocá un punto para saber qué hay ahí."></div>
 
-  <main class="contenedor">
-    <div id="aviso" class="aviso" hidden></div>
-
-    <div class="aviso-precision">
-      <h2>Aviso de precisión para vos</h2>
-      <p>La ubicación por IP estima tu zona a nivel de ciudad o de la central de tu proveedor de internet. Puede diferir varias decenas de kilómetros de tu puerta: no usa el GPS ni pide permiso de ubicación.</p>
-    </div>
-
-    <section class="bloque" aria-labelledby="titulo-ip">
-      <h2 id="titulo-ip" class="oculto">Tu ubicación estimada</h2>
-      <div class="ip-inicio" id="ip-inicio">
-        <p class="panel-ayuda">Al pulsar el botón, tu navegador consulta a ipwho.is, que ve tu dirección IP para estimar el país y la ciudad. No se guarda nada.</p>
-        <button id="ubicar" type="button" class="primario">Estimar mi ubicación</button>
+  <aside id="panel" class="panel" aria-label="Buscar y ubicarte">
+    <div class="panel-cabeza">
+      <div class="buscador" role="search">
+        <svg class="buscador-lupa" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <label class="oculto" for="buscador">Buscar un lugar o una dirección</label>
+        <input id="buscador" type="search" placeholder="Buscar en el mapa" autocomplete="off" maxlength="80" enterkeyhint="search">
+        <button id="buscar" type="button" class="buscador-ir" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </button>
       </div>
+      <div class="acciones" role="group" aria-label="Ubicarme">
+        <button id="gps" type="button" class="chip-mapa principal">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="7.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg>
+          Usar mi GPS
+        </button>
+        <button id="ubicar" type="button" class="chip-mapa">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg>
+          Estimar por IP
+        </button>
+        <button id="plegar" type="button" class="plegar" aria-expanded="true" aria-controls="panel-cuerpo" aria-label="Mostrar u ocultar el panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="panel-cuerpo" class="panel-cuerpo">
+      <div id="aviso" class="aviso" hidden></div>
       <div id="ip" class="ip" aria-live="polite"></div>
-    </section>
-
-    <section class="bloque caja" aria-labelledby="titulo-buscar">
-      <p class="eyebrow">Geodesia y conversión directa</p>
-      <h2 id="titulo-buscar">Buscar un lugar</h2>
-      <p class="panel-ayuda">Escribí el nombre de una ciudad, un barrio, una plaza o una dirección y obtené hasta cinco coincidencias con sus coordenadas.</p>
-      <label class="etiqueta" for="buscador">Ingresá un punto de referencia o dirección</label>
-      <div class="buscar">
-        <input id="buscador" type="search" placeholder="Plaza Altamira, Caracas" autocomplete="off" maxlength="80">
-        <button id="buscar" type="button" class="primario">Buscar</button>
-      </div>
       <div id="lugares" class="lugares" aria-live="polite"></div>
-    </section>
-  </main>
 
-  <footer class="contenedor pie">
-    <p>Demo del repositorio <a href="https://github.com/AvilaCarlosDev/apis-gratis-es">apis-gratis-es</a>. No guarda nada: ni lo que buscás ni tu ubicación.</p>
-    <p>Lugares de <a href="https://photon.komoot.io/">Photon</a>, con datos de © <a href="https://www.openstreetmap.org/copyright">colaboradores de OpenStreetMap</a> (ODbL). Ubicación aproximada de <a href="https://ipwho.is/">ipwho.is</a>. Mapa incrustado de <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>. Tipografías Bricolage Grotesque, Newsreader y Space Mono (SIL OFL).</p>
-  </footer>
+      <section id="bienvenida" class="bienvenida" aria-labelledby="titulo">
+        <p class="etiqueta">Demo · Photon, ipwho.is y OpenStreetMap</p>
+        <h1 id="titulo">¿Dónde estoy?</h1>
+        <p>Buscá una ciudad, una plaza o una dirección, o tocá cualquier punto del mapa para saber qué hay ahí y sus coordenadas.</p>
+        <ul class="consejos">
+          <li><strong>GPS</strong>: tu punto exacto, con el permiso que te pide el navegador.</li>
+          <li><strong>IP</strong>: una estimación a nivel de ciudad, sin permiso. Puede errar por decenas de kilómetros, o de país si usás una VPN.</li>
+        </ul>
+        <p class="nota">Nada se pide al abrir la página y nada se guarda.</p>
+      </section>
+
+      <footer class="panel-pie">
+        <p class="volver"><a href="../../">Ver todas las demos</a></p>
+        <p>Lugares de <a href="https://photon.komoot.io/">Photon</a>, con datos de © <a href="https://www.openstreetmap.org/copyright">colaboradores de OpenStreetMap</a> (ODbL). Ubicación aproximada de <a href="https://ipwho.is/">ipwho.is</a>. Mapa base de <a href="https://www.openstreetmap.org/">OpenStreetMap</a>. Código en <a href="https://github.com/AvilaCarlosDev/apis-gratis-es">apis-gratis-es</a>.</p>
+      </footer>
+    </div>
+  </aside>
+
+  <div class="controles">
+    <button id="mi-posicion" type="button" class="control" aria-label="Ir a mi posición" title="Mi posición">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="7.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg>
+    </button>
+    <div class="zoom" role="group" aria-label="Zoom">
+      <button id="acercar" type="button" class="control" aria-label="Acercar" title="Acercar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button id="alejar" type="button" class="control" aria-label="Alejar" title="Alejar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+    </div>
+  </div>
+
+  <p class="atribucion">© <a href="https://www.openstreetmap.org/copyright">colaboradores de OpenStreetMap</a></p>
 </body>
 </html>

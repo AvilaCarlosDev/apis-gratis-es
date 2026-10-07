@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file. / Todos los cam
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project is a living catalog rather than versioned software, so entries are grouped by date. / El proyecto es un catálogo vivo y no software con versiones, así que las entradas se agrupan por fecha.
 
+## 2026-10-07
+
+### Changed / Cambiado
+
+- Location demo redesigned as a full-screen map in the style of map apps: dependency-free tile viewer over OpenStreetMap, numbered pins, tap-to-ask "what is here?" (Photon reverse geocoding), opt-in device GPS with an accuracy circle besides the IP estimate. / La demo de ubicación pasa a ser un mapa a pantalla completa al estilo de las apps de mapas: visor de teselas propio sobre OpenStreetMap, alfileres numerados, «¿qué hay aquí?» al tocar el mapa (búsqueda inversa de Photon) y GPS del dispositivo a pedido, con círculo de precisión, además de la estimación por IP.
+- New landing page: hero with the catalog figures, bento grid of demos with real screenshots and how an API gets into the catalog. / Portada nueva: presentación con las cifras del catálogo, rejilla de demos con capturas reales y cómo entra una API al catálogo.
+
 ## 2026-10-04
 
 ### Added / Añadido
