@@ -169,7 +169,7 @@ The following sections, up to "How we verify", cover the **AI** category: LLM pr
 | `google/gemma-4-26b-a4b-it:free` | 262 K |
 | `nvidia/nemotron-3-super-120b-a12b:free` | 262 K |
 | `nvidia/nemotron-3-ultra-550b-a55b:free` | 1 M |
-| `qwen/qwen3.8-27b:free` | 262 K |
+| `poolside/laguna-s-2.1:free` | 262 K |
 | `cohere/north-mini-code:free` | 256 K (code) |
 | `liquid/lfm-2.5-2.6b:free` | 65 K |
 
@@ -179,7 +179,7 @@ Full, current list, no key needed:
 curl -s https://openrouter.ai/api/v1/models | jq -r '.data[] | select(.id | endswith(":free")) | .id'
 ```
 
-> The seven models this list used to show (Gemma 3 27B and 12B, Llama 3.3 70B, Llama 3.2 3B, Qwen 2.5 Coder 32B, Mistral 7B and DeepSeek R1) are **no longer free** on OpenRouter.
+> The seven models this list used to show (Gemma 3 27B and 12B, Llama 3.3 70B, Llama 3.2 3B, Qwen 2.5 Coder 32B, Mistral 7B and DeepSeek R1) are **no longer free** on OpenRouter. On 2026-10-08 the check detected that `qwen/qwen3.8-27b` is gone too, so it was removed from the table.
 
 ### [Google AI Studio](https://aistudio.google.com)
 
