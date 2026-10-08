@@ -25,6 +25,27 @@ const DESCRIPCIONES = new Map([
 
 export const descripcionClima = (codigo) => DESCRIPCIONES.get(codigo) ?? "Condición desconocida";
 
+// Agrupa los códigos WMO en pocos tipos de cielo: deciden el ícono y el color del panel.
+export function tipoClima(codigo) {
+  if (!Number.isInteger(codigo) || !DESCRIPCIONES.has(codigo)) return "desconocido";
+  if (codigo <= 1) return "despejado";
+  if (codigo === 2) return "parcial";
+  if (codigo === 3) return "nublado";
+  if (codigo < 50) return "niebla";
+  if (codigo >= 71 && codigo <= 75) return "nieve";
+  if (codigo >= 95) return "tormenta";
+  return "lluvia";
+}
+
+// Dónde empieza y termina la barra de un día dentro del rango de toda la semana, en porcentaje.
+export function rangoDia(min, max, minSemana, maxSemana) {
+  if (![min, max, minSemana, maxSemana].every((v) => typeof v === "number" && Number.isFinite(v))) return null;
+  const ancho = maxSemana - minSemana;
+  if (ancho <= 0) return { desde: 0, hasta: 100 };
+  const pct = (v) => Math.round(Math.min(100, Math.max(0, ((v - minSemana) / ancho) * 100)));
+  return { desde: pct(Math.min(min, max)), hasta: pct(Math.max(min, max)) };
+}
+
 const esNumero = (v) => typeof v === "number" && Number.isFinite(v);
 const numeroONulo = (v) => (esNumero(v) ? v : null);
 
@@ -55,8 +76,9 @@ export function resumenPronostico(json) {
       viento: numeroONulo(actual.wind_speed_10m),
       unidad: json.current_units?.temperature_2m ?? "°C",
       descripcion: descripcionClima(actual.weather_code),
+      tipo: tipoClima(actual.weather_code),
     },
-    dias: fechas.map((fecha, i) => ({ fecha, max: numeroONulo(maximas[i]), min: numeroONulo(minimas[i]), lluvia: numeroONulo(lluvias[i]), descripcion: descripcionClima(codigos[i]) })),
+    dias: fechas.map((fecha, i) => ({ fecha, max: numeroONulo(maximas[i]), min: numeroONulo(minimas[i]), lluvia: numeroONulo(lluvias[i]), descripcion: descripcionClima(codigos[i]), tipo: tipoClima(codigos[i]) })),
   };
 }
 

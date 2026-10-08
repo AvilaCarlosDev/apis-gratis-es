@@ -1,41 +1,178 @@
-.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-main { padding-block: 1.5rem 3rem; }
-.bloque { margin-bottom: 1.5rem; }
-.bloque.caja { padding: 1.5rem; }
-.panel-ayuda { margin: 0 0 1rem; color: var(--tinta-suave); max-width: 62ch; }
-.bloque h2 { margin-bottom: .25rem; font-size: clamp(1.5rem, 3.5vw, 2.25rem); letter-spacing: -.02em; }
-.bloque h2.oculto { margin: 0; }
-
-.ip-inicio { padding: 1.5rem; background: var(--papel); border: 1px solid var(--linea); }
-.ip-inicio .panel-ayuda { margin-bottom: 1rem; }
-.ip-inicio[hidden] { display: none; }
-.segun { margin: 0; font-style: italic; color: var(--tinta-suave); }
-.lugar-grande { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem; margin: .25rem 0 1.25rem; font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: clamp(2.25rem, 7vw, 4rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
-.bandera { font-size: .9em; }
-.marca.pais { align-self: center; background: #e8ede9; color: var(--tinta); border: 1px solid var(--linea); font-weight: 400; }
-
-.telemetria { display: grid; background: var(--papel); border: 1px solid var(--linea); }
-.registro { padding: 1.25rem; }
-.registro .etiqueta { margin: 0 0 .75rem; padding-bottom: .5rem; border-bottom: 1px solid var(--linea); }
-.fichas { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: .625rem; margin: 0; }
-.ip-nota { margin: 1rem 0 0; padding: .625rem .875rem; background: #eef2ef; color: var(--tinta-suave); font-size: .9375rem; }
-.mapa { margin: 0; border-top: 1px solid var(--linea); }
-.mapa iframe { display: block; width: 100%; height: 22rem; border: 0; background: var(--hoja); }
-.mapa-pie { margin: 0; padding: .5rem .875rem; border-top: 1px solid var(--linea); font-family: var(--mono); font-size: .75rem; color: var(--tinta-suave); }
-@media (min-width: 56rem) {
-  .telemetria.con-mapa { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-  .mapa { border-top: 0; border-left: 1px solid var(--linea); display: grid; grid-template-rows: 1fr auto; }
-  .mapa iframe { height: 100%; min-height: 24rem; }
+/* Pantalla completa de mapa con un panel flotante, al estilo de las apps de mapas.
+   Siempre clara: las teselas de OpenStreetMap son claras y un panel oscuro encima desentona. */
+:root {
+  color-scheme: light;
+  --superficie: #ffffff;
+  --superficie-2: #f6f8fa;
+  --campo: #f1f3f4;
+  --texto: #1f2328;
+  --texto-suave: #5b636b;
+  --linea: #e3e7eb;
+  --azul: #1a73e8;
+  --azul-suave: #e8f0fe;
+  --azul-texto: #1557b0;
+  --pin: #e0453a;
+  --pin-oscuro: #b3261e;
+  --tierra: #ece9e3;
+  --cobalto: #1a73e8;
+  --rojo: #b3261e;
+  --sombra: 0 1px 2px rgb(31 41 55 / .22), 0 4px 14px rgb(31 41 55 / .12);
+  --sombra-alta: 0 2px 4px rgb(31 41 55 / .2), 0 10px 30px rgb(31 41 55 / .16);
+  --mono: "Space Mono", ui-monospace, monospace;
 }
 
-.buscar { display: flex; gap: .5rem; margin-top: .375rem; max-width: 40rem; }
-.buscar input[type="search"] { flex: 1 1 auto; min-width: 0; }
-.lugares { margin-top: 1.25rem; }
-.lugares-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
-.lugar { padding: 1rem 1.25rem; background: var(--hoja); border: 1px solid var(--linea); }
-.lugar .etiqueta { margin: 0; color: var(--cobalto); }
-.lugar h3 { margin: .25rem 0; font-size: 1.375rem; letter-spacing: -.01em; }
-.lugar-direccion { margin: 0 0 .75rem; color: var(--tinta-suave); }
-.lugar-formatos { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .625rem; margin: 0; }
-.lugar-mapa { margin: .75rem 0 0; font-family: var(--mono); font-size: .8125rem; }
-.ip { margin-top: 1.5rem; }
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+body.pantalla-mapa { height: 100dvh; overflow: hidden; background: var(--tierra); color: var(--texto); }
+.salto:focus { z-index: 30; }
+
+/* ——— Mapa ——— */
+.mapa-vista { position: fixed; inset: 0; overflow: hidden; background: var(--tierra); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.mapa-vista.arrastrando { cursor: grabbing; }
+.mapa-vista:focus-visible { outline: 3px solid var(--azul); outline-offset: -3px; }
+.mapa-teselas, .mapa-marcas, .mapa-teselas-previas { position: absolute; inset: 0; }
+/* Un poco menos de saturación deja el mapa más limpio y hace resaltar marcadores y resultados. */
+.mapa-teselas, .mapa-teselas-previas { filter: saturate(.72) contrast(.96) brightness(1.03); }
+.mapa-marcas { pointer-events: none; }
+.tesela { position: absolute; top: 0; left: 0; width: 256px; height: 256px; max-width: none; opacity: 0; pointer-events: none; will-change: transform; }
+.tesela.lista { opacity: 1; }
+.mapa-teselas-previas { pointer-events: none; transition: transform .35s cubic-bezier(.2, .7, .3, 1), opacity .35s ease-in; }
+@media (prefers-reduced-motion: no-preference) {
+  .tesela { transition: opacity .25s ease; }
+}
+
+/* Marcadores: alfiler numerado (el número coincide con la ficha) y el punto azul de "estás aquí". */
+.marca-mapa { position: absolute; top: 0; left: 0; width: 0; height: 0; }
+.marca-pin button {
+  position: absolute; left: -15px; top: -40px; width: 30px; height: 30px; padding: 0;
+  display: grid; place-items: center; pointer-events: auto; cursor: pointer;
+  background: var(--pin); color: #fff; border: 2px solid #fff; border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg); transform-origin: 0 100%; box-shadow: 0 2px 6px rgb(60 20 15 / .45);
+}
+.marca-pin .marca-numero { transform: rotate(45deg); font-size: .8125rem; font-weight: 700; line-height: 1; }
+.marca-pin button:hover, .marca-pin.activa button { background: var(--pin-oscuro); }
+.marca-pin.activa { z-index: 2; }
+.marca-pin.activa button { width: 36px; height: 36px; left: -18px; top: -48px; }
+.marca-pin button:focus-visible { outline: 3px solid var(--azul); outline-offset: 2px; }
+
+.marca-yo { z-index: 1; }
+.marca-halo { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); border-radius: 50%; background: rgb(26 115 232 / .14); border: 1px solid rgb(26 115 232 / .4); }
+.marca-punto { position: absolute; left: -10px; top: -10px; width: 20px; height: 20px; border-radius: 50%; background: var(--azul); border: 3px solid #fff; box-shadow: 0 1px 6px rgb(15 50 110 / .5); }
+@media (prefers-reduced-motion: no-preference) {
+  .marca-punto::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--azul); animation: pulso 2s ease-out infinite; }
+  @keyframes pulso { from { transform: scale(1); opacity: .8; } to { transform: scale(2.6); opacity: 0; } }
+}
+
+/* ——— Panel flotante ——— */
+.panel {
+  position: fixed; z-index: 10; top: .75rem; left: .75rem; width: min(25.5rem, calc(100vw - 1.5rem));
+  max-height: calc(100dvh - 1.5rem); display: flex; flex-direction: column;
+  background: var(--superficie); border-radius: 1.25rem; box-shadow: var(--sombra-alta); overflow: hidden;
+}
+.panel-cabeza { padding: .75rem .75rem .625rem; }
+
+.buscador { display: flex; align-items: center; gap: .25rem; height: 3rem; padding-inline: .875rem .375rem; background: var(--campo); border-radius: 999px; border: 1px solid transparent; transition: background .2s, border-color .2s, box-shadow .2s; }
+.buscador:focus-within { background: var(--superficie); border-color: var(--linea); box-shadow: var(--sombra); }
+.buscador-lupa { color: var(--texto-suave); }
+.buscador input[type="search"] { flex: 1; min-width: 0; height: 100%; padding: 0 .5rem; border: 0; background: transparent; color: var(--texto); font-size: 1rem; }
+.buscador input[type="search"]:focus { outline: 0; }
+.buscador input::placeholder { color: var(--texto-suave); }
+.buscador-ir { display: grid; place-items: center; width: 2.375rem; height: 2.375rem; border: 0; border-radius: 50%; background: var(--azul); color: #fff; }
+.buscador-ir:hover { background: var(--azul-texto); }
+
+.acciones { display: flex; align-items: center; gap: .5rem; margin-top: .625rem; }
+.chip-mapa { display: inline-flex; align-items: center; gap: .375rem; height: 2.25rem; padding: 0 .875rem 0 .625rem; border: 1px solid var(--linea); border-radius: 999px; background: var(--superficie); color: var(--texto); font-size: .875rem; font-weight: 600; white-space: nowrap; transition: background .2s, border-color .2s, transform .1s; }
+.chip-mapa svg { width: 1.125rem; height: 1.125rem; color: var(--azul); }
+.chip-mapa:hover:not(:disabled) { background: var(--superficie-2); border-color: #c9d1d9; }
+.chip-mapa.principal { background: var(--azul-suave); border-color: transparent; color: var(--azul-texto); }
+.chip-mapa.principal:hover:not(:disabled) { background: #d6e4fd; }
+.chip-mapa:disabled { opacity: .6; cursor: progress; }
+.plegar { margin-left: auto; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 50%; background: transparent; color: var(--texto-suave); }
+.plegar:hover { background: var(--campo); }
+.plegar svg { transition: transform .2s; }
+.panel.plegado .plegar svg { transform: rotate(180deg); }
+.panel.plegado .panel-cuerpo { display: none; }
+button:active:not(:disabled) { transform: scale(.97); }
+.marca-pin button:active { transform: rotate(-45deg) scale(.95); }
+
+.panel-cuerpo { overflow-y: auto; overscroll-behavior: contain; padding: 0 1rem 1rem; border-top: 1px solid var(--linea); }
+.panel-cuerpo > .aviso { margin: .875rem 0 0; }
+
+.etiqueta { margin: 0; font-size: .75rem; font-weight: 600; letter-spacing: .02em; color: var(--azul-texto); }
+
+/* Bienvenida: lo que se ve antes de usar nada. */
+.bienvenida { padding-top: 1.125rem; }
+.bienvenida h1 { margin: .25rem 0 .5rem; color: var(--texto); font-size: 1.875rem; font-weight: 800; letter-spacing: -.03em; }
+.bienvenida p { margin: 0 0 .75rem; color: #3d444b; text-wrap: pretty; }
+.consejos { margin: 0 0 .75rem; padding: 0; list-style: none; display: grid; gap: .5rem; }
+.consejos li { padding: .625rem .75rem; background: var(--superficie-2); border-radius: .75rem; font-size: .9375rem; color: #3d444b; }
+.consejos strong { color: var(--texto); }
+.bienvenida .nota { font-size: .875rem; color: var(--texto-suave); }
+
+/* Fichas de datos: coordenadas en monoespaciada con cifras tabulares. */
+.dato { padding: .4375rem .625rem; background: var(--superficie-2); border-radius: .5rem; }
+.dato dt { font-size: .6875rem; color: var(--texto-suave); }
+.dato dd { margin: .0625rem 0 0; font-family: var(--mono); font-size: .8125rem; font-weight: 700; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+
+.lugar-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin: .75rem 0 0; font-size: .875rem; }
+.lugar-acciones a { color: var(--azul-texto); font-weight: 600; text-decoration: none; }
+.lugar-acciones a:hover { text-decoration: underline; }
+.copiar { padding: .25rem .75rem; border: 1px solid var(--linea); border-radius: 999px; background: var(--superficie); color: var(--texto); font-size: .8125rem; }
+.copiar:hover { background: var(--superficie-2); }
+
+/* Resultados */
+.lugares-lista { list-style: none; margin: 0; padding: 0; }
+.lugar { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: .75rem; padding: 1rem .5rem; margin-inline: -.5rem; border-bottom: 1px solid var(--linea); border-radius: .75rem; transition: background .2s; }
+.lugar:last-child { border-bottom: 0; }
+.lugar.activa { background: var(--azul-suave); border-bottom-color: transparent; }
+.lugar-numero { display: grid; place-items: center; width: 1.625rem; height: 1.625rem; margin-top: .125rem; border-radius: 50%; background: var(--pin); color: #fff; font-size: .8125rem; font-weight: 700; }
+.lugar.activa .lugar-numero { background: var(--pin-oscuro); }
+.lugar h3 { margin: .125rem 0; font-size: 1.0625rem; }
+.lugar-elegir { padding: 0; border: 0; background: none; color: var(--texto); font-weight: 700; text-align: left; letter-spacing: -.01em; }
+.lugar-elegir:hover { color: var(--azul-texto); text-decoration: underline; }
+.lugar-direccion { margin: 0 0 .625rem; color: var(--texto-suave); font-size: .9375rem; }
+.lugar-formatos { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .375rem; margin: 0; }
+.vacio { padding: 1rem 0 0; }
+
+/* Tu ubicación (IP o GPS) */
+.ip:empty, .lugares:empty { display: none; }
+.tarjeta-yo { padding: 1rem 0; border-bottom: 1px solid var(--linea); }
+.lugar-grande { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .5rem; margin: .25rem 0 .5rem; font-size: 1.5rem; font-weight: 800; letter-spacing: -.025em; line-height: 1.15; }
+.gps .lugar-grande { font-family: var(--mono); font-size: 1.25rem; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.marca.pais { display: inline-block; margin: 0 0 .75rem; padding: .125rem .5rem; border-radius: .375rem; background: var(--campo); font-size: .75rem; font-weight: 600; color: var(--texto-suave); }
+.gps-cerca { margin: 0 0 .75rem; color: #3d444b; }
+.fichas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .375rem; margin: 0; }
+.ip-nota { margin: .75rem 0 0; padding: .5rem .75rem; border-radius: .5rem; background: #fef7e0; color: #5c4400; font-size: .875rem; }
+
+.panel-pie { margin-top: 1rem; padding-top: .875rem; border-top: 1px solid var(--linea); font-size: .75rem; color: var(--texto-suave); }
+.panel-pie p { margin: 0 0 .375rem; }
+.panel-pie a { color: inherit; }
+.panel-pie .volver { margin-bottom: .75rem; }
+/* El panel es siempre claro: la píldora de vuelta usa sus colores, no los del tema del sistema. */
+.panel-pie .volver a { background: var(--azul-suave); border-color: transparent; color: var(--azul-texto); }
+.panel-pie .volver a:hover { border-color: var(--azul); }
+
+/* ——— Controles del mapa ——— */
+.controles { position: fixed; z-index: 5; right: .75rem; bottom: 2rem; display: flex; flex-direction: column; align-items: flex-end; gap: .625rem; }
+.control { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; padding: 0; border: 0; background: var(--superficie); color: #444b52; box-shadow: var(--sombra); border-radius: .75rem; transition: background .2s, color .2s; }
+.control:hover { background: var(--superficie-2); color: var(--texto); }
+#mi-posicion { color: var(--azul); }
+.zoom { display: flex; flex-direction: column; border-radius: .75rem; box-shadow: var(--sombra); overflow: hidden; }
+.zoom .control { box-shadow: none; border-radius: 0; }
+.zoom .control + .control { border-top: 1px solid var(--linea); }
+
+.atribucion { position: fixed; z-index: 5; right: 0; bottom: 0; margin: 0; padding: .125rem .5rem; border-top-left-radius: .375rem; background: rgb(255 255 255 / .82); font-size: .6875rem; color: var(--texto-suave); }
+.atribucion a { color: inherit; }
+
+/* En el teléfono el panel se pega arriba a lo ancho y su contenido no tapa más de medio mapa. */
+@media (max-width: 40rem) {
+  .panel { top: .5rem; left: .5rem; right: .5rem; width: auto; border-radius: 1.125rem; }
+  .panel-cabeza { padding: .5rem; }
+  .acciones { overflow-x: auto; scrollbar-width: none; }
+  .panel-cuerpo { max-height: 46dvh; padding-inline: .875rem; }
+  .bienvenida { padding-top: .75rem; }
+  .bienvenida h1 { font-size: 1.375rem; }
+  .bienvenida .consejos, .bienvenida .nota { display: none; }
+  .controles { bottom: 1.75rem; }
+}

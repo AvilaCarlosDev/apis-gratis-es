@@ -1,92 +1,76 @@
-.pizarra-interior { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; justify-content: space-between; align-items: flex-end; }
-.tasa-ecuacion { margin: .5rem 0 0; font-size: clamp(2rem, 7vw, 4.25rem); font-weight: 800; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
-.pizarra-enlace { color: var(--pizarra-suave); font-size: .9375rem; }
+/* Tienda: la tasa del día arriba como dato principal, rejilla de productos con fotos sobre blanco
+   y el carrito como panel fijo a la derecha. */
 
+/* ——— Banda de la tasa ——— */
+.portada-tienda { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; margin-bottom: 1.75rem; padding: 1.5rem; border-radius: 1.25rem; background: radial-gradient(70% 120% at 100% 0%, color-mix(in srgb, var(--oro) 28%, transparent), transparent 70%), var(--papel); border: 1px solid var(--linea); box-shadow: var(--sombra); }
+@media (min-width: 40rem) { .portada-tienda { padding: 1.75rem 2rem; } }
+.portada-tienda .etiqueta { margin: 0 0 .375rem; }
+.portada-titulo { margin: 0; max-width: 20ch; font-size: clamp(1.625rem, 3.6vw, 2.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -.035em; }
+.tasa { display: grid; justify-items: start; gap: .25rem; }
+@media (min-width: 40rem) { .tasa { justify-items: end; text-align: right; } }
+.tasa-ecuacion { margin: 0; padding: .45rem 1rem; border-radius: 999px; background: var(--oro); color: var(--sobre-oro); font-family: var(--mono); font-size: clamp(1rem, 2.4vw, 1.25rem); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tasa .pizarra-nota { margin: 0; color: var(--tinta-suave); font-size: .8125rem; }
+.esq-tasa { width: 14rem; height: 2.5rem; border-radius: 999px; }
+
+/* ——— Disposición ——— */
 .disposicion { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 60rem) { .disposicion { grid-template-columns: minmax(0, 1fr) 20rem; align-items: start; } }
+@media (min-width: 62rem) { .disposicion { grid-template-columns: minmax(0, 1fr) 20rem; align-items: start; } }
+.disposicion h2 { margin-bottom: .875rem; font-size: 1.375rem; }
 
-.barra { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1rem; }
+.barra { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .875rem; }
 .barra input[type="search"] { flex: 1 1 14rem; }
-.categorias { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
-.resultados { margin: 0 0 1rem; color: var(--tinta-suave); }
+.categorias { display: flex; gap: .375rem; margin: 0 -1rem 1rem; padding: 0 1rem .25rem; overflow-x: auto; scrollbar-width: none; }
+.categorias::-webkit-scrollbar { display: none; }
+@media (min-width: 40rem) { .categorias { flex-wrap: wrap; margin-inline: 0; padding-inline: 0; overflow: visible; } }
+.resultados { margin: 0 0 1rem; color: var(--tinta-suave); font-family: var(--mono); font-size: .8125rem; }
 
-.rejilla { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
+/* ——— Productos ——— */
+.rejilla { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.5rem), 1fr)); }
+@media (max-width: 30rem) { .rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; } }
 
-.producto { display: flex; flex-direction: column; gap: .5rem; background: var(--papel); border: 1px solid var(--linea); border-radius: .5rem; padding: 1rem; }
-.foto { aspect-ratio: 4 / 3; display: grid; place-items: center; background: #fff; border-radius: .375rem; padding: .75rem; }
-.foto img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.categoria { margin: 0; color: var(--tinta-suave); font-size: .875rem; }
+.producto { display: flex; flex-direction: column; gap: .375rem; padding: .625rem .625rem .875rem; background: var(--papel); border: 1px solid var(--linea); border-radius: 1rem; transition: border-color .25s, box-shadow .25s, transform .25s var(--suave-curva); }
+.producto:hover { border-color: var(--linea-fuerte); box-shadow: var(--sombra-alta); transform: translateY(-2px); }
+.foto { display: grid; place-items: center; aspect-ratio: 1; margin-bottom: .375rem; padding: .875rem; border-radius: .625rem; background: #fff; overflow: hidden; }
+.foto img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform .4s var(--suave-curva); }
+.producto:hover .foto img { transform: scale(1.04); }
+.producto h3 { padding-inline: .25rem; font-size: .9375rem; font-weight: 500; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.6em; }
+.categoria { margin: 0; padding-inline: .25rem; color: var(--tinta-suave); font-family: var(--mono); font-size: .6875rem; text-transform: lowercase; }
 
-/* Etiqueta de precio con muesca y agujero, como las de cartulina de una bodega. */
-.etiqueta { position: relative; margin-top: auto; background: var(--oro); color: #10231c; padding: .5rem .75rem .5rem 1.75rem; clip-path: polygon(.875rem 0, 100% 0, 100% 100%, .875rem 100%, 0 50%); }
-.etiqueta::before { content: ""; position: absolute; left: 1rem; top: 50%; width: .5rem; height: .5rem; margin-top: -.25rem; border-radius: 50%; background: var(--papel); }
-.precio-usd { margin: 0; font-size: 1.375rem; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.precio-bs { margin: 0; font-size: .9375rem; font-variant-numeric: tabular-nums; }
+/* El precio: dólares grandes y bolívares debajo, siempre en cifras tabulares. */
+.producto .etiqueta { margin-top: auto; padding: .375rem .25rem 0; font-family: var(--sans); color: var(--tinta); }
+.precio-usd { margin: 0; font-size: 1.25rem; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.precio-bs { margin: .125rem 0 0; color: var(--tinta-suave); font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.producto button.primario { margin-top: .5rem; width: 100%; padding-block: .55rem; background: var(--papel-2); color: var(--tinta); font-size: .875rem; }
+.producto button.primario::before { content: "+"; font-size: 1.125rem; line-height: 1; }
+.producto button.primario:hover { background: var(--tinta); color: var(--hoja); }
 
-.panel-carrito { background: var(--papel); border: 1px solid var(--linea); border-radius: .5rem; padding: 1rem; }
-@media (min-width: 60rem) { .panel-carrito { position: sticky; top: 1rem; } }
-.lineas { list-style: none; margin: 0; padding: 0; }
-.linea { display: grid; grid-template-columns: 1fr auto; gap: .25rem .75rem; padding-block: .75rem; border-bottom: 1px solid var(--linea); }
-.linea-titulo { grid-column: 1 / -1; font-weight: 600; }
-.linea-cantidad { display: inline-flex; align-items: center; gap: .5rem; }
-.linea-cantidad button { width: 2rem; height: 2rem; border: 1px solid var(--linea); border-radius: .375rem; background: var(--hoja); color: var(--tinta); }
-.linea-precio { text-align: right; font-variant-numeric: tabular-nums; }
-.total { margin-block: 1rem; }
-
-/* Mismo aspecto que la portada: gris neutro, cabecera plana y tarjetas de borde fino. */
-:root { --hoja: #0a0a0b; --papel: #151517; --lateral: #0d0d0f; --tinta: #ececee; --tinta-suave: #a1a1a8; --linea: #26262a; --cobalto: #f4f4f5; --cobalto-texto: #0a0a0b; --enlace: #6ea0ee; --pizarra: #0d0d0f; --pizarra-texto: #ececee; --pizarra-suave: #a1a1a8; }
-@media (prefers-color-scheme: light) {
-  :root { --hoja: #f7f7f8; --papel: #ffffff; --lateral: #ffffff; --tinta: #16161a; --tinta-suave: #5b5b63; --linea: #e3e3e6; --cobalto: #16161a; --cobalto-texto: #ffffff; --enlace: #1f5fbf; --pizarra: #ffffff; --pizarra-texto: #16161a; --pizarra-suave: #5b5b63; }
-}
-.pizarra { border-bottom: 1px solid var(--linea); padding: 1rem 0; }
-.pizarra h1 { color: var(--tinta); font-size: 1.125rem; font-weight: 700; }
-.pizarra-interior { align-items: center; }
-.tasa-ecuacion { font-size: clamp(1.5rem, 5vw, 2.25rem); margin-top: .25rem; }
-.pizarra a, .pie a, .aviso a { color: var(--enlace); }
-button.texto { color: var(--enlace); }
-.producto, .panel-carrito, .dia { border-radius: .625rem; }
-button.chip[aria-pressed="true"] { background: var(--tinta); color: var(--hoja); }
-:focus-visible { outline-color: var(--enlace); }
-
-/* Aspecto de tienda de moda masiva: cabecera negra, fondo gris claro y rejilla densa de fotos sin marco. */
-:root { --hoja: #f5f5f5; --papel: #ffffff; --tinta: #222222; --tinta-suave: #767676; --linea: #e5e5e5; --cobalto: #222222; --cobalto-texto: #ffffff; --enlace: #1a5fb4; --precio: #d9411e; --pizarra: #000000; --pizarra-texto: #ffffff; --pizarra-suave: #b5b5b5; }
-@media (prefers-color-scheme: light) { :root { --hoja: #f5f5f5; --papel: #ffffff; --tinta: #222222; --tinta-suave: #767676; --linea: #e5e5e5; --cobalto: #222222; --cobalto-texto: #ffffff; --enlace: #1a5fb4; --pizarra: #000000; --pizarra-texto: #ffffff; --pizarra-suave: #b5b5b5; } }
-
-.pizarra { border-bottom: 0; padding: .875rem 0; }
-.pizarra .pizarra-interior > div { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem 1.25rem; }
-.pizarra h1 { color: #fff; font-size: 1.5rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-.pizarra .tasa { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .75rem; }
-.pizarra .tasa-ecuacion { margin: 0; font-size: 1rem; font-weight: 700; background: #fff; color: #000; border-radius: 999px; padding: .2rem .8rem; }
-.pizarra .pizarra-nota { margin: 0; font-size: .8125rem; }
-.pizarra a { color: #fff; }
-
-main { padding-top: 1.25rem; }
-h2 { font-size: 1.125rem; }
-.rejilla { grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 1.25rem .75rem; }
-@media (min-width: 60rem) { .rejilla { grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); } }
-
-.producto { display: grid; grid-template-columns: 1fr auto; align-content: start; gap: .375rem .5rem; background: transparent; border: 0; border-radius: 0; padding: 0; }
-.producto .foto { grid-column: 1 / -1; aspect-ratio: 3 / 4; background: #fff; border-radius: 0; padding: .5rem; }
-.producto h3 { grid-column: 1 / -1; font-size: .875rem; font-weight: 400; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.producto .categoria { display: none; }
-.etiqueta { grid-column: 1; margin: 0; background: none; color: var(--precio); padding: 0; clip-path: none; }
-.etiqueta::before { display: none; }
-.precio-usd { font-size: 1.25rem; font-weight: 800; }
-.precio-bs { font-size: .8125rem; color: var(--tinta-suave); }
-.producto button.primario { grid-column: 2; align-self: end; width: 2.25rem; height: 2.25rem; padding: 0; border-radius: 50%; background: transparent; color: var(--tinta); border: 1.5px solid var(--tinta); font-size: 0; position: relative; }
-.producto button.primario::before { content: "+"; font-size: 1.5rem; line-height: 1; position: absolute; inset: 0; display: grid; place-items: center; padding-bottom: .1rem; }
-.producto button.primario:hover { background: var(--tinta); color: #fff; filter: none; }
-
-button.chip { background: #fff; border-color: transparent; }
-button.chip[aria-pressed="true"] { background: #000; color: #fff; }
-.panel-carrito { border-radius: .25rem; border: 0; }
-input[type="search"], select.campo { border-radius: 999px; padding-inline: 1rem; }
-
-.esq-tasa { width: 9rem; height: 1.75rem; border-radius: 999px; background: #333; }
-.esq-producto { display: grid; gap: .5rem; align-content: start; }
-.esq-foto { aspect-ratio: 3 / 4; border-radius: 0; background: #e8e8e8; }
-.esq-linea { height: .875rem; background: #e8e8e8; }
+.esq-producto { display: grid; gap: .5rem; align-content: start; padding: .625rem; border: 1px solid var(--linea); border-radius: 1rem; background: var(--papel); }
+.esq-foto { aspect-ratio: 1; }
+.esq-linea { height: .875rem; }
 .esq-linea.corta { width: 55%; }
 
-.pizarra-interior { gap: .5rem 1.5rem; }
-.pizarra-enlace { margin: 0; }
+/* ——— Carrito ——— */
+.panel-carrito { padding: 1.25rem; background: var(--papel); border: 1px solid var(--linea); border-radius: 1.25rem; box-shadow: var(--sombra); }
+@media (min-width: 62rem) { .panel-carrito { position: sticky; top: 5.25rem; } }
+.panel-carrito h2 { display: flex; align-items: center; gap: .5rem; font-size: 1.25rem; }
+#contador { display: inline-grid; place-items: center; min-width: 1.75rem; height: 1.75rem; padding-inline: .375rem; border-radius: 999px; background: var(--oro); color: var(--sobre-oro); font-family: var(--mono); font-size: .8125rem; }
+.panel-carrito .vacio { padding: 1.5rem 1rem; border: 1px dashed var(--linea-fuerte); border-radius: .75rem; text-align: center; font-size: .9375rem; }
+.lineas { margin: 0; padding: 0; list-style: none; }
+.linea { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .5rem .75rem; padding-block: .875rem; border-bottom: 1px solid var(--linea); }
+.linea:first-child { padding-top: 0; }
+.linea-titulo { grid-column: 1 / -1; font-size: .9375rem; font-weight: 600; line-height: 1.3; }
+.linea-cantidad { display: inline-flex; align-items: center; gap: .125rem; justify-self: start; padding: .125rem; border: 1px solid var(--linea); border-radius: 999px; font-variant-numeric: tabular-nums; }
+.linea-cantidad > span { min-width: 1.75rem; text-align: center; font-weight: 600; }
+.linea-cantidad button { width: 1.875rem; height: 1.875rem; padding: 0; border: 0; border-radius: 50%; background: transparent; font-size: 1.125rem; line-height: 1; }
+.linea-cantidad button:hover { background: var(--papel-2); }
+.linea-precio { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.linea button.texto { justify-self: start; padding: 0; font-size: .8125rem; color: var(--tinta-suave); }
+.total { display: grid; gap: .125rem; margin-block: 1rem .75rem; padding: 1rem; border-radius: .75rem; background: var(--oro-suave); }
+.total::before { content: "Total"; font-family: var(--mono); font-size: .75rem; color: var(--oro-texto); }
+.total .precio-usd { font-size: 1.75rem; }
+.total .precio-bs { color: var(--tinta); }
+
+/* En el celular el carrito con algo adentro queda pegado abajo, sin tener que bajar 50 productos. */
+@media (max-width: 61.99rem) {
+  .panel-carrito:has(.lineas) { position: sticky; bottom: .75rem; z-index: 10; max-height: 46dvh; overflow-y: auto; box-shadow: var(--sombra-alta); }
+}

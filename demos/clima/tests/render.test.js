@@ -72,3 +72,23 @@ test("pintarLugares con lista vacía limpia el contenedor", () => {
   pintarLugares(doc, doc.getElementById("l"), [], () => {});
   assert.equal(doc.getElementById("l").textContent, "");
 });
+
+test("pintarActual marca el tipo de cielo del panel, también cuando no hay datos", () => {
+  const doc = crearDocumentoFalso(["a"]);
+  pintarActual(doc, doc.getElementById("a"), lugar, { ...actual, tipo: "lluvia" });
+  assert.equal(doc.getElementById("a").getAttribute("data-cielo"), "lluvia");
+  pintarActual(doc, doc.getElementById("a"), lugar, null);
+  assert.equal(doc.getElementById("a").getAttribute("data-cielo"), "desconocido");
+});
+
+test("pintarDias dibuja un ícono y una barra de rango por día, aunque falte una temperatura", () => {
+  const doc = crearDocumentoFalso(["d"]);
+  pintarDias(doc, doc.getElementById("d"), [...dias, { fecha: "2026-09-23", max: null, min: null, lluvia: 0, descripcion: "Despejado", tipo: "despejado" }], "°C");
+  const filas = doc.getElementById("d").porEtiqueta("li");
+  assert.equal(filas.length, 4);
+  for (const f of filas) {
+    assert.equal(f.buscar((n) => n.clases.has("icono")).length, 1);
+    assert.equal(f.buscar((n) => n.clases.has("rango")).length, 1);
+  }
+  assert.ok(filas[3].buscar((n) => n.clases.has("rango"))[0].clases.has("sin-dato"));
+});

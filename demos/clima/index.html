@@ -15,11 +15,21 @@
 <body>
   <a class="salto" href="#dias">Ir al pronóstico</a>
 
-  <header class="pizarra">
-    <div class="contenedor">
-      <h1>Clima</h1>
-      <div class="buscar">
-        <input id="buscador" type="search" placeholder="Buscar una ciudad" aria-label="Buscar una ciudad" autocomplete="off" maxlength="60">
+  <header class="barra-demo">
+    <div class="contenedor barra-demo-fila">
+      <span class="sello" aria-hidden="true">{ }</span>
+      <div class="barra-demo-titulo">
+        <h1>Clima</h1>
+        <p class="etiqueta">Demo · Open-Meteo</p>
+      </div>
+      <p class="volver"><a href="../../">Ver todas las demos</a></p>
+    </div>
+  </header>
+
+  <main class="contenedor clima">
+    <section class="cielo" aria-label="Clima de ahora">
+      <div class="buscar" role="search">
+        <input id="buscador" type="search" placeholder="Buscar una ciudad" aria-label="Buscar una ciudad" autocomplete="off" maxlength="60" enterkeyhint="search">
         <button id="buscar" type="button" class="primario">Buscar</button>
         <select id="unidad" class="campo" aria-label="Unidad de temperatura">
           <option value="celsius">°C</option>
@@ -28,13 +38,10 @@
       </div>
       <div id="lugares" class="lugares" role="group" aria-label="Coincidencias"></div>
       <div id="actual" class="actual" aria-live="polite"><span class="esq esq-lugar" aria-hidden="true"></span><span class="esq esq-temp" aria-hidden="true"></span><span class="esq esq-cond" aria-hidden="true"></span></div>
-      <p class="pizarra-nota"><a href="../../">Ver todas las demos</a></p>
-    </div>
-  </header>
+    </section>
 
-  <main class="contenedor">
-    <div id="aviso" class="aviso" hidden></div>
-    <section aria-labelledby="titulo-dias">
+    <section class="semana" aria-labelledby="titulo-dias">
+      <div id="aviso" class="aviso" hidden></div>
       <h2 id="titulo-dias">Próximos siete días</h2>
       <div id="dias"><span class="esq esq-dia" aria-hidden="true"></span><span class="esq esq-dia" aria-hidden="true"></span><span class="esq esq-dia" aria-hidden="true"></span><span class="esq esq-dia" aria-hidden="true"></span><span class="esq esq-dia" aria-hidden="true"></span><span class="esq esq-dia" aria-hidden="true"></span><span class="esq esq-dia" aria-hidden="true"></span></div>
     </section>

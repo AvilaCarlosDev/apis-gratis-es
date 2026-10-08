@@ -15,17 +15,26 @@
 <body>
   <a class="salto" href="#productos">Ir a los productos</a>
 
-  <header class="pizarra">
-    <div class="contenedor pizarra-interior">
-      <div>
+  <header class="barra-demo">
+    <div class="contenedor barra-demo-fila">
+      <span class="sello" aria-hidden="true">{ }</span>
+      <div class="barra-demo-titulo">
         <h1>Tienda demo</h1>
-        <div id="tasa" class="tasa" aria-live="polite"><span class="esq esq-tasa" aria-hidden="true"></span></div>
+        <p class="etiqueta">Demo · DolarAPI, DummyJSON y FakeStoreAPI</p>
       </div>
-      <p class="pizarra-enlace"><a href="../../">Ver todas las demos</a></p>
+      <p class="volver"><a href="../../">Ver todas las demos</a></p>
     </div>
   </header>
 
   <main class="contenedor">
+    <div class="portada-tienda">
+      <div>
+        <p class="etiqueta">Precios en dólares y en bolívares</p>
+        <p class="portada-titulo">Todo el catálogo, a la tasa oficial de hoy.</p>
+      </div>
+      <div id="tasa" class="tasa" aria-live="polite"><span class="esq esq-tasa" aria-hidden="true"></span></div>
+    </div>
+
     <div id="aviso" class="aviso" hidden></div>
 
     <div class="disposicion">
@@ -46,7 +55,7 @@
       </section>
 
       <aside aria-labelledby="titulo-carrito" class="panel-carrito">
-        <h2 id="titulo-carrito">Carrito (<span id="contador">0</span>)</h2>
+        <h2 id="titulo-carrito">Carrito <span id="contador">0</span></h2>
         <div id="carrito"></div>
       </aside>
     </div>

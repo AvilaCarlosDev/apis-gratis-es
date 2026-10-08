@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file. / Todos los cam
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project is a living catalog rather than versioned software, so entries are grouped by date. / El proyecto es un catálogo vivo y no software con versiones, así que las entradas se agrupan por fecha.
 
+## 2026-10-07
+
+### Changed / Cambiado
+
+- Location demo redesigned as a full-screen map in the style of map apps: dependency-free tile viewer over OpenStreetMap, numbered pins, tap-to-ask "what is here?" (Photon reverse geocoding), opt-in device GPS with an accuracy circle besides the IP estimate. / La demo de ubicación pasa a ser un mapa a pantalla completa al estilo de las apps de mapas: visor de teselas propio sobre OpenStreetMap, alfileres numerados, «¿qué hay aquí?» al tocar el mapa (búsqueda inversa de Photon) y GPS del dispositivo a pedido, con círculo de precisión, además de la estimación por IP.
+- New landing page: hero with the catalog figures, bento grid of demos with real screenshots and how an API gets into the catalog. / Portada nueva: presentación con las cifras del catálogo, rejilla de demos con capturas reales y cómo entra una API al catálogo.
+- One design system across the landing page and every demo (warm neutrals, a single gold accent, light and dark mode) with a shared top bar. Weather: sky panel tinted by the current conditions, CSS-drawn icons and a weekly temperature-range bar per day. Shop: daily-rate banner, product cards with a visible "Add" button, sticky cart (pinned to the bottom on phones). Holidays: countdown card and month cards. Encyclopedia: reading layout in Newsreader. Landing: screenshot collage next to the headline, structured footer, refreshed screenshots. / Un mismo sistema de diseño en la portada y en todas las demos (neutros cálidos, un solo acento oro, modo claro y oscuro) con una barra superior común. Clima: panel de cielo que toma el color del tiempo de ahora, íconos dibujados con CSS y barra de rango semanal por día. Tienda: banda con la tasa del día, tarjetas con botón «Agregar» visible y carrito fijo (pegado abajo en el celular). Feriados: tarjeta con cuenta regresiva y tarjetas por mes. Enciclopedia: composición de lectura en Newsreader. Portada: capturas junto al título, pie ordenado y capturas actualizadas.
+
 ## 2026-10-04
 
 ### Added / Añadido

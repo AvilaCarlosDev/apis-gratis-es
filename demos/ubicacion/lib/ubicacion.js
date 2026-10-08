@@ -65,12 +65,17 @@ export function normalizarIp(datos) {
   };
 }
 
-// Mapa incrustado de OpenStreetMap: recuadro de ~0,02° alrededor del punto y un marcador.
-export function urlMapaIncrustado(latitud, longitud) {
+// Búsqueda inversa: de un punto (GPS o un toque en el mapa) al lugar más cercano.
+export function urlReversa(latitud, longitud) {
   if (!coordenadasValidas(latitud, longitud)) throw new RangeError("Coordenadas fuera de rango");
-  const d = 0.02;
-  const caja = [longitud - d, latitud - d, longitud + d, latitud + d].map((n) => n.toFixed(5)).join(",");
-  return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(caja)}&layer=mapnik&marker=${latitud.toFixed(5)}%2C${longitud.toFixed(5)}`;
+  return `https://photon.komoot.io/reverse?lat=${latitud.toFixed(5)}&lon=${longitud.toFixed(5)}&limit=1`;
+}
+
+// Precisión de una posición en metros, redondeada como la diría una persona.
+export function formatearPrecision(metros) {
+  if (!esNumero(metros) || metros < 0) return "";
+  if (metros < 1000) return `±${Math.max(1, Math.round(metros))} m`;
+  return `±${(metros / 1000).toLocaleString("es-VE", { maximumFractionDigits: metros < 10000 ? 1 : 0 })} km`;
 }
 
 function grados(valor, positivo, negativo) {
