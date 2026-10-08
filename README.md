@@ -7,6 +7,8 @@
 [![CI](https://github.com/AvilaCarlosDev/apis-gratis-es/actions/workflows/quality.yml/badge.svg)](https://github.com/AvilaCarlosDev/apis-gratis-es/actions/workflows/quality.yml)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-yellow.svg)](LICENSE)
 
+<a href="https://avilacarlosdev.github.io/apis-gratis-es/"><img src="assets/portada.webp" alt="Portada del catálogo: APIs gratuitas que funcionan, probadas en apps de verdad, con el mapa de Ubicación y el clima de las demos" width="100%"></a>
+
 > **Última revisión: 2026-09-19.** Los niveles gratuitos cambian a menudo (esa revisión encontró varios datos desactualizados; ver [docs/verificaciones.md](docs/verificaciones.md)). Antes de depender de un límite, confírmalo en la fuente enlazada.
 
 ## Aviso importante
@@ -54,6 +56,14 @@ Cada demo es una aplicación distinta, con su propia página, README, pruebas y 
 - [Feriados](demos/feriados/README.md): los feriados de cada año en 20 países, con el próximo y los fines de semana largos.
 - [Ubicación](demos/ubicacion/README.md): busca un lugar y obtén sus coordenadas, o estima dónde estás con un mapa.
 - [Enciclopedia al paso](demos/wikipedia/README.md): busca un tema y lee su síntesis en Wikipedia en español.
+
+| Tienda | Ubicación | Clima |
+|---|---|---|
+| <img src="assets/demos/tienda.webp" alt="Tienda de ejemplo con categorías, productos y precios en dólares y en bolívares" width="100%"> | <img src="assets/demos/ubicacion.webp" alt="Mapa de Caracas con cinco plazas de Altamira marcadas con alfileres rojos numerados y la lista de resultados a la izquierda" width="100%"> | <img src="assets/demos/clima.webp" alt="Clima de Caracas: 23 °C y nublado, con el pronóstico de los próximos días" width="100%"> |
+
+| Feriados | Enciclopedia al paso |
+|---|---|
+| <img src="assets/demos/feriados.webp" alt="Próximo feriado de Venezuela con la cuenta regresiva y el cronograma del año" width="100%"> | <img src="assets/demos/wikipedia.webp" alt="Buscador de la enciclopedia con sugerencias de temas" width="100%"> |
 
 ## Catálogo de APIs sin clave
 
@@ -159,7 +169,7 @@ Las secciones siguientes, hasta «Cómo verificamos», cubren la categoría **IA
 | `google/gemma-4-26b-a4b-it:free` | 262 K |
 | `nvidia/nemotron-3-super-120b-a12b:free` | 262 K |
 | `nvidia/nemotron-3-ultra-550b-a55b:free` | 1 M |
-| `qwen/qwen3.8-27b:free` | 262 K |
+| `poolside/laguna-s-2.1:free` | 262 K |
 | `cohere/north-mini-code:free` | 256 K (código) |
 | `liquid/lfm-2.5-2.6b:free` | 65 K |
 
@@ -169,7 +179,7 @@ Lista completa y vigente, sin clave:
 curl -s https://openrouter.ai/api/v1/models | jq -r '.data[] | select(.id | endswith(":free")) | .id'
 ```
 
-> Los siete modelos que esta lista mostraba antes (Gemma 3 27B y 12B, Llama 3.3 70B, Llama 3.2 3B, Qwen 2.5 Coder 32B, Mistral 7B y DeepSeek R1) **ya no son gratuitos** en OpenRouter.
+> Los siete modelos que esta lista mostraba antes (Gemma 3 27B y 12B, Llama 3.3 70B, Llama 3.2 3B, Qwen 2.5 Coder 32B, Mistral 7B y DeepSeek R1) **ya no son gratuitos** en OpenRouter. El 2026-10-08 la verificación detectó que `qwen/qwen3.8-27b` tampoco figura, así que se sacó de la tabla.
 
 ### [Google AI Studio](https://aistudio.google.com)
 

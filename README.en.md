@@ -7,6 +7,8 @@
 [![CI](https://github.com/AvilaCarlosDev/apis-gratis-es/actions/workflows/quality.yml/badge.svg)](https://github.com/AvilaCarlosDev/apis-gratis-es/actions/workflows/quality.yml)
 [![License: MIT](https://img.shields.io/badge/licencia-MIT-yellow.svg)](LICENSE)
 
+<a href="https://avilacarlosdev.github.io/apis-gratis-es/"><img src="assets/portada.webp" alt="Catalog home page: free APIs that work, tested in real apps, with the Location demo map and weather card" width="100%"></a>
+
 > **Last review: 2026-09-19.** Free tiers change often (that review found several outdated facts; see [docs/verificaciones.md](docs/verificaciones.md)). Before relying on a limit, confirm it at the linked source.
 
 ## Important notice
@@ -54,6 +56,14 @@ Each demo is a separate application, with its own page, README, tests and credit
 - [Holidays](demos/feriados/README.en.md): the holidays of each year in 20 countries, with the next one and the long weekends.
 - [Location](demos/ubicacion/README.en.md): search a place and get its coordinates, or estimate where you are, with a map.
 - [Enciclopedia al paso](demos/wikipedia/README.en.md): look up a topic and read its summary from Spanish Wikipedia.
+
+| Store | Location | Weather |
+|---|---|---|
+| <img src="assets/demos/tienda.webp" alt="Sample store with categories, products and prices in dollars and bolívares" width="100%"> | <img src="assets/demos/ubicacion.webp" alt="Map of Caracas with five Altamira plazas pinned and the result list on the left" width="100%"> | <img src="assets/demos/clima.webp" alt="Caracas weather: 23 °C and cloudy, with the coming days forecast" width="100%"> |
+
+| Holidays | Enciclopedia al paso |
+|---|---|
+| <img src="assets/demos/feriados.webp" alt="Next Venezuela holiday with countdown and the year's calendar" width="100%"> | <img src="assets/demos/wikipedia.webp" alt="Encyclopedia search box with topic suggestions" width="100%"> |
 
 ## Keyless API catalog
 
@@ -159,7 +169,7 @@ The following sections, up to "How we verify", cover the **AI** category: LLM pr
 | `google/gemma-4-26b-a4b-it:free` | 262 K |
 | `nvidia/nemotron-3-super-120b-a12b:free` | 262 K |
 | `nvidia/nemotron-3-ultra-550b-a55b:free` | 1 M |
-| `qwen/qwen3.8-27b:free` | 262 K |
+| `poolside/laguna-s-2.1:free` | 262 K |
 | `cohere/north-mini-code:free` | 256 K (code) |
 | `liquid/lfm-2.5-2.6b:free` | 65 K |
 
@@ -169,7 +179,7 @@ Full, current list, no key needed:
 curl -s https://openrouter.ai/api/v1/models | jq -r '.data[] | select(.id | endswith(":free")) | .id'
 ```
 
-> The seven models this list used to show (Gemma 3 27B and 12B, Llama 3.3 70B, Llama 3.2 3B, Qwen 2.5 Coder 32B, Mistral 7B and DeepSeek R1) are **no longer free** on OpenRouter.
+> The seven models this list used to show (Gemma 3 27B and 12B, Llama 3.3 70B, Llama 3.2 3B, Qwen 2.5 Coder 32B, Mistral 7B and DeepSeek R1) are **no longer free** on OpenRouter. On 2026-10-08 the check detected that `qwen/qwen3.8-27b` is gone too, so it was removed from the table.
 
 ### [Google AI Studio](https://aistudio.google.com)
 
