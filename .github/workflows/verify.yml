@@ -23,7 +23,8 @@ jobs:
 
       - name: Call every API in the catalog and check the response
         # Temporal (2026-09-28): se omite fakestoreapi, devuelve 523 (origen caído).
-        # Cuando vuelva, dejar solo: python3 scripts/catalogo.py verificar
+        # Temporal (2026-10-15): se omite mindicador-cl, el servidor cierra el TLS sin respuesta.
+        # Cuando vuelvan, dejar solo: python3 scripts/catalogo.py verificar
         run: |
-          ids=$(python3 -c "import json; print(' '.join('--id ' + e['id'] for e in json.load(open('data/apis.json'))['entradas'] if e['id'] != 'fakestoreapi'))")
+          ids=$(python3 -c "import json; print(' '.join('--id ' + e['id'] for e in json.load(open('data/apis.json'))['entradas'] if e['id'] not in ('fakestoreapi', 'mindicador-cl')))")
           python3 scripts/catalogo.py verificar $ids
